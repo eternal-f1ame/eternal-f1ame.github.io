@@ -154,7 +154,7 @@ const contactConfig = {
     // check out this tutorial https://www.emailjs.com/docs/examples/reactjs/
     YOUR_SERVICE_ID: "@aeternum_website",
     YOUR_TEMPLATE_ID: "@aeternum_website_tem",
-    YOUR_USER_ID: "G_mRFg7fng9n-cl2w",
+    YOUR_USER_ID: "fGPqutuhvC_JG9eCP",
 };
 
 const socialprofils = {
