@@ -77,7 +77,7 @@ const achievements = [{
     },
     {
         title: "Bagged a Perfect Score of 100/100 ABU Robocon",
-        description: "Led the team working on the mechanism of the R2 seeker by Ideating is moti0on dynamics and impementing CV/AI subparts.",
+        description: "Led the team working on the mechanism of the R2 seeker by Ideating is motion dynamics and impementing CV/AI subparts.",
     },
     {
         title: "Ranked 7th Inter IIT Techmeet (DRDOs UAV guided UGV)",
