@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/static/css/main.d48df019.css",
+    "main.js": "/static/js/main.d4cadebd.js",
+    "static/media/AIART.png": "/static/media/AIART.c47ac4d8192baa9e26aa.png",
+    "static/media/PROJECTS.png": "/static/media/PROJECTS.30e579f6b4f0eeb2535b.png",
+    "index.html": "/index.html"
+  },
+  "entrypoints": [
+    "static/css/main.d48df019.css",
+    "static/js/main.d4cadebd.js"
+  ]
+}
