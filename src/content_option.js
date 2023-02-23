@@ -152,9 +152,9 @@ const contactConfig = {
     description: "I sleep through half my calls, so if I don’t answer, leave a message or better drop an email and I’ll get back to you.",
     // creat an emailjs.com account 
     // check out this tutorial https://www.emailjs.com/docs/examples/reactjs/
-    YOUR_SERVICE_ID: "service_id",
-    YOUR_TEMPLATE_ID: "template_id",
-    YOUR_USER_ID: "user_id",
+    YOUR_SERVICE_ID: "@aeternum_website",
+    YOUR_TEMPLATE_ID: "@aeternum_website_tem",
+    YOUR_USER_ID: "G_mRFg7fng9n-cl2w",
 };
 
 const socialprofils = {
