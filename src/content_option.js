@@ -88,12 +88,12 @@ const achievements = [{
 const dataportfolio = [{
         img: PROJECTS,
         desctiption: "Projects",
-        link: "/portfolio/projects",
+        link: "/projects",
     },
     {
         img: "https://picsum.photos/500/675/?grayscale",
         desctiption: "Blogs",
-        link: "/ruko_zara",
+        link: "/blogs",
     },
     {
         img: "https://picsum.photos/600/400/?grayscale",
@@ -111,6 +111,17 @@ const dataportfolio = [{
         link: "/ruko_zara",
     },
 ];
+
+
+const datablogs = [{
+        title: "How to make a website",
+        author: "Aaditya Baranwal",
+        date: "2021",},
+    {
+        title: "How to make a website",
+        author: "Aaditya Baranwal",
+        date: "2021",},
+    ];
 
 
 const dataruko_zara = [{
@@ -154,19 +165,19 @@ const dataprojects = [{
     img: "https://picsum.photos/400/"+pr_height_1+"/?grayscale",
     title: "Gesture Controlled AMR",
     desctiption: "Modelled AI, ROS, Communication & Control Pipeline, Instance Segmentation (K-means & Neural-Net architectures), Hand detection(YOLO & Keypoint Mapping), and real-time gesture action classification (LSTM) using robust Parallel Processing with Reinforcement Learning for Autonomous Visual-Servoing and Navigation.",
-    link: "#",
+    link: "https://github.com/eternal-f1ame/VOWEL",
 },
 {
     img: "https://picsum.photos/400/"+(1300-pr_height_1)+"?grayscale",
     title: "UAV guided UGV",
     desctiption: "Ideated a travelling algorithm for UAVs and implemented it using K-means segmentation, Depth-Vision for trajectory construction, and PID control for stable path-following capability using Differential Kinetics and Created a Computation economic pipeline that optimizes ROS code for Image processing and Robot Control Mechanisms.",
-    link: "#",
+    link: "https://github.com/eternal-f1ame/DRDO-UAV-UGV",
 },
 {
     img: "https://picsum.photos/400/"+pr_height_2+"/?grayscale",
     title: "Speech Emotion Recognition Webapp",
     desctiption: "Augmented and Pre-processed the Audio data to task-relevant variations, Applied STFT Algorithm generating Chroma Vector, and fed the data to models including xgboost, shallow MLP, and LSTM(RNNs) and Developed a web App and deployed the best model chosen based on accuracy metrics to determine Emotional State from speech using standard phrases using Javascript, Html, and CSS.",    
-    link: "#",
+    link: "https://github.com/eternal-f1ame/Speech_Emotion_Recognition",
 },
 {
     img: "https://picsum.photos/400/"+(1300-pr_height_2)+"?grayscale",
@@ -210,6 +221,7 @@ export {
     dataportfolio,
     dataruko_zara,
     dataprojects,
+    datablogs,
     worktimeline,
     skills,
     achievements,

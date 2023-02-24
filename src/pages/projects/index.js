@@ -12,7 +12,7 @@ export const Projects = () => {
       <Container className="About-header">
         <Helmet>
           <meta charSet="utf-8" />
-          <title> projects | {meta.title} </title>{" "}
+          <title> Projects | {meta.title} </title>{" "}
           <meta name="description" content={meta.description} />
         </Helmet>
         <Row className="mb-5 mt-3 pt-md-3">
@@ -26,7 +26,8 @@ export const Projects = () => {
             return (
               <div key={i} className="pr_item">
                 <div className="content">
-                  <h3>{data.title}</h3>
+                  <Link to={data.link}>
+                  <h3>{data.title}</h3></Link>
                   <p>{data.desctiption}</p>
                 </div>
               </div>
