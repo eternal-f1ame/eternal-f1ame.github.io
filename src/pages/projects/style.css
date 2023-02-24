@@ -9,12 +9,12 @@
 
 .pr_item {
     width: 30%;
-    height: 20vw;;
+    height: 10vw;;
     margin: 0 15px 30px;
-    background-color: var(--secondary-color);
+    background-color: var(--primary-color);
     border-radius: 5%;
     padding: 0.5vw;
-    outline: var(--primary-color) solid 2px;
+    outline: var(--secondary-color) solid 2px;
 }
 
 .pr_item .content{
@@ -48,12 +48,17 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    position: absolute;
+    position: fixed;
     border-radius: 5%;
     outline: var(--secondary-color) solid 2px;
+
 }
 
 .pr_item:hover .content p{
     font-size: 1.5vw;
     opacity: 1;
+}
+
+.pr_item:hover{
+    outline: var(--primary-color) solid 2px;;
 }
