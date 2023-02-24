@@ -88,7 +88,7 @@ const achievements = [{
 const dataportfolio = [{
         img: PROJECTS,
         desctiption: "Projects",
-        link: "/ruko_zara",
+        link: "/portfolio/projects",
     },
     {
         img: "https://picsum.photos/500/675/?grayscale",
@@ -145,6 +145,48 @@ const dataruko_zara = [{
 },
 ];
 
+let pr_height_1 = Math.floor((Math.random() * 400) + 300)
+let pr_height_2 = Math.floor((Math.random() * 400) + 400)
+let pr_height_3 = Math.floor((Math.random() * 400) + 300)
+
+
+const dataprojects = [{
+    img: "https://picsum.photos/400/"+pr_height_1+"/?grayscale",
+    title: "Gesture Controlled AMR",
+    desctiption: "Modelled AI, ROS, Communication & Control Pipeline, Instance Segmentation (K-means & Neural-Net architectures), Hand detection(YOLO & Keypoint Mapping), and real-time gesture action classification (LSTM) using robust Parallel Processing with Reinforcement Learning for Autonomous Visual-Servoing and Navigation.",
+    link: "#",
+},
+{
+    img: "https://picsum.photos/400/"+(1300-pr_height_1)+"?grayscale",
+    title: "UAV guided UGV",
+    desctiption: "Ideated a travelling algorithm for UAVs and implemented it using K-means segmentation, Depth-Vision for trajectory construction, and PID control for stable path-following capability using Differential Kinetics and Created a Computation economic pipeline that optimizes ROS code for Image processing and Robot Control Mechanisms.",
+    link: "#",
+},
+{
+    img: "https://picsum.photos/400/"+pr_height_2+"/?grayscale",
+    title: "Speech Emotion Recognition Webapp",
+    desctiption: "Augmented and Pre-processed the Audio data to task-relevant variations, Applied STFT Algorithm generating Chroma Vector, and fed the data to models including xgboost, shallow MLP, and LSTM(RNNs) and Developed a web App and deployed the best model chosen based on accuracy metrics to determine Emotional State from speech using standard phrases using Javascript, Html, and CSS.",    
+    link: "#",
+},
+{
+    img: "https://picsum.photos/400/"+(1300-pr_height_2)+"?grayscale",
+    title: "Precision Echocardiography",
+    desctiption: "Designed and Proposed a robust Stewart Platform - AI System to ascertain different camera-target configurations in real-time. High precision owing to real-time sensitivity of healthcare data and then created physical prototype of the platform relays autonomously to the desired configuration using imagery(Extracted Feature Pyramid) of the human heart for accurate Echocardiography.",
+    link: "#",
+},
+{
+    img: "https://picsum.photos/400/"+pr_height_3+"/?grayscale",
+    title: "Personality Prediction from Social Media Comments",
+    desctiption: "Implemented Multilabel Classification on social media texts(comments and posts) to categorize a user into one of the 16 Myers and Briggs Personalities using custom Ensemble Learning and Model Averaging methods. Performed Data Preprocessing with proper punctuators and separators, Vectorization, and Lemmatization of preprocessed data and fed it into the Bayesian ML model using Inverse Document Frequency for Prediction",
+    link: "#",
+},
+{
+    img: "https://picsum.photos/400/"+(1300-pr_height_3)+"/?grayscale",
+    title: "Semantic Verification of Online Reviews",
+    desctiption: "Created a three-stage sequential pipeline matching the review texts with review reasons: a)Calculating sentiment score on texts and reason separately and filtering out the samples where the score difference is more significant than 30%. b) Applying contrastive BERT (wordnet pre-trained) on the streamlined list to fetch matching texts and reasons. c) Using a BERT supervised for the downstream classification of text and reason order correctness.",
+    link: "#",
+},
+];
 
 const contactConfig = {
     YOUR_EMAIL: "baranwal.1@iitj.ac.in",
@@ -167,6 +209,7 @@ export {
     dataabout,
     dataportfolio,
     dataruko_zara,
+    dataprojects,
     worktimeline,
     skills,
     achievements,
