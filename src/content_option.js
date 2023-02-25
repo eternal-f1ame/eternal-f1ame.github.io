@@ -93,7 +93,7 @@ const dataportfolio = [{
     {
         img: "https://picsum.photos/500/675/?grayscale",
         desctiption: "Blogs",
-        link: "/blogs",
+        link: "/ruko_zara",
     },
     {
         img: "https://picsum.photos/600/400/?grayscale",
