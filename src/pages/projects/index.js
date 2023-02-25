@@ -26,8 +26,7 @@ export const Projects = () => {
             return (
               <div key={i} className="pr_item">
                 <div className="content">
-                  <Link to={data.link}>
-                  <h3>{data.title}</h3></Link>
+                  <a href={data.link}>{data.title}</a>
                   <p>{data.desctiption}</p>
                 </div>
               </div>
