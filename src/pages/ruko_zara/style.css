@@ -5,6 +5,7 @@
     column-gap: 4rem;
     -moz-column-gap: 4rem;
     -webkit-column-gap: 4rem;
+    padding: 0 1rem;
 }
 
 .rz_item {

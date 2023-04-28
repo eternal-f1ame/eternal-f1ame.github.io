@@ -5,6 +5,7 @@
     justify-content: space-between;
     margin: 0 -15px;
     row-gap: 4vh;
+    padding: 0 1rem;
 }
 
 .pr_item {
