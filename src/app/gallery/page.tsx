@@ -45,11 +45,13 @@ export default function Gallery() {
             name: gallery.title,
             description: gallery.description,
             url: `https://${baseURL}/gallery`,
-            image: gallery.images.map((image) => ({
-              "@type": "ImageObject",
-              url: `${baseURL}${image.src}`,
-              description: image.alt,
-            })),
+            image: gallery.items
+              .filter((item) => item.type === "picture")
+              .map((image) => ({
+                "@type": "ImageObject",
+                url: `${baseURL}${image.src}`,
+                description: image.alt,
+              })),
             author: {
               "@type": "Person",
               name: person.name,

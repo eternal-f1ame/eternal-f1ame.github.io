@@ -1,0 +1,11 @@
+---
+title: "Transformer Based APR - ViTLoc"
+stack: "Pytorch, Pytorch3D, Timm"
+date: "May 2024"
+pinned: true
+slug: "vitloc-apr"
+---
+
+Achieved SOTA Absolute Pose Regression with two novel approaches (1.78m/3.37◦ & 2.02m/3.18◦ ).
+
+ThreeFormer employs a multi-stream approach with dedicated position, orientation, and backbone transformers to emphasize different visual cues, using self-attention to aggregate pose-relevant features. FeatFormer integrates 3D feature matching. ViT backbone to extract dense visual features projected into a 3D feature volume via NeRF. 

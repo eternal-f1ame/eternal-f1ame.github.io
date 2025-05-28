@@ -4,6 +4,8 @@ import Masonry from "react-masonry-css";
 import { SmartImage } from "@/once-ui/components";
 import styles from "./Gallery.module.scss";
 import { gallery } from "@/app/resources/content";
+import PoemCard from "./PoemCard";
+import ImageCard from "./ImageCard";
 
 export default function MasonryGrid() {
   const breakpointColumnsObj = {
@@ -19,18 +21,28 @@ export default function MasonryGrid() {
       className={styles.masonryGrid}
       columnClassName={styles.masonryGridColumn}
     >
-      {gallery.images.map((image, index) => (
-        <SmartImage
-          priority={index < 10}
-          sizes="(max-width: 560px) 100vw, (max-width: 1024px) 50vw, (max-width: 1440px) 33vw, 25vw"
-          key={index}
-          radius="m"
-          aspectRatio={image.orientation === "horizontal" ? "16 / 9" : "9 / 16"}
-          src={image.src}
-          alt={image.alt}
-          className={styles.gridItem}
-        />
-      ))}
+      {gallery.items.map((item, index) => {
+        if (item.type === "picture") {
+          return (
+            <ImageCard
+              key={`${item.src}-${index}`}
+              src={item.src}
+              alt={item.alt}
+              orientation={item.orientation}
+              priority={index < 10}
+            />
+          );
+        } else if (item.type === "poem") {
+          return (
+            <PoemCard
+              key={`${item.filePath}-${index}`}
+              filePath={item.filePath}
+              title={item.title}
+            />
+          );
+        }
+        return null;
+      })}
     </Masonry>
   );
 }
