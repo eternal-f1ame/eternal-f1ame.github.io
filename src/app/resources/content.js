@@ -14,7 +14,7 @@ const person = {
 };
 
 const newsletter = {
-  display: true,
+  display: false,
   title: <>Subscribe to {person.firstName}'s Newsletter</>,
   description: (
     <>
@@ -349,7 +349,7 @@ const blog = {
 };
 
 const work = {
-  label: "Work",
+  label: "Projects",
   title: "My projects",
   description: `Research and development projects by ${person.name}`,
 };
@@ -385,7 +385,7 @@ const gallery = {
     {
         type: "poem",
         filePath: "/gallery/poems/emptypens.txt", // Path to the .txt file
-        title: "empty pens...",
+        title: "EMPTY PENS...",
       },
     {
         type: "poem",
