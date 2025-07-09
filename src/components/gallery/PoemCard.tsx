@@ -90,9 +90,10 @@ export default function PoemCard({ filePath, title, imageSrc }: PoemCardProps) {
         />
         {/* Overlay with title */}
         <div className={styles.imageOverlay}>
-          <Text variant="body-default-s" onBackground="static-white" style={{ 
+          <Text variant="body-default-s" onBackground="neutral-strong" style={{ 
             textShadow: '0 1px 3px rgba(0,0,0,0.8)',
-            fontWeight: 'bold'
+            fontWeight: 'bold',
+            color: 'white'
           }}>
             {title}
           </Text>
@@ -103,7 +104,7 @@ export default function PoemCard({ filePath, title, imageSrc }: PoemCardProps) {
       {isModalOpen && (
         <div className={styles.modal} onClick={handleModalClose}>
           <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
-            <Flex justifyContent="space-between" alignItems="center" padding="xl" paddingBottom="m">
+            <Flex horizontal="space-between" vertical="center" padding="xl" paddingBottom="m">
               <Heading variant="heading-strong-l">
                 {title}
               </Heading>
