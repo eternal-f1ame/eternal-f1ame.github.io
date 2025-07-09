@@ -80,9 +80,9 @@ const about = {
     title: "Introduction",
     description: (
       <>
-        Aaditya Baranwal is a Ph.D. student at the University of Central Florida, specializing in Computer Science.
-        He is an AI Researcher passionate about leveraging deep learning, foundation models, and innovative solutions
-        to solve real-world problems. His expertise lies in creating scalable AI tools, advancing computer vision
+        I am a Ph.D. student at the University of Central Florida, specializing in Computer Science.
+        I'm an AI Researcher passionate about leveraging deep learning, foundation models, and innovative solutions
+        to solve real-world problems. My expertise lies in creating scalable AI tools, advancing computer vision
         methodologies, and exploring the frontiers of multimodal learning and autonomous systems.
       </>
     ),
