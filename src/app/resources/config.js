@@ -1,4 +1,4 @@
-const baseURL = "eternal-f1ame.github.io";
+const baseURL = "demo.magic-portfolio.com";
 
 const routes = {
   "/": true,
@@ -10,9 +10,8 @@ const routes = {
 
 // Enable password protection on selected routes
 // Set password in the .env file, refer to .env.example
-// Note: Password protection is disabled for static export/GitHub Pages
 const protectedRoutes = {
-  // "/work/automate-design-handovers-with-a-figma-to-code-pipeline": true,
+  "/work/automate-design-handovers-with-a-figma-to-code-pipeline": true,
 };
 
 const style = {

@@ -17,7 +17,7 @@ export default function MasonryGrid() {
 
   // Simple fallback if no items
   if (!gallery.items || gallery.items.length === 0) {
-    return <div style={{ padding: '2rem', textAlign: 'center' }}>No gallery items found.</div>;
+    return <div>No gallery items found.</div>;
   }
 
   return (
