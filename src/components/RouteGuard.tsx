@@ -29,13 +29,18 @@ const RouteGuard: React.FC<RouteGuardProps> = ({ children }) => {
       const checkRouteEnabled = () => {
         if (!pathname) return false;
 
-        if (pathname in routes) {
-          return routes[pathname as keyof typeof routes];
+        // Normalize pathname by removing trailing slash (except for root)
+        const normalizedPath = pathname === '/' ? pathname : pathname.replace(/\/$/, '');
+        
+        // Check direct route match
+        if (normalizedPath in routes) {
+          return routes[normalizedPath as keyof typeof routes];
         }
 
+        // Check dynamic routes
         const dynamicRoutes = ["/blog", "/work"] as const;
         for (const route of dynamicRoutes) {
-          if (pathname?.startsWith(route) && routes[route]) {
+          if (normalizedPath?.startsWith(route) && routes[route]) {
             return true;
           }
         }
@@ -46,12 +51,18 @@ const RouteGuard: React.FC<RouteGuardProps> = ({ children }) => {
       const routeEnabled = checkRouteEnabled();
       setIsRouteEnabled(routeEnabled);
 
-      if (protectedRoutes[pathname as keyof typeof protectedRoutes]) {
+      // Normalize pathname for protected routes check
+      const normalizedPath = pathname === '/' ? pathname : pathname.replace(/\/$/, '');
+      if (protectedRoutes[normalizedPath as keyof typeof protectedRoutes]) {
         setIsPasswordRequired(true);
 
-        const response = await fetch("/api/check-auth");
-        if (response.ok) {
-          setIsAuthenticated(true);
+        try {
+          const response = await fetch("/api/check-auth");
+          if (response.ok) {
+            setIsAuthenticated(true);
+          }
+        } catch (error) {
+          // Ignore auth check errors for unprotected routes
         }
       }
 
