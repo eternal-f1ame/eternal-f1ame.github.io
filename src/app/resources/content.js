@@ -193,7 +193,7 @@ const about = {
       },
       {
         name: "St. Mary's Convent School Cantt.",
-        description: <>Miidle School (May 2009 – May 2016) • Varanasi</>,
+        description: <>Miidle School (Jul. 2009 – May 2016) • Varanasi</>,
       },
     ],
   },
