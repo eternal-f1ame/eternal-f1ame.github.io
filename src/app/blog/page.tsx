@@ -5,28 +5,28 @@ import { baseURL } from "@/app/resources";
 import { blog, person, newsletter } from "@/app/resources/content";
 
 export async function generateMetadata() {
-  const title = blog.title;
+  const pageTitle = blog.title; // For browser tab: "(゜-゜)"
   const description = blog.description;
-  const ogImage = `https://${baseURL}/og?title=${encodeURIComponent(title)}`;
+  const ogImage = `https://${baseURL}/og?title=${encodeURIComponent(pageTitle)}`;
 
   return {
-    title,
+    title: pageTitle,
     description,
     openGraph: {
-      title,
+      title: pageTitle,
       description,
       type: "website",
-      url: `https://${baseURL}/blog`,
+      url: `${baseURL}/blog`,
       images: [
         {
           url: ogImage,
-          alt: title,
+          alt: pageTitle,
         },
       ],
     },
     twitter: {
       card: "summary_large_image",
-      title,
+      title: pageTitle,
       description,
       images: [ogImage],
     },
@@ -34,6 +34,9 @@ export async function generateMetadata() {
 }
 
 export default function Blog() {
+  const pageTitle = blog.title; // For browser tab: "(゜-゜)"
+  const displayTitle = "scribbles"; // For page heading
+  
   return (
     <Column maxWidth="s">
       <script
@@ -43,10 +46,10 @@ export default function Blog() {
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "Blog",
-            headline: blog.title,
+            headline: pageTitle,
             description: blog.description,
-            url: `https://${baseURL}/blog`,
-            image: `${baseURL}/og?title=${encodeURIComponent(blog.title)}`,
+            url: `${baseURL}/blog`,
+            image: `${baseURL}/og?title=${encodeURIComponent(pageTitle)}`,
             author: {
               "@type": "Person",
               name: person.name,
@@ -59,7 +62,7 @@ export default function Blog() {
         }}
       />
       <Heading marginBottom="l" variant="display-strong-s">
-        {blog.title}
+        {displayTitle}
       </Heading>
       <Column fillWidth flex={1}>
         <Posts range={[1, 3]} thumbnail />

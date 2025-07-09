@@ -15,6 +15,11 @@ export default function MasonryGrid() {
     560: 1,
   };
 
+  // Simple fallback if no items
+  if (!gallery.items || gallery.items.length === 0) {
+    return <div>No gallery items found.</div>;
+  }
+
   return (
     <Masonry
       breakpointCols={breakpointColumnsObj}
@@ -38,6 +43,7 @@ export default function MasonryGrid() {
               key={`${item.filePath}-${index}`}
               filePath={item.filePath}
               title={item.title}
+              imageSrc={item.imageSrc}
             />
           );
         }

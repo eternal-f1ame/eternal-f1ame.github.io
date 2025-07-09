@@ -1,107 +1,147 @@
 "use client";
 
 import { useEffect, useState } from 'react';
-import { Column, Text, Heading } from '@/once-ui/components';
-import styles from './Gallery.module.scss'; // Assuming you might want to reuse some styles
+import { Column, Text, Heading, SmartImage, Flex, IconButton } from '@/once-ui/components';
+import styles from './Gallery.module.scss';
 
 interface PoemCardProps {
   filePath: string;
   title: string;
+  imageSrc: string;
 }
 
-export default function PoemCard({ filePath, title }: PoemCardProps) {
+export default function PoemCard({ filePath, title, imageSrc }: PoemCardProps) {
   const [poemContent, setPoemContent] = useState('');
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [isExpanded, setIsExpanded] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
-  useEffect(() => {
-    const fetchPoem = async () => {
-      setIsLoading(true);
-      setError(null);
-      try {
-        const response = await fetch(filePath);
-        if (!response.ok) {
-          throw new Error(`Failed to fetch poem: ${response.statusText} (status: ${response.status}) from ${filePath}`);
-        }
-        const text = await response.text();
-        setPoemContent(text);
-      } catch (e: any) {
-        console.error("Error fetching poem:", e);
-        setError(e.message || 'Could not load poem.');
+  const fetchPoem = async () => {
+    if (poemContent) return; // Don't fetch if already loaded
+    
+    setIsLoading(true);
+    setError(null);
+    try {
+      const response = await fetch(filePath);
+      if (!response.ok) {
+        throw new Error(`Failed to fetch poem: ${response.statusText} (status: ${response.status}) from ${filePath}`);
       }
-      setIsLoading(false);
+      const text = await response.text();
+      setPoemContent(text);
+    } catch (e: any) {
+      console.error("Error fetching poem:", e);
+      setError(e.message || 'Could not load poem.');
+    }
+    setIsLoading(false);
+  };
+
+  const handleImageClick = () => {
+    setIsModalOpen(true);
+    fetchPoem(); // Load poem content when opening modal
+  };
+
+  const handleModalClose = (e?: React.MouseEvent) => {
+    // Only close if clicking the backdrop, not the content (when event is provided)
+    if (!e || e.target === e.currentTarget) {
+      setIsModalOpen(false);
+    }
+  };
+
+  const handleCloseClick = () => {
+    setIsModalOpen(false);
+  };
+
+  // Add keyboard support for closing modal
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape' && isModalOpen) {
+        setIsModalOpen(false);
+      }
     };
 
-    if (filePath) {
-      fetchPoem();
+    if (isModalOpen) {
+      document.addEventListener('keydown', handleKeyDown);
+      // Prevent body scrolling when modal is open
+      document.body.style.overflow = 'hidden';
     }
-  }, [filePath]);
 
-  const handleClick = () => {
-    setIsExpanded(true);
-  };
-
-  const handleMouseLeave = () => {
-    setIsExpanded(false);
-  };
-
-  if (isLoading) {
-    return (
-      <Column 
-        className={`${styles.gridItem} ${isExpanded ? styles.expanded : ''}`}
-        padding="m" 
-        border="neutral-medium" 
-        radius="m"
-        onClick={handleClick}
-        onMouseLeave={handleMouseLeave}
-        style={{ cursor: 'pointer' }}
-      >
-        <Heading variant="heading-strong-s">{title}</Heading>
-        <Text>Loading poem...</Text>
-      </Column>
-    );
-  }
-
-  if (error) {
-    return (
-      <Column 
-        className={`${styles.gridItem} ${isExpanded ? styles.expanded : ''}`}
-        padding="m" 
-        border="danger-medium" 
-        radius="m"
-        onClick={handleClick}
-        onMouseLeave={handleMouseLeave}
-        style={{ cursor: 'pointer' }}
-      >
-        <Heading variant="heading-strong-s">{title}</Heading>
-        <Text onBackground='danger-strong'>Error: {error}</Text>
-      </Column>
-    );
-  }
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown);
+      document.body.style.overflow = 'unset';
+    };
+  }, [isModalOpen]);
 
   return (
-    <Column 
-      className={`${styles.gridItem} ${isExpanded ? styles.expanded : ''}`}
-      padding="m" 
-      border="neutral-medium" 
-      radius="m" 
-      gap="m"
-      onClick={handleClick}
-      onMouseLeave={handleMouseLeave}
-      style={{ cursor: 'pointer' }}
-    >
-      <Heading variant="heading-strong-s">{title}</Heading>
-      <Text 
-        style={{
-          whiteSpace: 'pre-wrap',
-          overflow: isExpanded ? 'visible' : 'hidden',
-          maxHeight: isExpanded ? 'none' : '200px',
-          textOverflow: isExpanded ? 'clip' : 'ellipsis',
-        }}
+    <>
+      {/* Image Card */}
+      <div 
+        className={styles.gridItem}
+        onClick={handleImageClick}
+        style={{ cursor: 'pointer' }}
       >
-        {poemContent}
-      </Text>
-    </Column>
+        <img
+          src={imageSrc}
+          alt={title}
+          style={{
+            width: '100%',
+            height: '100%',
+            objectFit: 'cover',
+          }}
+        />
+        {/* Overlay with title */}
+        <div className={styles.imageOverlay}>
+          <Text variant="body-default-s" onBackground="static-white" style={{ 
+            textShadow: '0 1px 3px rgba(0,0,0,0.8)',
+            fontWeight: 'bold'
+          }}>
+            {title}
+          </Text>
+        </div>
+      </div>
+
+      {/* Modal */}
+      {isModalOpen && (
+        <div className={styles.modal} onClick={handleModalClose}>
+          <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
+            <Flex justifyContent="space-between" alignItems="center" padding="xl" paddingBottom="m">
+              <Heading variant="heading-strong-l">
+                {title}
+              </Heading>
+              <IconButton 
+                icon="close" 
+                variant="ghost" 
+                size="m"
+                onClick={handleCloseClick}
+                tooltip="Close"
+              />
+            </Flex>
+            
+            <Column gap="m" paddingX="xl" paddingBottom="xl">
+              {isLoading && (
+                <Text>Loading poem...</Text>
+              )}
+              
+              {error && (
+                <Text onBackground='danger-strong'>Error: {error}</Text>
+              )}
+              
+              {poemContent && !isLoading && (
+                <div className={styles.poemContent}>
+                  <Text 
+                    style={{
+                      whiteSpace: 'pre-wrap',
+                      lineHeight: '1.6',
+                    }}
+                    variant="body-default-m"
+                  >
+                    {poemContent}
+                  </Text>
+                </div>
+              )}
+            </Column>
+          </div>
+        </div>
+      )}
+    </>
   );
 } 

@@ -91,7 +91,7 @@ export default function Home() {
                     size="m"
                   />
                 )}
-                {about.title}
+                {about.label}
               </Flex>
             </Button>
           </RevealFx>
@@ -104,7 +104,7 @@ export default function Home() {
         <Flex fillWidth gap="24" mobileDirection="column">
           <Flex flex={1} paddingLeft="l">
             <Heading as="h2" variant="display-strong-xs" wrap="balance">
-              Latest from the blog
+              sometimes.. I scribble ;)
             </Heading>
           </Flex>
           <Flex flex={3} paddingX="20">

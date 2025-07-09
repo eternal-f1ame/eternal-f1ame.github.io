@@ -48,10 +48,10 @@ export default function Gallery() {
             image: gallery.items
               .filter((item) => item.type === "picture")
               .map((image) => ({
-                "@type": "ImageObject",
-                url: `${baseURL}${image.src}`,
-                description: image.alt,
-              })),
+              "@type": "ImageObject",
+              url: `${baseURL}${image.src}`,
+              description: image.alt,
+            })),
             author: {
               "@type": "Person",
               name: person.name,
