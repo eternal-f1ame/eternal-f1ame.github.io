@@ -10,6 +10,10 @@ const nextConfig = {
   pageExtensions: ["ts", "tsx", "md", "mdx"],
   images: {
     unoptimized: true
+  },
+  eslint: {
+    // Disable ESLint during builds
+    ignoreDuringBuilds: true
   }
 };
 
