@@ -74,7 +74,7 @@ export default function Blog({ params }: BlogParams) {
     })) || [];
 
   return (
-    <Column as="section" maxWidth="xs" gap="l">
+    <Column as="section" maxWidth="m" gap="l">
       <script
         type="application/ld+json"
         suppressHydrationWarning
