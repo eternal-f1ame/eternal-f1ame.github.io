@@ -92,6 +92,13 @@ const about = {
     title: "Work Experience",
     experiences: [
       {
+        company: "LinkedIn",
+        timeframe: "May 2026 – Aug. 2026",
+        role: "GenAI PhD Intern",
+        achievements: [],
+        images: [],
+      },
+      {
         company: "Siemens Energy",
         timeframe: "Jan. 2025 – Present",
         role: "Data Science Researcher",
