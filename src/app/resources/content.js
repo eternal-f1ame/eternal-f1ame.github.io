@@ -232,6 +232,104 @@ const work = {
   description: `Research and development projects by ${person.name}`,
 };
 
+const publications = {
+  label: "Publications",
+  title: "(¬‿¬)",
+  description: `Research publications by ${person.name}`,
+  papers: [
+    {
+      title: "MolSight: Molecular Property Prediction with Images",
+      authors: (
+        <>
+          <strong>A. Baranwal</strong>, A. Gupta, S. Vyas, Y.S. Rawat
+        </>
+      ),
+      venue: "Under Review",
+      year: "2026",
+      link: "https://arxiv.org/abs/2605.10157",
+    },
+    {
+      title: "BareBones: Benchmarking Zero-Shot Geometric Comprehension in VLMs",
+      authors: (
+        <>
+          <strong>A. Baranwal</strong>, V. Yadav, A. Rajora
+        </>
+      ),
+      venue: "CVPR Workshops (FGVC 13)",
+      year: "2026",
+      link: "https://arxiv.org/abs/2604.10528",
+    },
+    {
+      title: "ChemPro: A Progressive Chemistry Benchmark for Large Language Models",
+      authors: (
+        <>
+          <strong>A. Baranwal</strong>, S. Vyas
+        </>
+      ),
+      venue: "Artificial Intelligence Chemistry",
+      year: "2026",
+      link: "https://arxiv.org/abs/2602.03108",
+    },
+    {
+      title: "Robust Onion: Peeling Open Vocab Object Detectors Under Noise",
+      authors: (
+        <>
+          P. Pathak, M. Karuppasamy, <strong>A. Baranwal</strong>, S. Marjit, S. Vyas, Y.S. Rawat
+        </>
+      ),
+      venue: "Under Review",
+      year: "2025",
+      link: "https://openreview.net/forum?id=REZ5cM8mFn",
+    },
+    {
+      title: "Re:Verse — Can Your VLM Read a Manga?",
+      authors: (
+        <>
+          <strong>A. Baranwal</strong>, M. Kataria, N. Agrawal, Y.S. Rawat, S. Vyas
+        </>
+      ),
+      venue: "ICCV Workshops (AISTORY)",
+      year: "2025",
+      link: "https://arxiv.org/abs/2508.08508",
+      award: "Best Paper",
+    },
+    {
+      title: "SynSpill: Improved Industrial Spill Detection With Synthetic Data",
+      authors: (
+        <>
+          <strong>A. Baranwal</strong>, A. Mueez, J. Voelker, G. Bhatia, S. Vyas
+        </>
+      ),
+      venue: "ICCV Workshops (VISION)",
+      year: "2025",
+      link: "https://arxiv.org/abs/2508.10171",
+    },
+    {
+      title: "ZeroBench: An Impossible Visual Benchmark for Contemporary Large Multimodal Models",
+      authors: (
+        <>
+          J. Roberts, M.R. Taesiri, A. Sharma, A. Gupta, S. Roberts, I. Croitoru,{" "}
+          <strong>A. Baranwal</strong>, et al.
+        </>
+      ),
+      venue: "Preprint",
+      year: "2025",
+      link: "https://arxiv.org/abs/2502.09696",
+    },
+    {
+      title: "Analysis and Advancement in Domain-Specific Templated Question Answering",
+      authors: (
+        <>
+          <strong>A. Baranwal</strong>, J. Goel, P. Tandon, R. Sankhla, S. Goyal
+        </>
+      ),
+      venue: "CS & IT Conference Proceedings 14",
+      year: "2024",
+      link: "https://csitcp.net/abstract/14/148csit18",
+    },
+  ],
+};
+
 const gallery = {
   label: "Gallery",
   title: "(｡◕‿‿◕｡)",
@@ -268,7 +366,25 @@ const gallery = {
       title: "LONELINESS HAUNTS...",
       imageSrc: "/assets/LONELINESS_HAUNTS.jpg",
     },
+    {
+      type: "poem",
+      filePath: "/gallery/poems/lordofbeasts.txt",
+      title: "LORD OF BEASTS...",
+      imageSrc: "/assets/LORD-OF-BEASTS.jpg",
+    },
+    {
+      type: "poem",
+      filePath: "/gallery/poems/settingsun.txt",
+      title: "SETTING SUN...",
+      imageSrc: "/assets/SETTING-SUN.jpg",
+    },
+    {
+      type: "poem",
+      filePath: "/gallery/poems/nh32.txt",
+      title: "NH32...",
+      imageSrc: "/assets/NH32.jpg",
+    },
   ],
 };
 
-export { person, social, newsletter, home, about, blog, work, gallery };
+export { person, social, newsletter, home, about, blog, work, gallery, publications };
