@@ -73,7 +73,7 @@ const about = {
   },
   calendar: {
     display: true,
-    link: "https://cal.com/aadityab",
+    link: "https://cal.com/aadityab/15min",
   },
   intro: {
     display: true,
@@ -200,7 +200,7 @@ const about = {
       },
       {
         name: "St. Mary's Convent School Cantt.",
-        description: <>Miidle School (Jul. 2009 – May 2016) • Varanasi</>,
+        description: <>Middle School (Jul. 2009 – May 2016) • Varanasi</>,
       },
     ],
   },
