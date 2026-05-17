@@ -1,4 +1,4 @@
-const baseURL = "eternal-f1ame-github-lwfkkokxa.vercel.app";
+const baseURL = "sochastic.me";
 
 const routes = {
   "/": true,
