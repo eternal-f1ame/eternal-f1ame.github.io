@@ -171,7 +171,7 @@ const about = {
         achievements: [
           <>
             Extending BunnyCDN's cloud and storage services, creating a Python SDK, allowing functionalities of BunnyCDN
-            apiary through Python, and achieved a total count of 75000+ global downloads from PYPI.
+            apiary through Python, and achieved a total count of 200000+ global downloads from PYPI.
           </>,
         ],
         images: [],
@@ -234,9 +234,9 @@ const blog = {
 };
 
 const work = {
-  label: "Projects",
+  label: "Pastime",
   title: "(╯°□°)╯︵ ┻━┻",
-  description: `Research and development projects by ${person.name}`,
+  description: `Side projects and pastimes by ${person.name}`,
 };
 
 const publications = {
