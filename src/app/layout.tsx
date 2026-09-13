@@ -5,6 +5,8 @@ import "@/app/resources/palette.scss";
 import classNames from "classnames";
 
 import { Footer, Header, RouteGuard } from "@/components";
+import { RoutePrefetch } from "@/components/RoutePrefetch";
+import { getPosts } from "@/app/utils/utils";
 import { baseURL, effects, style } from "@/app/resources";
 
 import { Inter } from "next/font/google";
@@ -61,6 +63,11 @@ interface RootLayoutProps {
 }
 
 export default async function RootLayout({ children }: RootLayoutProps) {
+  const slugPaths = [
+    ...getPosts(["src", "app", "blog", "posts"]).map((post) => `/blog/${post.slug}`),
+    ...getPosts(["src", "app", "work", "projects"]).map((project) => `/work/${project.slug}`),
+  ];
+
   return (
     <Flex
       as="html"
@@ -147,6 +154,7 @@ export default async function RootLayout({ children }: RootLayoutProps) {
             </Flex>
           </Flex>
           <Footer />
+          <RoutePrefetch paths={slugPaths} />
         </Column>
       </ToastProvider>
     </Flex>
