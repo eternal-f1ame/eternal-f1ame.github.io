@@ -72,9 +72,11 @@ export default function Publications() {
                 {paper.title}
               </a>
             </Text>
-            <Text variant="body-default-s" onBackground="neutral-medium">
-              {paper.authors}
-            </Text>
+            {paper.authors && (
+              <Text variant="body-default-s" onBackground="neutral-medium">
+                {paper.authors}
+              </Text>
+            )}
             <Flex gap="8" vertical="center" wrap>
               <Text variant="body-default-s" onBackground="neutral-weak">
                 <em>{paper.venue}</em>

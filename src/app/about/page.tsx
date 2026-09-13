@@ -67,6 +67,16 @@ export default function About() {
       display: about.technical.display,
       items: about.technical.skills.map((skill) => skill.title),
     },
+    {
+      title: about.achievements.title,
+      display: about.achievements.display,
+      items: about.achievements.items.map((item) => item.name),
+    },
+    {
+      title: about.volunteering.title,
+      display: about.volunteering.display,
+      items: about.volunteering.items.map((item) => item.name),
+    },
   ];
   return (
     <Column maxWidth="m">
@@ -333,6 +343,57 @@ export default function About() {
                         ))}
                       </Flex>
                     )}
+                  </Column>
+                ))}
+              </Column>
+            </>
+          )}
+
+          {about.achievements.display && (
+            <>
+              <Heading
+                as="h2"
+                id={about.achievements.title}
+                variant="display-strong-s"
+                marginTop="40"
+                marginBottom="m"
+              >
+                {about.achievements.title}
+              </Heading>
+              <Column fillWidth gap="l" marginBottom="40">
+                {about.achievements.items.map((item, index) => (
+                  <Column key={`${item.name}-${index}`} fillWidth gap="4">
+                    <Text id={item.name} variant="heading-strong-l">
+                      {item.name}
+                    </Text>
+                    <Text variant="heading-default-xs" onBackground="neutral-weak">
+                      {item.description}
+                    </Text>
+                  </Column>
+                ))}
+              </Column>
+            </>
+          )}
+
+          {about.volunteering.display && (
+            <>
+              <Heading
+                as="h2"
+                id={about.volunteering.title}
+                variant="display-strong-s"
+                marginBottom="m"
+              >
+                {about.volunteering.title}
+              </Heading>
+              <Column fillWidth gap="l" marginBottom="40">
+                {about.volunteering.items.map((item, index) => (
+                  <Column key={`${item.name}-${index}`} fillWidth gap="4">
+                    <Text id={item.name} variant="heading-strong-l">
+                      {item.name}
+                    </Text>
+                    <Text variant="heading-default-xs" onBackground="neutral-weak">
+                      {item.description}
+                    </Text>
                   </Column>
                 ))}
               </Column>

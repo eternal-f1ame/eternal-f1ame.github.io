@@ -95,17 +95,33 @@ const about = {
         company: "LinkedIn",
         timeframe: "May 2026 – Aug. 2026",
         role: "GenAI PhD Intern",
-        achievements: [],
+        achievements: [
+          <>
+            Identified creative-content and platform-fatigue signals, driving a 6% increase in ad CTR across LinkedIn.
+          </>,
+          <>
+            Engineered diverse LLM persona workflows to generate large-scale synthetic data, improving creative guidance
+            alignment for both AI-generated and advertiser-created ads, validated across 8 million creatives.
+          </>,
+          <>
+            Developed and optimized an offline ad-ranking model (under 100M params) to accurately predict preflight CTR.
+          </>,
+        ],
         images: [],
       },
       {
         company: "Siemens Energy",
-        timeframe: "Jan. 2025 – Present",
-        role: "Data Science Researcher",
+        timeframe: "Jan. 2025 – Aug. 2025",
+        role: "Computer Vision Researcher",
         achievements: [
           <>
-            Developing scalable zero-shot hazard detection tools for industrial sites using Foundation Models and VLMs,
+            Developed scalable zero-shot hazard detection tools for industrial sites using Foundation Models and VLMs,
             adapting models to overcome limited industrial image representation in pretraining.
+          </>,
+          <>
+            Engineered an SDXL-driven generative data pipeline to synthesize photorealistic industrial hazard and
+            chemical spill imagery, boosting downstream detection by +28% for VLMs (43% to 71%) and +28% mAP@50 for
+            standard object detectors (39% to 67%). Published as SynSpill at ICCV 2025.
           </>,
         ],
         images: [],
@@ -184,11 +200,11 @@ const about = {
     institutions: [
       {
         name: "University of Central Florida",
-        description: <>Ph.D. in Computer Science (Aug. 2024 – Present) • Orlando</>,
+        description: <>Ph.D. in Computer Science (Aug. 2024 – Dec. 2027 expected) • Orlando</>,
       },
       {
         name: "Indian Institute of Technology Jodhpur",
-        description: <>B.Tech in Electrical Engineering (Nov. 2020 – May 2024) • Karwar</>,
+        description: <>B.Tech in Electrical Engineering, Specialization in Visual Computing (Nov. 2020 – Jun. 2024) • Karwar</>,
       },
       {
         name: "Sant Atulanand Convent School",
@@ -214,6 +230,11 @@ const about = {
         images: [],
       },
       {
+        title: "Tools & Utilities",
+        description: <>HuggingFace, LangChain, Weights & Biases, GCP, AWS, Git, Docker, LaTeX, OpenAI-Gym</>,
+        images: [],
+      },
+      {
         title: "Libraries",
         description: <>PyTorch, TensorFlow, OpenCV, Scikit-Learn, Numpy, Pandas, etc.</>,
         images: [],
@@ -222,6 +243,54 @@ const about = {
         title: "Theoretical & Applied",
         description: <>Deep and Reinforcement Learning, Stable Diffusion, Computer Vision, NLP/NLU, Robotics</>,
         images: [],
+      },
+    ],
+  },
+  achievements: {
+    display: true,
+    title: "Achievements",
+    items: [
+      {
+        name: "Winner — Michelin Mobility Innovation Challenge",
+        description: <>2022</>,
+      },
+      {
+        name: "Perfect Score 100/100 — ABU Robocon '22",
+        description: <>2022</>,
+      },
+      {
+        name: "All India Rank 65 — ISI Entrance Test",
+        description: <>2020</>,
+      },
+      {
+        name: "GRE — 320 (170 Quant / 150 Verbal)",
+        description: <>2023</>,
+      },
+    ],
+  },
+  volunteering: {
+    display: true,
+    title: "Volunteering",
+    items: [
+      {
+        name: "Presenter — Spark STEM Fest, Orlando Science Center",
+        description: <>Feb. 2026</>,
+      },
+      {
+        name: "Graduate Cohort — Campus Activities Board, Impact Committee, UCF",
+        description: <>2025 – 2026</>,
+      },
+      {
+        name: "Festival Chief — Aaftaab, The Literary Fest, IIT Jodhpur",
+        description: <>Feb. 2024</>,
+      },
+      {
+        name: "Founder and Head — Artificial Intelligence and Data Society, IIT Jodhpur",
+        description: <>2022 – 2023</>,
+      },
+      {
+        name: "Secretary — Literature Society, IIT Jodhpur",
+        description: <>2022 – 2023</>,
       },
     ],
   },
@@ -245,15 +314,15 @@ const publications = {
   description: `Research publications by ${person.name}`,
   papers: [
     {
-      title: "MolSight: Molecular Property Prediction with Images",
+      title: "Vision-Language Models for Analog Gauge Reading: An Empirical Study of Specialization, Transfer and Reliability",
       authors: (
         <>
-          <strong>A. Baranwal</strong>, A. Gupta, S. Vyas, Y.S. Rawat
+          A. Mueez, <strong>A. Baranwal</strong>, J. Chaj-Mejia, G. Bhatia, J. Voelker, S. Vyas
         </>
       ),
-      venue: "Under Review",
+      venue: "Engineering Applications of Artificial Intelligence",
       year: "2026",
-      link: "https://arxiv.org/abs/2605.10157",
+      link: "https://arxiv.org/abs/2608.17723",
     },
     {
       title: "BareBones: Benchmarking Zero-Shot Geometric Comprehension in VLMs",
@@ -284,9 +353,21 @@ const publications = {
           P. Pathak, M. Karuppasamy, <strong>A. Baranwal</strong>, S. Marjit, S. Vyas, Y.S. Rawat
         </>
       ),
-      venue: "Under Review",
-      year: "2025",
+      venue: "ECCV (Main Conference)",
+      year: "2026",
       link: "https://openreview.net/forum?id=REZ5cM8mFn",
+    },
+    {
+      title: "ZeroBench: An Impossible Visual Benchmark for Contemporary Large Multimodal Models",
+      authors: (
+        <>
+          J. Roberts, M.R. Taesiri, A. Sharma, A. Gupta, S. Roberts, I. Croitoru,{" "}
+          <strong>A. Baranwal</strong>, et al.
+        </>
+      ),
+      venue: "ICML (Red Teaming Track)",
+      year: "2026",
+      link: "https://arxiv.org/abs/2502.09696",
     },
     {
       title: "Re:Verse — Can Your VLM Read a Manga?",
@@ -298,7 +379,7 @@ const publications = {
       venue: "ICCV Workshops (AISTORY)",
       year: "2025",
       link: "https://arxiv.org/abs/2508.08508",
-      award: "Best Paper",
+      award: "Best Paper (Oral)",
     },
     {
       title: "SynSpill: Improved Industrial Spill Detection With Synthetic Data",
@@ -312,18 +393,6 @@ const publications = {
       link: "https://arxiv.org/abs/2508.10171",
     },
     {
-      title: "ZeroBench: An Impossible Visual Benchmark for Contemporary Large Multimodal Models",
-      authors: (
-        <>
-          J. Roberts, M.R. Taesiri, A. Sharma, A. Gupta, S. Roberts, I. Croitoru,{" "}
-          <strong>A. Baranwal</strong>, et al.
-        </>
-      ),
-      venue: "Preprint",
-      year: "2025",
-      link: "https://arxiv.org/abs/2502.09696",
-    },
-    {
       title: "Analysis and Advancement in Domain-Specific Templated Question Answering",
       authors: (
         <>
@@ -333,6 +402,49 @@ const publications = {
       venue: "CS & IT Conference Proceedings 14",
       year: "2024",
       link: "https://csitcp.net/abstract/14/148csit18",
+    },
+    {
+      title: "MolSight: Molecular Property Prediction with Images",
+      authors: (
+        <>
+          <strong>A. Baranwal</strong>, A. Gupta, S. Vyas, Y.S. Rawat
+        </>
+      ),
+      venue: "Under Review",
+      year: "2026",
+      link: "https://arxiv.org/abs/2605.10157",
+    },
+    {
+      title: "Re:Cognize — Open-Set Sequential Comic Character Re-Identification",
+      authors: (
+        <>
+          <strong>A. Baranwal</strong>, M. Kataria, Y.S. Rawat, S. Vyas
+        </>
+      ),
+      venue: "Under Review",
+      year: "2026",
+    },
+    {
+      title: "PHOEBI: An Open-World Benchmark for Bacterial Identification",
+      authors: (
+        <>
+          <strong>A. Baranwal</strong>, M.J. Hasan, S. Vyas
+        </>
+      ),
+      venue: "Under Review",
+      year: "2026",
+      link: "https://arxiv.org/abs/2606.22890",
+    },
+    {
+      title: "The Dark Regulome: Disentangling Predictability from Regulation in Genomic Foundation Models",
+      authors: (
+        <>
+          C. Baranwal, <strong>A. Baranwal</strong>, L.N. Tandon
+        </>
+      ),
+      venue: "Preprint",
+      year: "2026",
+      link: "https://arxiv.org/abs/2606.06834",
     },
   ],
 };
