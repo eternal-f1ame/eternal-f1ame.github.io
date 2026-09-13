@@ -457,6 +457,12 @@ const gallery = {
   items: [
     {
       type: "poem",
+      filePath: "/gallery/poems/goodwithwords.txt",
+      title: "GOOD WITH WORDS...",
+      imageSrc: "/assets/GOOD-WITH-WORDS.jpg",
+    },
+    {
+      type: "poem",
       filePath: "/gallery/poems/deciduous.txt",
       title: "DECIDUOUS...",
       imageSrc: "/assets/DECIDUOUDS.jpg", // Corresponding image from assets folder
@@ -502,12 +508,6 @@ const gallery = {
       filePath: "/gallery/poems/nh32.txt",
       title: "NH32...",
       imageSrc: "/assets/NH32.jpg",
-    },
-    {
-      type: "poem",
-      filePath: "/gallery/poems/goodwithwords.txt",
-      title: "GOOD WITH WORDS...",
-      imageSrc: "/assets/GOOD-WITH-WORDS.jpg",
     },
   ],
 };
