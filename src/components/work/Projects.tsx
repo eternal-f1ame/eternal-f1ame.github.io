@@ -4,9 +4,10 @@ import { ProjectCard } from "@/components";
 
 interface ProjectsProps {
   range?: [number, number?];
+  flush?: boolean;
 }
 
-export function Projects({ range }: ProjectsProps) {
+export function Projects({ range, flush = false }: ProjectsProps) {
   let allProjects = getPosts(["src", "app", "work", "projects"]);
 
   const sortedProjects = allProjects.sort((a, b) => {
@@ -18,7 +19,7 @@ export function Projects({ range }: ProjectsProps) {
     : sortedProjects;
 
   return (
-    <Column fillWidth gap="xl" marginBottom="40" paddingX="l">
+    <Column fillWidth gap="xl" marginBottom={flush ? "0" : "40"} paddingX={flush ? "0" : "l"}>
       {displayedProjects.map((post, index) => (
         <ProjectCard
           priority={index < 2}

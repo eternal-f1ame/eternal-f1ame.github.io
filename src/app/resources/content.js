@@ -58,6 +58,12 @@ const home = {
       I specialize in foundation models and deep learning.
     </>
   ),
+  sections: {
+    papers: { title: "Selected papers", href: "/publications", cta: "all publications" },
+    experience: { title: "Recently", href: "/about", cta: "more about me" },
+    projects: { title: "Pastime", href: "/work", cta: "all projects" },
+    writing: { title: "Scribbles", href: "/blog", cta: "all posts" },
+  },
 };
 
 const about = {
@@ -348,6 +354,7 @@ const publications = {
     },
     {
       title: "Robust Onion: Peeling Open Vocab Object Detectors Under Noise",
+      featured: true,
       authors: (
         <>
           P. Pathak, M. Karuppasamy, <strong>A. Baranwal</strong>, S. Marjit, S. Vyas, Y.S. Rawat
@@ -359,6 +366,7 @@ const publications = {
     },
     {
       title: "ZeroBench: An Impossible Visual Benchmark for Contemporary Large Multimodal Models",
+      featured: true,
       authors: (
         <>
           J. Roberts, M.R. Taesiri, A. Sharma, A. Gupta, S. Roberts, I. Croitoru,{" "}
@@ -371,6 +379,7 @@ const publications = {
     },
     {
       title: "Re:Verse — Can Your VLM Read a Manga?",
+      featured: true,
       authors: (
         <>
           <strong>A. Baranwal</strong>, M. Kataria, N. Agrawal, Y.S. Rawat, S. Vyas

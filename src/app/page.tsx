@@ -1,12 +1,21 @@
-import React from "react";
-
-import { Heading, Flex, Text, Button, Avatar, RevealFx, Arrow, Column } from "@/once-ui/components";
-import { Projects } from "@/components/work/Projects";
-
-import { baseURL, routes } from "@/app/resources";
-import { home, about, person, newsletter } from "@/app/resources/content";
+import {
+  Avatar,
+  Button,
+  Column,
+  Flex,
+  Heading,
+  Line,
+  RevealFx,
+  SmartLink,
+  Text,
+} from "@/once-ui/components";
 import { Mailchimp } from "@/components";
 import { Posts } from "@/components/blog/Posts";
+import { Projects } from "@/components/work/Projects";
+import { Papers } from "@/components/publications/Papers";
+import { getPosts } from "@/app/utils/utils";
+import { baseURL, routes } from "@/app/resources";
+import { about, home, newsletter, person, social } from "@/app/resources/content";
 
 export async function generateMetadata() {
   const title = home.title;
@@ -37,9 +46,37 @@ export async function generateMetadata() {
   };
 }
 
-export default function Home() {
+interface SectionHeadingProps {
+  title: string;
+  href: string;
+  cta: string;
+}
+
+function SectionHeading({ title, href, cta }: SectionHeadingProps) {
   return (
-    <Column maxWidth="m" gap="xl" horizontal="center">
+    <Flex fillWidth horizontal="space-between" vertical="end" gap="16" wrap>
+      <Heading as="h2" variant="heading-strong-l">
+        {title}
+      </Heading>
+      <SmartLink href={href}>
+        <Text variant="body-default-s" onBackground="neutral-weak">
+          {cta}
+        </Text>
+      </SmartLink>
+    </Flex>
+  );
+}
+
+export default function Home() {
+  const projects = getPosts(["src", "app", "work", "projects"]).sort(
+    (a, b) =>
+      new Date(b.metadata.publishedAt).getTime() - new Date(a.metadata.publishedAt).getTime(),
+  );
+  const olderProjects = projects.slice(1);
+  const roles = about.work.experiences.slice(0, 3);
+
+  return (
+    <Column maxWidth="m" gap="l" horizontal="center">
       <script
         type="application/ld+json"
         suppressHydrationWarning
@@ -62,57 +99,124 @@ export default function Home() {
           }),
         }}
       />
-      <Column fillWidth paddingY="l" gap="m">
-        <Column maxWidth="s">
-          <RevealFx translateY="4" fillWidth horizontal="start" paddingBottom="m">
+
+      <Flex
+        fillWidth
+        paddingTop="l"
+        gap="40"
+        horizontal="space-between"
+        vertical="center"
+        mobileDirection="column-reverse"
+      >
+        <Column flex={7} gap="12">
+          <RevealFx translateY="4" fillWidth horizontal="start">
             <Heading wrap="balance" variant="display-strong-l">
-              {home.headline}
+              {person.name}
             </Heading>
           </RevealFx>
-          <RevealFx translateY="8" delay={0.2} fillWidth horizontal="start" paddingBottom="m">
-            <Text wrap="balance" onBackground="neutral-weak" variant="heading-default-xl">
+          <RevealFx translateY="8" delay={0.1} fillWidth horizontal="start">
+            <Text variant="heading-default-m" onBackground="neutral-weak">
+              {person.role} · {person.location}
+            </Text>
+          </RevealFx>
+          <RevealFx translateY="12" delay={0.2} fillWidth horizontal="start" paddingTop="8">
+            <Text wrap="balance" variant="body-default-l" onBackground="neutral-medium">
               {home.subline}
             </Text>
           </RevealFx>
-          <RevealFx translateY="12" delay={0.4} horizontal="start">
-            <Button
-              id="about"
-              data-border="rounded"
-              href="/about"
-              variant="secondary"
-              size="m"
-              arrowIcon
-            >
-              <Flex gap="8" vertical="center">
-                {about.avatar.display && (
-                  <Avatar
-                    style={{ marginLeft: "-0.75rem", marginRight: "0.25rem" }}
-                    src={person.avatar}
-                    size="m"
-                  />
-                )}
-                {about.label}
-              </Flex>
-            </Button>
+          <RevealFx translateY="16" delay={0.3} fillWidth horizontal="start" paddingTop="12">
+            <Flex gap="8" wrap>
+              {social.map(
+                (item) =>
+                  item.link && (
+                    <Button
+                      key={item.name}
+                      href={item.link}
+                      prefixIcon={item.icon}
+                      label={item.name}
+                      size="s"
+                      variant="tertiary"
+                    />
+                  ),
+              )}
+            </Flex>
           </RevealFx>
         </Column>
-      </Column>
-      <RevealFx translateY="16" delay={0.6}>
-        <Projects range={[1, 1]} />
-      </RevealFx>
-      {routes["/blog"] && (
-        <Flex fillWidth gap="24" mobileDirection="column">
-          <Flex flex={1} paddingLeft="l">
-            <Heading as="h2" variant="display-strong-xs" wrap="balance">
-              sometimes.. I scribble ;)
-            </Heading>
-          </Flex>
-          <Flex flex={3} paddingX="20">
-            <Posts range={[1, 2]} columns="2" />
-          </Flex>
-        </Flex>
+        <Column flex={3} horizontal="end" vertical="center">
+          <Avatar src={person.avatar} size="xl" />
+        </Column>
+      </Flex>
+
+      {routes["/publications"] && (
+        <>
+          <Line background="neutral-alpha-weak" />
+          <Column fillWidth gap="l">
+            <SectionHeading {...home.sections.papers} />
+            <Papers featured />
+          </Column>
+        </>
       )}
-      <Projects range={[2]} />
+
+      <Line background="neutral-alpha-weak" />
+      <Column fillWidth gap="m">
+        <SectionHeading {...home.sections.experience} />
+        <Column fillWidth gap="4">
+          {roles.map((experience, index) => (
+            <Flex
+              key={`${experience.company}-${index}`}
+              fillWidth
+              horizontal="space-between"
+              gap="16"
+              paddingY="4"
+              wrap
+            >
+              <Text variant="body-strong-m" onBackground="neutral-strong">
+                {experience.role}, {experience.company}
+              </Text>
+              <Text variant="body-default-s" onBackground="neutral-weak">
+                {experience.timeframe}
+              </Text>
+            </Flex>
+          ))}
+        </Column>
+      </Column>
+
+      {routes["/work"] && (
+        <>
+          <Line background="neutral-alpha-weak" />
+          <Column fillWidth gap="l">
+            <SectionHeading {...home.sections.projects} />
+            <Projects range={[1, 1]} flush />
+            {olderProjects.length > 0 && (
+              <Column fillWidth>
+                {olderProjects.map((project) => (
+                  <SmartLink key={project.slug} href={`/work/${project.slug}`} unstyled fillWidth>
+                    <Flex fillWidth horizontal="space-between" gap="16" paddingY="8" wrap>
+                      <Text variant="body-strong-m" onBackground="neutral-medium">
+                        {project.metadata.title}
+                      </Text>
+                      <Text variant="body-default-s" onBackground="neutral-weak">
+                        {new Date(project.metadata.publishedAt).getFullYear()}
+                      </Text>
+                    </Flex>
+                  </SmartLink>
+                ))}
+              </Column>
+            )}
+          </Column>
+        </>
+      )}
+
+      {routes["/blog"] && (
+        <>
+          <Line background="neutral-alpha-weak" />
+          <Column fillWidth gap="l">
+            <SectionHeading {...home.sections.writing} />
+            <Posts range={[1, 2]} columns="2" />
+          </Column>
+        </>
+      )}
+
       {newsletter.display && <Mailchimp newsletter={newsletter} />}
     </Column>
   );

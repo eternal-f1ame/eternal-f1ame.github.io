@@ -1,4 +1,5 @@
-import { Column, Flex, Tag, Text } from "@/once-ui/components";
+import { Column } from "@/once-ui/components";
+import { Papers } from "@/components/publications/Papers";
 import { baseURL } from "@/app/resources";
 import { publications, person } from "@/app/resources/content";
 
@@ -59,39 +60,7 @@ export default function Publications() {
           }),
         }}
       />
-      <Column fillWidth gap="l">
-        {publications.papers.map((paper, index) => (
-          <Column key={`${paper.title}-${index}`} fillWidth gap="4">
-            <Text variant="heading-strong-s" onBackground="neutral-strong">
-              <a
-                href={paper.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                style={{ color: "inherit", textDecoration: "none" }}
-              >
-                {paper.title}
-              </a>
-            </Text>
-            {paper.authors && (
-              <Text variant="body-default-s" onBackground="neutral-medium">
-                {paper.authors}
-              </Text>
-            )}
-            <Flex gap="8" vertical="center" wrap>
-              <Text variant="body-default-s" onBackground="neutral-weak">
-                <em>{paper.venue}</em>
-                {", "}
-                {paper.year}
-              </Text>
-              {paper.award && (
-                <Tag size="s" variant="brand">
-                  {paper.award}
-                </Tag>
-              )}
-            </Flex>
-          </Column>
-        ))}
-      </Column>
+      <Papers />
     </Column>
   );
 }
