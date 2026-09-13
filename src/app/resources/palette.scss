@@ -1,0 +1,50 @@
+/*
+  Monochrome palette.
+
+  Once UI reads brand and accent colours from --scheme-brand-* and --scheme-accent-*
+  when config.js sets brand/accent to "custom" (see [data-brand="custom"] in
+  src/once-ui/tokens/function.scss). Defining them here keeps the vendored library
+  untouched; this file is imported after the once-ui tokens in src/app/layout.tsx.
+
+  Both ramps are pure greys, no hue. Hierarchy comes from brightness alone: these
+  sit a step brighter than the gray neutral ramp, so links, tags, borders and the
+  background gradient read as lighter ink rather than as a colour.
+*/
+
+:root {
+  /* brand */
+  --scheme-brand-100:  #101010;
+  --scheme-brand-200:  #1C1C1C;
+  --scheme-brand-300:  #4D4D4D;
+  --scheme-brand-400:  #6E6E6E;
+  --scheme-brand-500:  #8F8F8F;
+  --scheme-brand-600:  #ABABAB;
+  --scheme-brand-700:  #C4C4C4;
+  --scheme-brand-800:  #DCDCDC;
+  --scheme-brand-900:  #E8E8E8;
+  --scheme-brand-1000: #F1F1F1;
+  --scheme-brand-1100: #F7F7F7;
+  --scheme-brand-1200: #FFFFFF;
+
+  --scheme-brand-600-10: #ABABAB1A;
+  --scheme-brand-600-30: #ABABAB4D;
+  --scheme-brand-600-50: #ABABAB80;
+
+  /* accent: the same greys, so accented elements stay monochrome */
+  --scheme-accent-100:  #101010;
+  --scheme-accent-200:  #1C1C1C;
+  --scheme-accent-300:  #4D4D4D;
+  --scheme-accent-400:  #6E6E6E;
+  --scheme-accent-500:  #8F8F8F;
+  --scheme-accent-600:  #ABABAB;
+  --scheme-accent-700:  #C4C4C4;
+  --scheme-accent-800:  #DCDCDC;
+  --scheme-accent-900:  #E8E8E8;
+  --scheme-accent-1000: #F1F1F1;
+  --scheme-accent-1100: #F7F7F7;
+  --scheme-accent-1200: #FFFFFF;
+
+  --scheme-accent-600-10: #ABABAB1A;
+  --scheme-accent-600-30: #ABABAB4D;
+  --scheme-accent-600-50: #ABABAB80;
+}
