@@ -14,7 +14,7 @@ export async function generateMetadata() {
       title: pageTitle,
       description,
       type: "website",
-      url: `${baseURL}/publications`,
+      url: `https://${baseURL}/publications`,
       images: [
         {
           url: ogImage,
@@ -45,7 +45,7 @@ export default function Publications() {
             "@type": "CollectionPage",
             name: pageTitle,
             description: publications.description,
-            url: `${baseURL}/publications`,
+            url: `https://${baseURL}/publications`,
             author: {
               "@type": "Person",
               name: person.name,

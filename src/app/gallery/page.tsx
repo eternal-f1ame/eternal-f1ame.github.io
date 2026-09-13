@@ -49,7 +49,7 @@ export default function Gallery() {
               .filter((item) => item.type === "picture")
               .map((image) => ({
               "@type": "ImageObject",
-              url: `${baseURL}${image.src}`,
+              url: `https://${baseURL}${image.src}`,
               description: image.alt,
             })),
             author: {
@@ -57,7 +57,7 @@ export default function Gallery() {
               name: person.name,
               image: {
                 "@type": "ImageObject",
-                url: `${baseURL}${person.avatar}`,
+                url: `https://${baseURL}${person.avatar}`,
               },
             },
           }),

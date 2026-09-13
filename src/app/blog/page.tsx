@@ -16,7 +16,7 @@ export async function generateMetadata() {
       title: pageTitle,
       description,
       type: "website",
-      url: `${baseURL}/blog`,
+      url: `https://${baseURL}/blog`,
       images: [
         {
           url: ogImage,
@@ -48,14 +48,14 @@ export default function Blog() {
             "@type": "Blog",
             headline: pageTitle,
             description: blog.description,
-            url: `${baseURL}/blog`,
-            image: `${baseURL}/og?title=${encodeURIComponent(pageTitle)}`,
+            url: `https://${baseURL}/blog`,
+            image: `https://${baseURL}/og?title=${encodeURIComponent(pageTitle)}`,
             author: {
               "@type": "Person",
               name: person.name,
               image: {
                 "@type": "ImageObject",
-                url: `${baseURL}${person.avatar}`,
+                url: `https://${baseURL}${person.avatar}`,
               },
             },
           }),

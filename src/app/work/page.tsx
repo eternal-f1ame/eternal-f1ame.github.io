@@ -47,8 +47,8 @@ export default function Work() {
             "@type": "CollectionPage",
             headline: work.title,
             description: work.description,
-            url: `https://${baseURL}/projects`,
-            image: `${baseURL}/og?title=Design%20Projects`,
+            url: `https://${baseURL}/work`,
+            image: `https://${baseURL}/og?title=Design%20Projects`,
             author: {
               "@type": "Person",
               name: person.name,
@@ -57,8 +57,8 @@ export default function Work() {
               "@type": "CreativeWork",
               headline: project.metadata.title,
               description: project.metadata.summary,
-              url: `https://${baseURL}/projects/${project.slug}`,
-              image: `${baseURL}/${project.metadata.image}`,
+              url: `https://${baseURL}/work/${project.slug}`,
+              image: `https://${baseURL}${project.metadata.image}`,
             })),
           }),
         }}
