@@ -251,20 +251,20 @@ const about = {
     title: "Achievements",
     items: [
       {
-        name: "Winner — Michelin Mobility Innovation Challenge",
-        description: <>2022</>,
+        name: "Michelin Mobility Innovation Challenge",
+        description: <>Winner • 2022</>,
       },
       {
-        name: "Perfect Score 100/100 — ABU Robocon '22",
-        description: <>2022</>,
+        name: "ABU Robocon '22",
+        description: <>Perfect score, 100/100 • 2022</>,
       },
       {
-        name: "All India Rank 65 — ISI Entrance Test",
-        description: <>2020</>,
+        name: "ISI Entrance Test",
+        description: <>All India Rank 65 • 2020</>,
       },
       {
-        name: "GRE — 320 (170 Quant / 150 Verbal)",
-        description: <>2023</>,
+        name: "GRE",
+        description: <>320 (170 Quant, 150 Verbal) • 2023</>,
       },
     ],
   },
@@ -273,24 +273,24 @@ const about = {
     title: "Volunteering",
     items: [
       {
-        name: "Presenter — Spark STEM Fest, Orlando Science Center",
-        description: <>Feb. 2026</>,
+        name: "Spark STEM Fest, Orlando Science Center",
+        description: <>Presenter • Feb. 2026</>,
       },
       {
-        name: "Graduate Cohort — Campus Activities Board, Impact Committee, UCF",
-        description: <>2025 – 2026</>,
+        name: "Campus Activities Board, Impact Committee, UCF",
+        description: <>Graduate Cohort • 2025 – 2026</>,
       },
       {
-        name: "Festival Chief — Aaftaab, The Literary Fest, IIT Jodhpur",
-        description: <>Feb. 2024</>,
+        name: "Aaftaab, The Literary Fest, IIT Jodhpur",
+        description: <>Festival Chief • Feb. 2024</>,
       },
       {
-        name: "Founder and Head — Artificial Intelligence and Data Society, IIT Jodhpur",
-        description: <>2022 – 2023</>,
+        name: "Artificial Intelligence and Data Society, IIT Jodhpur",
+        description: <>Founder and Head • 2022 – 2023</>,
       },
       {
-        name: "Secretary — Literature Society, IIT Jodhpur",
-        description: <>2022 – 2023</>,
+        name: "Literature Society, IIT Jodhpur",
+        description: <>Secretary • 2022 – 2023</>,
       },
     ],
   },
