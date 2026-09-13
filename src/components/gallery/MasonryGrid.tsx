@@ -9,7 +9,7 @@ import ImageCard from "./ImageCard";
 
 export default function MasonryGrid() {
   const breakpointColumnsObj = {
-    default: 4,
+    default: 3,
     1440: 3,
     1024: 2,
     560: 1,

@@ -503,6 +503,12 @@ const gallery = {
       title: "NH32...",
       imageSrc: "/assets/NH32.jpg",
     },
+    {
+      type: "poem",
+      filePath: "/gallery/poems/goodwithwords.txt",
+      title: "GOOD WITH WORDS...",
+      imageSrc: "/assets/GOOD-WITH-WORDS.jpg",
+    },
   ],
 };
 
