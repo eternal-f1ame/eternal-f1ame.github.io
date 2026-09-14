@@ -320,18 +320,6 @@ const publications = {
   description: `Research publications by ${person.name}`,
   papers: [
     {
-      title: "Re:Verse+ — Separating Reading from Recall in Manga Understanding",
-      featured: true,
-      authors: (
-        <>
-          <strong>A. Baranwal</strong>, M. Kataria, N. Agrawal, S. Vyas, Y.S. Rawat
-        </>
-      ),
-      venue: "In preparation",
-      year: "2027",
-      link: "https://sochastic.me/Re-Verse-Plus/",
-    },
-    {
       title: "Vision-Language Models for Analog Gauge Reading: An Empirical Study of Specialization, Transfer and Reliability",
       authors: (
         <>
