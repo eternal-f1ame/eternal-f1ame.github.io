@@ -320,6 +320,27 @@ const publications = {
   description: `Research publications by ${person.name}`,
   papers: [
     {
+      title: "Re:Cognize — Open-Set Sequential Comic Character Re-Identification",
+      authors: (
+        <>
+          <strong>A. Baranwal</strong>, M. Kataria, Y.S. Rawat, S. Vyas
+        </>
+      ),
+      venue: "NeurIPS (ED Track)",
+      year: "2026",
+    },
+    {
+      title: "PHOEBI: An Open-World Benchmark for Bacterial Identification",
+      authors: (
+        <>
+          <strong>A. Baranwal</strong>, M.J. Hasan, S. Vyas
+        </>
+      ),
+      venue: "NeurIPS (ED Track)",
+      year: "2026",
+      link: "https://arxiv.org/abs/2606.22890",
+    },
+    {
       title: "Vision-Language Models for Analog Gauge Reading: An Empirical Study of Specialization, Transfer and Reliability",
       authors: (
         <>
@@ -422,27 +443,6 @@ const publications = {
       venue: "Under Review",
       year: "2026",
       link: "https://arxiv.org/abs/2605.10157",
-    },
-    {
-      title: "Re:Cognize — Open-Set Sequential Comic Character Re-Identification",
-      authors: (
-        <>
-          <strong>A. Baranwal</strong>, M. Kataria, Y.S. Rawat, S. Vyas
-        </>
-      ),
-      venue: "Under Review",
-      year: "2026",
-    },
-    {
-      title: "PHOEBI: An Open-World Benchmark for Bacterial Identification",
-      authors: (
-        <>
-          <strong>A. Baranwal</strong>, M.J. Hasan, S. Vyas
-        </>
-      ),
-      venue: "Under Review",
-      year: "2026",
-      link: "https://arxiv.org/abs/2606.22890",
     },
     {
       title: "The Dark Regulome: Disentangling Predictability from Regulation in Genomic Foundation Models",
