@@ -321,6 +321,7 @@ const publications = {
   papers: [
     {
       title: "Re:Cognize — Open-Set Sequential Comic Character Re-Identification",
+      featured: 1,
       authors: (
         <>
           <strong>A. Baranwal</strong>, M. Kataria, Y.S. Rawat, S. Vyas
@@ -375,7 +376,7 @@ const publications = {
     },
     {
       title: "Robust Onion: Peeling Open Vocab Object Detectors Under Noise",
-      featured: true,
+      featured: 2,
       authors: (
         <>
           P. Pathak, M. Karuppasamy, <strong>A. Baranwal</strong>, S. Marjit, S. Vyas, Y.S. Rawat
@@ -387,7 +388,6 @@ const publications = {
     },
     {
       title: "ZeroBench: An Impossible Visual Benchmark for Contemporary Large Multimodal Models",
-      featured: true,
       authors: (
         <>
           J. Roberts, M.R. Taesiri, A. Sharma, A. Gupta, S. Roberts, I. Croitoru,{" "}
@@ -400,7 +400,7 @@ const publications = {
     },
     {
       title: "Re:Verse — Can Your VLM Read a Manga?",
-      featured: true,
+      featured: 3,
       authors: (
         <>
           <strong>A. Baranwal</strong>, M. Kataria, N. Agrawal, Y.S. Rawat, S. Vyas

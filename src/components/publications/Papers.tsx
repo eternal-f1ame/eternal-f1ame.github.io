@@ -6,8 +6,12 @@ interface PapersProps {
 }
 
 export function Papers({ featured = false }: PapersProps) {
+  // featured is a rank, so the landing page order is set in content.js rather
+  // than inherited from the order of the publications page
   const papers = featured
-    ? publications.papers.filter((paper) => paper.featured)
+    ? publications.papers
+        .filter((paper) => paper.featured)
+        .sort((a, b) => Number(a.featured) - Number(b.featured))
     : publications.papers;
 
   return (
