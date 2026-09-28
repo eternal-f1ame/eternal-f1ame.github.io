@@ -320,7 +320,7 @@ const publications = {
   description: `Research publications by ${person.name}`,
   papers: [
     {
-      title: "Re:Cognize — Open-Set Sequential Comic Character Re-Identification",
+      title: "Re:Cognize — Open-Set Comic Character Re-Identification",
       featured: 1,
       authors: (
         <>
