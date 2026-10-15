@@ -3,6 +3,7 @@ import { gallery, person } from "@/app/resources/content";
 import { getPoems } from "@/app/utils/poems";
 import { pageMetadata, shareImage } from "@/app/utils/share";
 import styles from "@/components/gallery/Poem.module.scss";
+import { PoemSpread } from "@/components/gallery/PoemSpread";
 import { Button, Column, Flex, Heading, SmartLink, Text } from "@/once-ui/components";
 import { notFound } from "next/navigation";
 import type { CSSProperties } from "react";
@@ -75,7 +76,7 @@ export default function Poem({ params }: PoemParams) {
         {gallery.label}
       </Button>
 
-      <div className={styles.poem}>
+      <PoemSpread className={styles.poem}>
         <figure className={styles.photo}>
           <img src={poem.imageSrc} alt="" decoding="async" />
         </figure>
@@ -105,7 +106,7 @@ export default function Poem({ params }: PoemParams) {
             </Text>
           )}
         </div>
-      </div>
+      </PoemSpread>
 
       <Flex as="nav" aria-label="More poems" fillWidth horizontal="space-between" gap="24" wrap>
         <SmartLink

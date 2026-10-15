@@ -37,8 +37,10 @@
   }
 }
 
+/* --room is the foot room PoemSpread measures, so the poem can rise level with the photo */
 .text {
   padding-top: 0.5em;
+  padding-bottom: var(--room, 0em);
 }
 
 .title {
@@ -66,6 +68,12 @@
     opacity: 0;
     transform: translateY(0.5em);
   }
+}
+
+/* the poem's last line is the column's floor, so the photo lets go just as the signature meets its edge */
+.text > :last-child,
+.verse:last-child > :last-child {
+  margin-bottom: 0;
 }
 
 .signature {
