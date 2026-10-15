@@ -143,7 +143,8 @@ const components = {
 };
 
 type CustomMDXProps = MDXRemoteProps & {
-  components?: typeof components;
+  // a page may swap any of these, as the blog post page does for paragraphs
+  components?: Partial<typeof components>;
 };
 
 export function CustomMDX(props: CustomMDXProps) {

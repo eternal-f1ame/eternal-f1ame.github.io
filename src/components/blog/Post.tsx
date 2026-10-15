@@ -1,59 +1,60 @@
-"use client";
-
-import { Column, Flex, Heading, SmartImage, SmartLink, Tag, Text } from "@/once-ui/components";
-import { Glass } from "@/components/Glass";
 import { formatDate } from "@/app/utils/formatDate";
+import { readingTime } from "@/app/utils/reading";
+import { Glass } from "@/components/Glass";
+import { Column, Heading, SmartImage, SmartLink, Text } from "@/once-ui/components";
+import styles from "./Post.module.scss";
 
 interface PostProps {
   post: any;
   thumbnail: boolean;
 }
 
+/*
+  A post card: the title in the serif (posts are the site's writing voice), the
+  summary, and one quiet line of facts: date, reading time, tags. A server component,
+  so a post's full text never travels to the browser just to draw its card.
+*/
 export default function Post({ post, thumbnail }: PostProps) {
-  const tags = post.metadata.tag && typeof post.metadata.tag === 'string' 
-    ? post.metadata.tag.split(",").map((tag: string) => tag.trim())
-    : [];
+  const tags: string[] =
+    post.metadata.tag && typeof post.metadata.tag === "string"
+      ? post.metadata.tag
+          .split(",")
+          .map((tag: string) => tag.trim())
+          .filter(Boolean)
+      : [];
+  const facts = [
+    post.metadata.publishedAt && formatDate(post.metadata.publishedAt, false),
+    `${readingTime(post.content)} min read`,
+    ...tags.slice(0, 3),
+  ].filter(Boolean);
 
   return (
     <SmartLink fillWidth unstyled key={post.slug} href={`/blog/${post.slug}`}>
       <Glass interactive className="glass-clip">
-        <Flex
-          position="relative"
-          mobileDirection="column"
-          fillWidth
-          paddingY="12"
-          paddingX="16"
-          gap="32"
-        >
+        <Column fillWidth gap="12" className={styles.card}>
           {post.metadata.image && thumbnail && (
             <SmartImage
               priority
-              maxWidth={20}
               sizes="40em"
               border="neutral-alpha-weak"
-              cursor="interactive"
               radius="m"
               src={post.metadata.image}
-              alt={"Thumbnail of " + post.metadata.title}
+              alt={`Thumbnail of ${post.metadata.title}`}
               aspectRatio="16 / 9"
             />
           )}
-          <Column position="relative" fillWidth gap="8" vertical="center">
-            <Heading as="h2" variant="heading-strong-l" wrap="balance">
-              {post.metadata.title}
-            </Heading>
-            <Text variant="label-default-s" onBackground="neutral-weak">
-              {post.metadata.publishedAt && formatDate(post.metadata.publishedAt, false)}
+          <Heading as="h2" variant="display-default-xs" wrap="balance">
+            {post.metadata.title}
+          </Heading>
+          {post.metadata.summary && (
+            <Text variant="body-default-m" onBackground="neutral-weak" wrap="balance">
+              {post.metadata.summary}
             </Text>
-            {tags.length > 0 && (
-              <Flex gap="8">
-                {tags.map((tag: string, index: number) =>
-                  index < 3 ? <Tag key={index} label={tag} variant="neutral" /> : null
-                )}
-              </Flex>
-            )}
-          </Column>
-        </Flex>
+          )}
+          <Text variant="label-default-s" onBackground="neutral-weak">
+            {facts.join(" · ")}
+          </Text>
+        </Column>
       </Glass>
     </SmartLink>
   );

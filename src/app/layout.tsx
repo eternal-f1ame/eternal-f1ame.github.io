@@ -12,7 +12,7 @@ import { RoutePrefetch } from "@/components/RoutePrefetch";
 import { getPoems } from "@/app/utils/poems";
 import { getPosts } from "@/app/utils/utils";
 import { baseURL, style } from "@/app/resources";
-import { person } from "@/app/resources/content";
+import { blog, person } from "@/app/resources/content";
 
 import { Inter, Newsreader, Source_Code_Pro } from "next/font/google";
 
@@ -24,6 +24,10 @@ export async function generateMetadata() {
     // pages give their own title (often a kaomoji and a word); the name follows it, so a
     // search result or a tab still says whose page this is
     title: { template: `%s · ${person.name}`, default: person.name },
+    // lets feed readers find the blog from any page
+    alternates: {
+      types: { "application/rss+xml": [{ url: "/rss.xml", title: `${blog.heading} · ${person.name}` }] },
+    },
     // Let Next.js handle favicons automatically
     robots: {
       index: true,

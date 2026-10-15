@@ -1,0 +1,107 @@
+/*
+  Posts: the reading page (src/app/blog/[slug]/page.tsx) and the post cards (Post.tsx).
+*/
+
+/* one column at about 66 characters a line of the body type */
+.column {
+  width: 100%;
+  max-width: 41em;
+}
+
+/*
+  The body, in the serif (the .serif class on the article). Paragraphs are plain <p>,
+  passed to the MDX renderer by the page; lists and quotes are MDX's own elements.
+*/
+.prose {
+  font-size: 1.1875em;
+  line-height: 1.75;
+  color: var(--neutral-on-background-strong);
+  padding-top: 0.75em;
+}
+
+.paragraph {
+  margin: 0 0 1.15em;
+}
+
+.prose :is(ul, ol) {
+  margin: 0 0 1.15em;
+  padding-left: 1.4em;
+}
+
+.prose li {
+  margin-bottom: 0.6em;
+  padding-left: 0.2em;
+}
+
+.prose li::marker {
+  color: var(--neutral-on-background-weak);
+}
+
+.prose blockquote {
+  margin: 1.5em 0;
+  padding-left: 1.1em;
+  border-left: 0.0625em solid var(--neutral-border-strong);
+  font-style: italic;
+  color: var(--neutral-on-background-medium);
+}
+
+/* a section break, set the way a book sets one */
+.prose hr {
+  height: auto;
+  margin: 2em 0;
+  border: 0;
+  text-align: center;
+}
+
+.prose hr::before {
+  content: "· · ·";
+  letter-spacing: 0.4em;
+  color: var(--neutral-on-background-weak);
+}
+
+/* section headings inside a post join the serif; h2 outranks once-ui's .font-heading */
+.prose :is(h2, h3, h4) {
+  font-family: var(--font-serif), Georgia, serif;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+
+.more {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 1em 2em;
+  margin-top: 2.5em;
+  padding-top: 1.5em;
+  border-top: 0.0625em solid var(--neutral-alpha-medium);
+}
+
+/* the reading progress: a hairline across the top of the window that fills as you read */
+.progress {
+  position: fixed;
+  inset: 0 0 auto;
+  z-index: 10;
+  height: 0.125em;
+  background: var(--neutral-on-background-medium);
+  transform-origin: 0 50%;
+  transform: scaleX(0);
+  pointer-events: none;
+}
+
+@supports (animation-timeline: scroll()) {
+  .progress {
+    animation: read linear both;
+    animation-timeline: scroll(root);
+  }
+}
+
+@keyframes read {
+  to {
+    transform: scaleX(1);
+  }
+}
+
+/* a post card: the title in the serif, the summary, and a quiet line of facts */
+.card {
+  padding: 1.25em 1.5em 1.35em;
+}
