@@ -212,6 +212,12 @@ a.glide-link:focus-visible svg {
   transform: translateX(0.25em);
 }
 
+/* a leading icon, as on a "previous" link, glides the other way */
+a.glide-link:hover > :first-child svg,
+a.glide-link:focus-visible > :first-child svg {
+  transform: translateX(-0.25em);
+}
+
 /*
   A page arriving (src/app/template.tsx): it rises a hair and fades in. The wrapper takes
   no box of its own, so the page lays out exactly as it would without it. Only opacity
@@ -257,7 +263,9 @@ a.glide-link:focus-visible svg {
   .glass-tile:hover img,
   .glass-tile:active img,
   a.glide-link:hover svg,
-  a.glide-link:focus-visible svg {
+  a.glide-link:focus-visible svg,
+  a.glide-link:hover > :first-child svg,
+  a.glide-link:focus-visible > :first-child svg {
     transform: none;
   }
 

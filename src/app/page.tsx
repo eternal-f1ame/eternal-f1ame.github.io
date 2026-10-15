@@ -1,6 +1,7 @@
 import { baseURL, routes } from "@/app/resources";
 import { pageMetadata, shareImage } from "@/app/utils/share";
 import { about, gallery, home, newsletter, person, social } from "@/app/resources/content";
+import { slugify } from "@/app/utils/slug";
 import { getPosts } from "@/app/utils/utils";
 import { Mailchimp } from "@/components";
 import { Glass } from "@/components/Glass";
@@ -227,7 +228,12 @@ export default function Home() {
           </Text>
           <Flex fillWidth gap="16" mobileDirection="column">
             {poems.map((poem) => (
-              <SmartLink key={poem.filePath} href="/gallery" unstyled fillWidth>
+              <SmartLink
+                key={poem.filePath}
+                href={`/gallery/${slugify(poem.title)}`}
+                unstyled
+                fillWidth
+              >
                 <Glass interactive className="glass-tile">
                   <img src={poem.imageSrc} alt="" loading="lazy" decoding="async" />
                   <span className="glass-tile-label">{poem.title}</span>

@@ -9,6 +9,7 @@ import classNames from "classnames";
 import { Footer, Header, RouteGuard } from "@/components";
 import { Backdrop } from "@/components/Backdrop";
 import { RoutePrefetch } from "@/components/RoutePrefetch";
+import { getPoems } from "@/app/utils/poems";
 import { getPosts } from "@/app/utils/utils";
 import { baseURL, style } from "@/app/resources";
 import { person } from "@/app/resources/content";
@@ -80,6 +81,7 @@ export default async function RootLayout({ children }: RootLayoutProps) {
   const slugPaths = [
     ...getPosts(["src", "app", "blog", "posts"]).map((post) => `/blog/${post.slug}`),
     ...getPosts(["src", "app", "work", "projects"]).map((project) => `/work/${project.slug}`),
+    ...getPoems().map((poem) => `/gallery/${poem.slug}`),
   ];
 
   return (

@@ -32,7 +32,8 @@
         border-color var(--glide) var(--ease-glide),
         box-shadow var(--glide) var(--ease-glide);
 
-    &:hover {
+    &:hover,
+    &:focus-visible {
         transform: translateY(calc(var(--glass-lift) * -1));
         border-color: var(--glass-edge-hover);
         box-shadow:
@@ -63,6 +64,7 @@
 
 /* colour on hover, and on press for touch screens that have no hover */
 .gridItem:hover img,
+.gridItem:focus-visible img,
 .gridItem:active img {
     transform: scale(1.05);
     filter: grayscale(0);
@@ -81,95 +83,25 @@
     transition: background var(--glide) var(--ease-glide);
 }
 
-.modal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0, 0, 0, 0.72);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 1000;
-    padding: var(--static-space-24);
-    backdrop-filter: blur(0.5em);
-    animation: fadeIn var(--glide) var(--ease-glide);
+/* a tile is a link: the column prefix outranks once-ui's a:not(.button) colour and hover underline */
+.masonryGridColumn a.gridItem,
+.masonryGridColumn a.gridItem:hover {
+    color: var(--static-white);
+    text-decoration-line: none;
 }
 
-.modalContent {
-    border: 0.0625em solid var(--glass-edge);
-    border-radius: var(--radius-l);
-    background-color: var(--surface-background);
-    backdrop-filter: blur(var(--glass-blur)) brightness(1.06);
-    -webkit-backdrop-filter: blur(var(--glass-blur)) brightness(1.06);
-    max-width: 37.5em;
-    max-height: 80vh;
-    width: 100%;
-    overflow: hidden;
-    box-shadow:
-        inset 0 0.0625em 0 var(--glass-specular),
-        var(--glass-shadow-hover);
-    animation: slideUp var(--glide) var(--ease-glide);
+.gridItem:focus-visible {
+    outline: 0.125em solid var(--neutral-on-background-strong);
+    outline-offset: 0.25em;
 }
 
-.poemContent {
-    max-height: 60vh;
-    overflow-y: auto;
-    padding-right: var(--static-space-8);
-
-    &::-webkit-scrollbar {
-        width: 0.375em;
-    }
-
-    &::-webkit-scrollbar-track {
-        background: var(--background-neutral-weak);
-        border-radius: var(--radius-s);
-    }
-
-    &::-webkit-scrollbar-thumb {
-        background: var(--background-neutral-medium);
-        border-radius: var(--radius-s);
-
-        &:hover {
-            background: var(--background-neutral-strong);
-        }
-    }
+.tileTitle {
+    font-size: 0.875em;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    text-shadow: 0 0.0625em 0.1875em rgba(0, 0, 0, 0.8);
 }
 
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
-}
-
-@keyframes slideUp {
-    from {
-        transform: translateY(1.25em);
-        opacity: 0;
-    }
-    to {
-        transform: translateY(0);
-        opacity: 1;
-    }
-}
-
-@media (--s) {
-    .modal {
-        padding: var(--static-space-16);
-    }
-
-    .modalContent {
-        max-height: 90vh;
-    }
-
-    .poemContent {
-        max-height: 70vh;
-    }
-}
 
 /* one column on phones, so a shorter tile keeps more than one poem on screen */
 @media (--xs) {
@@ -193,10 +125,5 @@
     .gridItem:hover img,
     .gridItem:active img {
         transform: none;
-    }
-
-    .modal,
-    .modalContent {
-        animation: none;
     }
 }

@@ -1,0 +1,98 @@
+/*
+  A poem's page: the photograph and the poem side by side, stacked once the column
+  gets narrow. The photograph stays in view while a long poem scrolls past it.
+*/
+.poem {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 4em;
+  align-items: start;
+  width: 100%;
+}
+
+.photo {
+  position: sticky;
+  top: 6em;
+  margin: 0;
+  overflow: hidden;
+  border: 0.0625em solid var(--glass-edge);
+  border-radius: var(--radius-l);
+  box-shadow:
+    inset 0 0.0625em 0 var(--glass-specular),
+    var(--glass-shadow);
+}
+
+/* the print develops: grey when the page arrives, its own colour a moment later */
+.photo img {
+  display: block;
+  width: 100%;
+  height: auto;
+  filter: grayscale(1) brightness(0.9);
+  animation: develop 2.6s var(--ease-glide) 0.5s forwards;
+}
+
+@keyframes develop {
+  to {
+    filter: grayscale(0) brightness(1);
+  }
+}
+
+.text {
+  padding-top: 0.5em;
+}
+
+.title {
+  letter-spacing: 0.02em;
+  margin-bottom: 1.25em;
+}
+
+.verse {
+  font-size: 1.25em;
+  line-height: 1.75;
+  color: var(--neutral-on-background-strong);
+}
+
+/* each stanza follows the last one in */
+.stanza,
+.signature {
+  margin: 0 0 1.4em;
+  white-space: pre-wrap;
+  animation: stanza-in var(--glide-slow) var(--ease-glide) both;
+  animation-delay: calc(var(--i) * 140ms + 200ms);
+}
+
+@keyframes stanza-in {
+  from {
+    opacity: 0;
+    transform: translateY(0.5em);
+  }
+}
+
+.signature {
+  font-size: 1.125em;
+  font-style: italic;
+  color: var(--neutral-on-background-weak);
+}
+
+@media (--m) {
+  .poem {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 2.5em;
+  }
+
+  .photo {
+    position: static;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .photo img {
+    animation: none;
+    filter: none;
+  }
+
+  .stanza,
+  .signature {
+    animation: none;
+  }
+}

@@ -1,7 +1,6 @@
 "use client";
 
 import Masonry from "react-masonry-css";
-import { SmartImage } from "@/once-ui/components";
 import styles from "./Gallery.module.scss";
 import { gallery } from "@/app/resources/content";
 import PoemCard from "./PoemCard";
@@ -40,12 +39,7 @@ export default function MasonryGrid() {
           );
         } else if (item.type === "poem") {
           return (
-            <PoemCard
-              key={`${item.filePath}-${index}`}
-              filePath={item.filePath}
-              title={item.title}
-              imageSrc={item.imageSrc}
-            />
+            <PoemCard key={`${item.filePath}-${index}`} title={item.title} imageSrc={item.imageSrc} />
           );
         }
         return null;
