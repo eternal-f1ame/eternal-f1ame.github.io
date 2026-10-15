@@ -352,7 +352,8 @@ const publications = {
       bib: "/papers/re-cognize.bib",
     },
     {
-      title: "PHOEBI: An Open-World Benchmark for Bacterial Identification",
+      title:
+        "PHOEBI: An Open-World Benchmark for Multi-Label Bacterial Identification in Phase-Contrast Microscopy",
       authors: (
         <>
           <strong>A. Baranwal</strong>, M.J. Hasan, S. Vyas
@@ -413,7 +414,7 @@ const publications = {
       featured: 2,
       authors: (
         <>
-          P. Pathak, M. Karuppasamy, <strong>A. Baranwal</strong>, S. Marjit, S. Vyas, Y.S. Rawat
+          P. Pathak, M. Karuppasamy, <strong>A. Baranwal</strong>, S. Vyas, Y.S. Rawat
         </>
       ),
       venue: "ECCV (Main Conference)",
@@ -475,7 +476,7 @@ const publications = {
       title: "MolSight: Molecular Property Prediction with Images",
       authors: (
         <>
-          <strong>A. Baranwal</strong>, A. Gupta, S. Vyas, Y.S. Rawat
+          <strong>A. Baranwal</strong>, A. Gupta, Y.S. Rawat, S. Vyas
         </>
       ),
       venue: "Under Review",
