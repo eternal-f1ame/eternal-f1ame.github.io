@@ -2,11 +2,12 @@ import { notFound } from "next/navigation";
 import { pageMetadata, shareImage } from "@/app/utils/share";
 import { CustomMDX } from "@/components/mdx";
 import { getPosts } from "@/app/utils/utils";
-import { AvatarGroup, Button, Column, Flex, Heading, SmartImage, Text } from "@/once-ui/components";
+import { AvatarGroup, Button, Column, Flex, Heading, SmartLink, Text } from "@/once-ui/components";
 import { baseURL } from "@/app/resources";
-import { person } from "@/app/resources/content";
+import { person, work } from "@/app/resources/content";
 import { formatDate } from "@/app/utils/formatDate";
 import ScrollToHash from "@/components/ScrollToHash";
+import styles from "@/components/work/Projects.module.scss";
 
 interface WorkParams {
   params: {
@@ -74,18 +75,12 @@ export default function Project({ params }: WorkParams) {
       />
       <Column maxWidth="xs" gap="16">
         <Button href="/work" variant="tertiary" weight="default" size="s" prefixIcon="chevronLeft">
-          Pastime
+          {work.label}
         </Button>
         <Heading variant="display-strong-s">{post.metadata.title}</Heading>
       </Column>
       {post.metadata.images.length > 0 && (
-        <SmartImage
-          priority
-          aspectRatio="16 / 9"
-          radius="m"
-          alt="image"
-          src={post.metadata.images[0]}
-        />
+        <img className={styles.figure} src={post.metadata.images[0]} alt="" decoding="async" />
       )}
       {/* inline margins only: a plain `auto` also centres a short write-up vertically */}
       <Column style={{ marginInline: "auto" }} as="article" maxWidth="xs">
@@ -96,6 +91,26 @@ export default function Project({ params }: WorkParams) {
           </Text>
         </Flex>
         <CustomMDX source={post.content} />
+        {post.metadata.images.slice(1).map((image) => (
+          <img
+            key={image}
+            className={styles.figure}
+            src={image}
+            alt=""
+            loading="lazy"
+            decoding="async"
+          />
+        ))}
+        {post.metadata.link && (
+          <SmartLink
+            href={post.metadata.link}
+            suffixIcon="arrowUpRightFromSquare"
+            className="glide-link"
+            style={{ marginTop: "1.5em" }}
+          >
+            <Text variant="body-default-m">View project</Text>
+          </SmartLink>
+        )}
       </Column>
       <ScrollToHash />
     </Column>

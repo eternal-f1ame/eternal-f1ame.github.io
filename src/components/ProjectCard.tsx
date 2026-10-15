@@ -1,15 +1,7 @@
-"use client";
-
-import {
-  AvatarGroup,
-  Carousel,
-  Column,
-  Flex,
-  Heading,
-  SmartLink,
-  Text,
-} from "@/once-ui/components";
 import { Glass } from "@/components/Glass";
+import styles from "@/components/work/Projects.module.scss";
+import { Column, Icon, Text } from "@/once-ui/components";
+import Link from "next/link";
 
 interface ProjectCardProps {
   href: string;
@@ -18,70 +10,65 @@ interface ProjectCardProps {
   title: string;
   content: string;
   description: string;
-  avatars: { src: string }[];
   link: string;
 }
 
+/*
+  A project as a picture card: its first image beside the words, stacked on a phone.
+  The whole card is the one link, "View project": the project itself when it lives
+  somewhere, otherwise its write-up here. A project without an image gets its title
+  set as type, like a paper without one.
+*/
 export const ProjectCard: React.FC<ProjectCardProps> = ({
   href,
+  priority = false,
   images = [],
   title,
   content,
   description,
-  avatars,
   link,
 }) => {
-  // one link: the project itself when it lives somewhere, otherwise its write-up here
   const target = link || (content?.trim() ? href : "");
 
-  return (
-    <Glass interactive className="glass-clip">
-      <Column fillWidth gap="m">
-        {images.length > 0 && (
-          <Carousel
-            sizes="(max-width: 60em) 100vw, 60em"
-            images={images.map((image) => ({
-              src: image,
-              alt: title,
-            }))}
-          />
+  const card = (
+    <Glass interactive={Boolean(target)} className={`glass-clip ${styles.card}`}>
+      <div className={styles.visual}>
+        {images.length > 0 ? (
+          <img src={images[0]} alt="" loading={priority ? "eager" : "lazy"} decoding="async" />
+        ) : (
+          <span className={styles.type}>{title.split(/ - | — /)[0]}</span>
         )}
-        <Flex
-          mobileDirection="column"
-          fillWidth
-          paddingX="s"
-          paddingTop="12"
-          paddingBottom="24"
-          gap="l"
-        >
-          {title && (
-            <Flex flex={5}>
-              <Heading as="h2" wrap="balance" variant="heading-strong-xl">
-                {title}
-              </Heading>
-            </Flex>
-          )}
-          {(avatars?.length > 0 || description?.trim() || target) && (
-            <Column flex={7} gap="16">
-              {avatars?.length > 0 && <AvatarGroup avatars={avatars} size="m" reverse />}
-              {description?.trim() && (
-                <Text wrap="balance" variant="body-default-s" onBackground="neutral-weak">
-                  {description}
-                </Text>
-              )}
-              {target && (
-                <SmartLink
-                  suffixIcon={link ? "arrowUpRightFromSquare" : "arrowRight"}
-                  style={{ margin: "0", width: "fit-content" }}
-                  href={target}
-                >
-                  <Text variant="body-default-s">View project</Text>
-                </SmartLink>
-              )}
-            </Column>
-          )}
-        </Flex>
+      </div>
+      <Column gap="12" padding="l" className={styles.words}>
+        <Text as="h2" variant="heading-strong-l" wrap="balance">
+          {title}
+        </Text>
+        {description?.trim() && (
+          <Text variant="body-default-m" onBackground="neutral-weak" wrap="balance">
+            {description}
+          </Text>
+        )}
+        {target && (
+          <span className={styles.cta}>
+            <Text variant="body-default-s">View project</Text>
+            <Icon name={link ? "arrowUpRightFromSquare" : "arrowRight"} size="xs" />
+          </span>
+        )}
       </Column>
     </Glass>
+  );
+
+  if (!target) {
+    return card;
+  }
+
+  return link ? (
+    <a className={styles.link} href={link} target="_blank" rel="noopener noreferrer">
+      {card}
+    </a>
+  ) : (
+    <Link className={styles.link} href={href}>
+      {card}
+    </Link>
   );
 };

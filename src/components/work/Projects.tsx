@@ -1,6 +1,7 @@
 import { getPosts } from "@/app/utils/utils";
 import { Column } from "@/once-ui/components";
 import { ProjectCard } from "@/components";
+import styles from "./Projects.module.scss";
 
 interface ProjectsProps {
   range?: [number, number?];
@@ -19,7 +20,13 @@ export function Projects({ range, flush = false }: ProjectsProps) {
     : sortedProjects;
 
   return (
-    <Column fillWidth gap="xl" marginBottom={flush ? "0" : "40"} paddingX={flush ? "0" : "l"}>
+    <Column
+      fillWidth
+      gap="l"
+      marginBottom={flush ? "0" : "40"}
+      paddingX={flush ? "0" : "l"}
+      className={styles.list}
+    >
       {displayedProjects.map((post, index) => (
         <ProjectCard
           priority={index < 2}
@@ -29,7 +36,6 @@ export function Projects({ range, flush = false }: ProjectsProps) {
           title={post.metadata.title}
           description={post.metadata.summary}
           content={post.content}
-          avatars={post.metadata.team?.map((member) => ({ src: member.avatar })) || []}
           link={post.metadata.link || ""}
         />
       ))}
