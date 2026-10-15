@@ -31,6 +31,9 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
   avatars,
   link,
 }) => {
+  // one link: the project itself when it lives somewhere, otherwise its write-up here
+  const target = link || (content?.trim() ? href : "");
+
   return (
     <Glass interactive className="glass-clip">
       <Column fillWidth gap="m">
@@ -58,7 +61,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
               </Heading>
             </Flex>
           )}
-          {(avatars?.length > 0 || description?.trim() || content?.trim()) && (
+          {(avatars?.length > 0 || description?.trim() || target) && (
             <Column flex={7} gap="16">
               {avatars?.length > 0 && <AvatarGroup avatars={avatars} size="m" reverse />}
               {description?.trim() && (
@@ -66,26 +69,15 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
                   {description}
                 </Text>
               )}
-              <Flex gap="24" wrap>
-                {content?.trim() && (
-                  <SmartLink
-                    suffixIcon="arrowRight"
-                    style={{ margin: "0", width: "fit-content" }}
-                    href={href}
-                  >
-                    <Text variant="body-default-s" style={{fontStyle: 'italic'}}>have a closer look</Text>
-                  </SmartLink>
-                )}
-                {link && (
-                  <SmartLink
-                    suffixIcon="arrowUpRightFromSquare"
-                    style={{ margin: "0", width: "fit-content" }}
-                    href={link}
-                  >
-                    <Text variant="body-default-s">View project</Text>
-                  </SmartLink>
-                )}
-              </Flex>
+              {target && (
+                <SmartLink
+                  suffixIcon={link ? "arrowUpRightFromSquare" : "arrowRight"}
+                  style={{ margin: "0", width: "fit-content" }}
+                  href={target}
+                >
+                  <Text variant="body-default-s">View project</Text>
+                </SmartLink>
+              )}
             </Column>
           )}
         </Flex>
