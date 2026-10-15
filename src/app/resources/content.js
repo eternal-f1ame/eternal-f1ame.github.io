@@ -342,6 +342,9 @@ const publications = {
       ),
       venue: "NeurIPS (ED Track)",
       year: "2026",
+      link: "https://arxiv.org/abs/2609.34032",
+      page: "https://re-cognize.vercel.app",
+      image: "/papers/re-cognize.webp",
     },
     {
       title: "PHOEBI: An Open-World Benchmark for Bacterial Identification",
@@ -353,6 +356,8 @@ const publications = {
       venue: "NeurIPS (ED Track)",
       year: "2026",
       link: "https://arxiv.org/abs/2606.22890",
+      page: "https://phoebi-benchmark.vercel.app",
+      image: "/papers/phoebi.webp",
     },
     {
       title: "Vision-Language Models for Analog Gauge Reading: An Empirical Study of Specialization, Transfer and Reliability",
@@ -364,6 +369,7 @@ const publications = {
       venue: "Engineering Applications of Artificial Intelligence",
       year: "2026",
       link: "https://arxiv.org/abs/2608.17723",
+      image: "/papers/gauge-reading.webp",
     },
     {
       title: "BareBones: Benchmarking Zero-Shot Geometric Comprehension in VLMs",
@@ -375,6 +381,7 @@ const publications = {
       venue: "CVPR Workshops (FGVC 13)",
       year: "2026",
       link: "https://arxiv.org/abs/2604.10528",
+      image: "/papers/barebones.webp",
     },
     {
       title: "ChemPro: A Progressive Chemistry Benchmark for Large Language Models",
@@ -386,6 +393,8 @@ const publications = {
       venue: "Artificial Intelligence Chemistry",
       year: "2026",
       link: "https://arxiv.org/abs/2602.03108",
+      page: "https://sochastic.me/ChemPro/",
+      image: "/papers/chempro.webp",
     },
     {
       title: "Robust Onion: Peeling Open Vocab Object Detectors Under Noise",
@@ -398,6 +407,7 @@ const publications = {
       venue: "ECCV (Main Conference)",
       year: "2026",
       link: "https://openreview.net/forum?id=REZ5cM8mFn",
+      image: "/papers/robust-onion.webp",
     },
     {
       title: "ZeroBench: An Impossible Visual Benchmark for Contemporary Large Multimodal Models",
@@ -410,6 +420,8 @@ const publications = {
       venue: "ICML (Red Teaming Track)",
       year: "2026",
       link: "https://arxiv.org/abs/2502.09696",
+      page: "https://zerobench.github.io/",
+      image: "/papers/zerobench.webp",
     },
     {
       title: "Re:Verse — Can Your VLM Read a Manga?",
@@ -423,6 +435,8 @@ const publications = {
       year: "2025",
       link: "https://arxiv.org/abs/2508.08508",
       award: "Best Paper (Oral)",
+      page: "https://re-verse.vercel.app",
+      image: "/papers/re-verse.webp",
     },
     {
       title: "SynSpill: Improved Industrial Spill Detection With Synthetic Data",
@@ -434,6 +448,8 @@ const publications = {
       venue: "ICCV Workshops (VISION)",
       year: "2025",
       link: "https://arxiv.org/abs/2508.10171",
+      page: "https://synspill.vercel.app",
+      image: "/papers/synspill.webp",
     },
     {
       title: "Analysis and Advancement in Domain-Specific Templated Question Answering",
@@ -445,6 +461,7 @@ const publications = {
       venue: "CS & IT Conference Proceedings 14",
       year: "2024",
       link: "https://csitcp.net/abstract/14/148csit18",
+      short: "Templated QA",
     },
     {
       title: "MolSight: Molecular Property Prediction with Images",
@@ -456,6 +473,7 @@ const publications = {
       venue: "Under Review",
       year: "2026",
       link: "https://arxiv.org/abs/2605.10157",
+      image: "/papers/molsight.webp",
     },
     {
       title: "The Dark Regulome: Disentangling Predictability from Regulation in Genomic Foundation Models",
@@ -467,6 +485,7 @@ const publications = {
       venue: "Preprint",
       year: "2026",
       link: "https://arxiv.org/abs/2606.06834",
+      image: "/papers/dark-regulome.webp",
     },
   ],
 };

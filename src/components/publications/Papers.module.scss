@@ -1,0 +1,92 @@
+/*
+  Paper cards. The surface, lift and sheen come from the glass layer
+  (src/app/resources/glass.scss); this file only lays the card out and treats its
+  picture: grey and dimmed at rest, developing into colour when the card is hovered.
+*/
+
+/* .grid prefixes everything so these beat once-ui's a:not(.button):hover underline */
+.grid .link {
+  display: block;
+  height: 100%;
+  color: inherit;
+  text-decoration-line: none;
+}
+
+.grid .link:hover,
+.grid .link:focus-visible {
+  text-decoration-line: none;
+}
+
+.grid .card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.grid .visual {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  border-bottom: 0.0625em solid var(--glass-edge);
+}
+
+.grid .visual img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: grayscale(1) brightness(0.84);
+  transition:
+    filter var(--glide-slow) var(--ease-glide),
+    transform var(--glide-slow) var(--ease-glide);
+}
+
+.grid .link:hover .visual img,
+.grid .link:focus-visible .visual img,
+.grid .link:active .visual img {
+  filter: grayscale(0) brightness(1);
+  transform: scale(1.03);
+}
+
+/* stands in for a paper without an image: a title card in the figures' paper tone */
+.grid .type {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1em;
+  text-align: center;
+  font-family: var(--font-family-heading);
+  font-size: 1.75em;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--static-black);
+  background: var(--static-white);
+  filter: brightness(0.84);
+  transition: filter var(--glide-slow) var(--ease-glide);
+}
+
+.grid .link:hover .type,
+.grid .link:focus-visible .type,
+.grid .link:active .type {
+  filter: brightness(1);
+}
+
+/* venue and year sit on the card's floor, so a row of cards lines them up */
+.grid .meta {
+  margin-top: auto;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .grid .visual img,
+  .grid .type {
+    transition-duration: 1ms;
+  }
+
+  .grid .link:hover .visual img,
+  .grid .link:focus-visible .visual img,
+  .grid .link:active .visual img {
+    transform: none;
+  }
+}

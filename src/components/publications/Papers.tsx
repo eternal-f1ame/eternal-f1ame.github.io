@@ -1,10 +1,17 @@
-import { Column, Flex, Tag, Text } from "@/once-ui/components";
 import { publications } from "@/app/resources/content";
+import { Glass } from "@/components/Glass";
+import { Column, Flex, Grid, Tag, Text } from "@/once-ui/components";
+import styles from "./Papers.module.scss";
 
 interface PapersProps {
   featured?: boolean;
 }
 
+/*
+  Papers as picture cards. A card opens the paper's project page when it has one (the
+  page links on to the paper), otherwise the paper itself. A paper without an image
+  gets its short name set as type, so the grid keeps its rhythm.
+*/
 export function Papers({ featured = false }: PapersProps) {
   // featured is a rank, so the landing page order is set in content.js rather
   // than inherited from the order of the publications page
@@ -15,42 +22,72 @@ export function Papers({ featured = false }: PapersProps) {
     : publications.papers;
 
   return (
-    <Column fillWidth gap="l">
+    <Grid
+      className={styles.grid}
+      fillWidth
+      gap="16"
+      columns="3"
+      tabletColumns={featured ? "3" : "2"}
+      mobileColumns="1"
+    >
       {papers.map((paper, index) => (
-        <Column key={`${paper.title}-${index}`} fillWidth gap="4">
-          <Text variant="heading-strong-s" onBackground="neutral-strong">
-            {paper.link ? (
-              <a
-                href={paper.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                style={{ color: "inherit", textDecoration: "none" }}
+        <a
+          key={`${paper.title}-${index}`}
+          className={styles.link}
+          href={paper.page ?? paper.link}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <Glass interactive className={`glass-clip ${styles.card}`}>
+            <div className={styles.visual}>
+              {paper.image ? (
+                <img src={paper.image} alt="" loading="lazy" decoding="async" />
+              ) : (
+                <span className={styles.type}>{paper.short ?? paper.title}</span>
+              )}
+            </div>
+            <Column fillWidth flex={1} gap="4" padding="m" horizontal="center">
+              <Text
+                variant="heading-strong-s"
+                onBackground="neutral-strong"
+                align="center"
+                wrap="balance"
               >
                 {paper.title}
-              </a>
-            ) : (
-              paper.title
-            )}
-          </Text>
-          {paper.authors && (
-            <Text variant="body-default-s" onBackground="neutral-medium">
-              {paper.authors}
-            </Text>
-          )}
-          <Flex gap="8" vertical="center" wrap>
-            <Text variant="body-default-s" onBackground="neutral-weak">
-              <em>{paper.venue}</em>
-              {", "}
-              {paper.year}
-            </Text>
-            {paper.award && (
-              <Tag size="s" variant="brand">
-                {paper.award}
-              </Tag>
-            )}
-          </Flex>
-        </Column>
+              </Text>
+              {paper.authors && (
+                <Text
+                  variant="body-default-s"
+                  onBackground="neutral-medium"
+                  align="center"
+                  wrap="balance"
+                >
+                  {paper.authors}
+                </Text>
+              )}
+              <Flex
+                className={styles.meta}
+                gap="8"
+                vertical="center"
+                horizontal="center"
+                paddingTop="8"
+                wrap
+              >
+                <Text variant="body-default-s" onBackground="neutral-weak" align="center">
+                  <em>{paper.venue}</em>
+                  {", "}
+                  {paper.year}
+                </Text>
+                {paper.award && (
+                  <Tag size="s" variant="brand">
+                    {paper.award}
+                  </Tag>
+                )}
+              </Flex>
+            </Column>
+          </Glass>
+        </a>
       ))}
-    </Column>
+    </Grid>
   );
 }
