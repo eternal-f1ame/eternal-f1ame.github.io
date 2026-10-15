@@ -22,6 +22,6 @@
 }
 
 .dots {
-  background-image: radial-gradient(var(--dots-color) 1px, var(--static-transparent) 1px);
+  background-image: radial-gradient(var(--dots-color) 0.0625em, var(--static-transparent) 0.0625em);
   background-size: var(--dots-size) var(--dots-size);
 }

@@ -91,7 +91,7 @@ export default function PoemCard({ filePath, title, imageSrc }: PoemCardProps) {
         {/* Overlay with title */}
         <div className={styles.imageOverlay}>
           <Text variant="body-default-s" onBackground="neutral-strong" style={{ 
-            textShadow: '0 1px 3px rgba(0,0,0,0.8)',
+            textShadow: '0 0.0625em 0.1875em rgba(0,0,0,0.8)',
             fontWeight: 'bold',
             color: 'white'
           }}>

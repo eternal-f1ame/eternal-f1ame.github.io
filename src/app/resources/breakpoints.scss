@@ -1,0 +1,24 @@
+/*
+  Project breakpoints.
+
+  once-ui ships --s / --m / --l in px (src/once-ui/styles/breakpoints.scss). These
+  redefine the same stops in em and add the two ends of the range, so every view has
+  a named stop and the layout switches on the visitor's own font size rather than on
+  device pixels: someone browsing at 20px default text reaches the tablet layout
+  earlier, which is the point.
+
+  Both files are listed in postcss.config.js under @csstools/postcss-global-data, so
+  these names resolve inside every .scss and .module.scss without an import.
+
+    --xs   <= 30em    480px   phones
+    --s    <= 48em    768px   large phones, small tablets
+    --m    <= 64em   1024px   tablets, small laptops
+    --l    <= 90em   1440px   laptops
+    --xl   >  90em           wide desktops
+*/
+
+@custom-media --xs (max-width: 30em);
+@custom-media --s (max-width: 48em);
+@custom-media --m (max-width: 64em);
+@custom-media --l (max-width: 90em);
+@custom-media --xl (min-width: 90.0625em);

@@ -40,7 +40,7 @@
     box-shadow: inset 0 var(--solid-inset-distance) var(--solid-inset-size) var(--solid-inset-color-neutral);
     background: var(--neutral-background-medium);
     border-style: solid;
-    border: 1px solid var(--neutral-border-medium);
+    border: 0.0625em solid var(--neutral-border-medium);
     color: var(--neutral-on-background-strong);
 
     &:hover, &:focus {
@@ -52,10 +52,10 @@
 .tertiary {
     background: var(--static-transparent);
     color: var(--neutral-on-background-strong);
-    border: 1px solid var(--static-transparent);
+    border: 0.0625em solid var(--static-transparent);
 
     &:hover, &:focus {
-        border: 1px solid var(--neutral-border-medium);
+        border: 0.0625em solid var(--neutral-border-medium);
     }
 
     &:disabled {

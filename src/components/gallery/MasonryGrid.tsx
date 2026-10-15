@@ -8,11 +8,12 @@ import PoemCard from "./PoemCard";
 import ImageCard from "./ImageCard";
 
 export default function MasonryGrid() {
+  // matches --m (2 columns) and --xs (1 column) in src/app/resources/breakpoints.scss;
+  // react-masonry-css compares window.innerWidth, so these stay as numbers
   const breakpointColumnsObj = {
     default: 3,
-    1440: 3,
     1024: 2,
-    560: 1,
+    480: 1,
   };
 
   // Simple fallback if no items

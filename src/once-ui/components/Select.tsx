@@ -188,9 +188,9 @@ const Select = forwardRef<HTMLDivElement, SelectProps>(
                 <Input
                   data-scaling="90"
                   style={{
-                    marginTop: "-1px",
-                    marginLeft: "-1px",
-                    width: "calc(100% + 2px)",
+                    marginTop: "-0.0625em",
+                    marginLeft: "-0.0625em",
+                    width: "calc(100% + 0.125em)",
                   }}
                   labelAsPlaceholder
                   id="search"

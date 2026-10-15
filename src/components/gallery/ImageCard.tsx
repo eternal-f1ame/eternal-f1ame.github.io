@@ -33,7 +33,7 @@ export default function ImageCard({ src, alt, orientation, priority }: ImageCard
     >
       <SmartImage
         priority={priority}
-        sizes={isExpanded ? "100vw" : "(max-width: 560px) 100vw, (max-width: 1024px) 50vw, (max-width: 1440px) 33vw, 25vw"}
+        sizes={isExpanded ? "100vw" : "(max-width: 30em) 100vw, (max-width: 64em) 50vw, 33vw"}
         key={src} // Use src for key as it's unique per image
         radius="m"
         aspectRatio={aspectRatio} // Keep original aspect ratio for image fidelity

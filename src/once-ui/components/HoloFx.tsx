@@ -67,7 +67,7 @@ const HoloFx: React.FC<HoloFxProps> = ({ children, light, burn, texture, ...rest
     opacity: 10,
     blending: "color-dodge" as CSSProperties["mixBlendMode"],
     image:
-      "repeating-linear-gradient(-45deg, var(--static-white) 0, var(--static-white) 1px, transparent 3px, transparent 2px)",
+      "repeating-linear-gradient(-45deg, var(--static-white) 0, var(--static-white) 0.0625em, transparent 0.1875em, transparent 0.125em)",
     mask: getMaskStyle(texture?.mask),
     ...texture,
   };

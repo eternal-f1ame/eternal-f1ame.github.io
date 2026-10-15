@@ -239,7 +239,7 @@ const Background = forwardRef<HTMLDivElement, BackgroundProps>(
             className={styles.lines}
             opacity={lines.opacity}
             style={{
-              backgroundImage: `repeating-linear-gradient(45deg, var(--brand-on-background-weak) 0, var(--brand-on-background-weak) 0.5px, var(--static-transparent) 0.5px, var(--static-transparent) ${dots.size})`,
+              backgroundImage: `repeating-linear-gradient(45deg, var(--brand-on-background-weak) 0, var(--brand-on-background-weak) 0.0312em, var(--static-transparent) 0.0312em, var(--static-transparent) ${dots.size})`,
             }}
           />
         )}
@@ -261,15 +261,15 @@ const Background = forwardRef<HTMLDivElement, BackgroundProps>(
                 linear-gradient(
                   90deg,
                   var(--${grid.color || "brand-on-background-weak"}) 0,
-                  var(--${grid.color || "brand-on-background-weak"}) 1px,
-                  var(--static-transparent) 1px,
+                  var(--${grid.color || "brand-on-background-weak"}) 0.0625em,
+                  var(--static-transparent) 0.0625em,
                   var(--static-transparent) ${grid.width || "var(--static-space-32)"}
                 ),
                 linear-gradient(
                   0deg,
                   var(--${grid.color || "brand-on-background-weak"}) 0,
-                  var(--${grid.color || "brand-on-background-weak"}) 1px,
-                  var(--static-transparent) 1px,
+                  var(--${grid.color || "brand-on-background-weak"}) 0.0625em,
+                  var(--static-transparent) 0.0625em,
                   var(--static-transparent) ${grid.height || "var(--static-space-32)"}
                 )
               `,

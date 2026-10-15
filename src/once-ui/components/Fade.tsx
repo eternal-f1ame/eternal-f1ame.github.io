@@ -69,7 +69,7 @@ const Fade = forwardRef<HTMLDivElement, FadeProps>(
                     ? "180deg"
                     : "270deg",
             ...(pattern.display && {
-              backgroundImage: `linear-gradient(var(--gradient-direction), var(--base-color), transparent), radial-gradient(transparent 1px, var(--base-color) 1px)`,
+              backgroundImage: `linear-gradient(var(--gradient-direction), var(--base-color), transparent), radial-gradient(transparent 0.0625em, var(--base-color) 0.0625em)`,
               backgroundSize: `100% 100%, var(--static-space-${pattern.size}) var(--static-space-${pattern.size})`,
               backdropFilter: `blur(${blur}rem)`,
             }),

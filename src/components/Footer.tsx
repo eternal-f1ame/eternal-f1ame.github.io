@@ -30,7 +30,7 @@ export const Footer = () => {
             {/* Usage of this template requires attribution. Please don't remove the link to Once UI. */}
             / rotmaxxing at{" "}
             <SmartLink
-              style={{ marginLeft: "-0.125rem" }}
+              style={{ marginLeft: "-0.125em" }}
               href="https://www.instagram.com/sochastic/"
             >
               Instagram

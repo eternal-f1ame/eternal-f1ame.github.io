@@ -22,49 +22,49 @@
 .xs {
     width: var(--static-space-16);
     height: var(--static-space-16);
-    padding: 2px;
+    padding: 0.125em;
 
     .spinner {
-        border-width: 2px;
+        border-width: 0.125em;
     }
 }
 
 .s {
     width: var(--static-space-20);
     height: var(--static-space-20);
-    padding: 2px;
+    padding: 0.125em;
 
     .spinner {
-        border-width: 2px;
+        border-width: 0.125em;
     }
 }
 
 .m {
     width: var(--static-space-24);
     height: var(--static-space-24);
-    padding: 3px;
+    padding: 0.1875em;
 
     .spinner {
-        border-width: 2px;
+        border-width: 0.125em;
     }
 }
 
 .l {
     width: var(--static-space-32);
     height: var(--static-space-32);
-    padding: 4px;
+    padding: 0.25em;
 
     .spinner {
-        border-width: 3px;
+        border-width: 0.1875em;
     }
 }
 
 .xl {
     width: var(--static-space-40);
     height: var(--static-space-40);
-    padding: 8px;
+    padding: 0.5em;
 
     .spinner {
-        border-width: 3px;
+        border-width: 0.1875em;
     }
 }

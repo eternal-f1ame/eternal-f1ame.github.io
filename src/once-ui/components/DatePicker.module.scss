@@ -63,7 +63,7 @@
     transition: all 0.2s ease-in-out;
     border-radius: var(--radius-m);
     background-color: transparent;
-    border: 0.5px solid var(--neutral-background-medium);
+    border: 0.0312em solid var(--neutral-background-medium);
     color: var(--neutral-on-background-weak);
   
   
@@ -89,19 +89,19 @@
   .timeSelector {
     background: var(--neutral-background-medium);
     border-radius: var(--radius-m);
-    border: 1px solid var(--neutral-background-medium);
+    border: 0.0625em solid var(--neutral-background-medium);
     padding: var(--calendar-padding);
     font-size: var(--calendar-font-size);
   
     &:focus-within {
-      border: 1px solid var(--neutral-border-strong);
+      border: 0.0625em solid var(--neutral-border-strong);
     }
   }
   
   .timeInput {
     width: var(--static-space-40);
     height: var(--static-space-32);
-    border: 1px solid var(--neutral-border-medium);
+    border: 0.0625em solid var(--neutral-border-medium);
     border-radius: var(--radius-m);
     background: var(--neutral-background-strong);
     color: var(--neutral-on-background-strong);
@@ -112,7 +112,7 @@
     
     &:focus {
       border-color: var(--brand-border-medium);
-      box-shadow: 0 0 0 2px var(--brand-alpha-weak);
+      box-shadow: 0 0 0 0.125em var(--brand-alpha-weak);
     }
   
     &:invalid {
@@ -141,12 +141,12 @@
   }
   
   .slideLeft {
-    transform: translateX(-20px);
+    transform: translateX(-1.25em);
     opacity: 0;
   }
   
   .slideRight {
-    transform: translateX(20px);
+    transform: translateX(1.25em);
     opacity: 0;
   }
   

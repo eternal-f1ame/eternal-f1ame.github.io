@@ -14,9 +14,9 @@
     --line-height-label-multiplier:   1;
 
     /* FONT SCALING */
-    --font-scaling-desktop: 16px;
-    --font-scaling-tablet:  16px;
-    --font-scaling-mobile:  16px;
+    --font-scaling-desktop: 1em;
+    --font-scaling-tablet:  1em;
+    --font-scaling-mobile:  1em;
 
     --cursor-interactive:    pointer;
 
@@ -395,7 +395,7 @@
 [data-solid-style="plastic"] {
     --solid-inset-distance: -1rem;
     --solid-inset-size:      1rem;
-    --solid-border-width:    1px;
+    --solid-border-width:    0.0625em;
 }
 
 [data-transition="all"],[data-transition="micro"] {

@@ -35,7 +35,7 @@ img {
 a:not(.button) {
     color: var(--brand-on-background-medium);
     text-decoration: none;
-    text-decoration-thickness: 1px;
+    text-decoration-thickness: 0.0625em;
     text-underline-offset: 0.25em;
     text-decoration-color: var(--neutral-border-strong) !important;
 

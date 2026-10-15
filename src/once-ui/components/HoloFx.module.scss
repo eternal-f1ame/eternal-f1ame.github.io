@@ -10,13 +10,13 @@
 
     &:hover {
         .burn {
-            transform: translateX(1px) translateY(1px);
+            transform: translateX(0.0625em) translateY(0.0625em);
             opacity: var(--burn-opacity);
             z-index: 1;
         }
 
         .light {
-            transform: translateX(-1px) translateY(-1px);
+            transform: translateX(-0.0625em) translateY(-0.0625em);
             opacity: var(--light-opacity);
             z-index: 2;
         }

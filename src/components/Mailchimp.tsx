@@ -170,7 +170,7 @@ export const Mailchimp = ({ newsletter }: { newsletter: NewsletterProps }) => {
             <div className="response" id="mce-error-response" style={{ display: "none" }}></div>
             <div className="response" id="mce-success-response" style={{ display: "none" }}></div>
           </div>
-          <div aria-hidden="true" style={{ position: "absolute", left: "-5000px" }}>
+          <div aria-hidden="true" style={{ position: "absolute", left: "-312.5em" }}>
             <input
               type="text"
               readOnly
