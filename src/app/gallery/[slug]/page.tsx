@@ -2,6 +2,7 @@ import { baseURL } from "@/app/resources";
 import { gallery, person } from "@/app/resources/content";
 import { getPoems } from "@/app/utils/poems";
 import { pageMetadata, shareImage } from "@/app/utils/share";
+import { Footer } from "@/components";
 import styles from "@/components/gallery/Poem.module.scss";
 import { PoemSpread } from "@/components/gallery/PoemSpread";
 import { Button, Column, Flex, Heading, SmartLink, Text } from "@/once-ui/components";
@@ -52,74 +53,101 @@ export default function Poem({ params }: PoemParams) {
   const next = poems[(index + 1) % poems.length];
 
   return (
-    <Column as="article" maxWidth="m" fillWidth gap="40">
-      <script
-        type="application/ld+json"
-        suppressHydrationWarning
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "CreativeWork",
-            genre: "Poetry",
-            name: poem.title,
-            text: poem.stanzas.join("\n\n"),
-            image: shareImage(`poem-${poem.slug}`),
-            url: `https://${baseURL}/gallery/${poem.slug}`,
-            author: {
-              "@type": "Person",
-              name: person.name,
-            },
-          }),
-        }}
-      />
-      <Button href="/gallery" variant="tertiary" weight="default" size="s" prefixIcon="chevronLeft">
-        {gallery.label}
-      </Button>
-
-      <PoemSpread className={styles.poem}>
-        <figure className={styles.photo}>
-          <img src={poem.imageSrc} alt="" decoding="async" />
-        </figure>
-
-        <div className={styles.text}>
-          <Heading as="h1" variant="display-strong-s" className={styles.title}>
-            {poem.title}
-          </Heading>
-          <div className={`serif ${styles.verse}`}>
-            {poem.stanzas.map((stanza, line) => (
-              <p
-                key={`${poem.slug}-${line}`}
-                className={styles.stanza}
-                style={{ "--i": line } as CSSProperties}
-              >
-                {stanza}
-              </p>
-            ))}
-          </div>
-          {poem.signature && (
-            <Text
-              as="p"
-              className={`serif ${styles.signature}`}
-              style={{ "--i": poem.stanzas.length } as CSSProperties}
-            >
-              {poem.signature}
-            </Text>
-          )}
-        </div>
-      </PoemSpread>
-
-      <Flex as="nav" aria-label="More poems" fillWidth horizontal="space-between" gap="24" wrap>
-        <SmartLink
-          href={`/gallery/${previous.slug}`}
+    <>
+      <Column as="article" maxWidth="m" fillWidth gap="40" className={styles.page}>
+        <script
+          type="application/ld+json"
+          suppressHydrationWarning
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "CreativeWork",
+              genre: "Poetry",
+              name: poem.title,
+              text: poem.stanzas.join("\n\n"),
+              image: shareImage(`poem-${poem.slug}`),
+              url: `https://${baseURL}/gallery/${poem.slug}`,
+              author: {
+                "@type": "Person",
+                name: person.name,
+              },
+            }),
+          }}
+        />
+        <Button
+          href="/gallery"
+          variant="tertiary"
+          weight="default"
+          size="s"
           prefixIcon="chevronLeft"
-          className="glide-link"
         >
-          <Text variant="body-default-s">{previous.title}</Text>
-        </SmartLink>
-        <SmartLink href={`/gallery/${next.slug}`} suffixIcon="chevronRight" className="glide-link">
-          <Text variant="body-default-s">{next.title}</Text>
-        </SmartLink>
-      </Flex>
-    </Column>
+          {gallery.label}
+        </Button>
+
+        <PoemSpread className={styles.poem}>
+          <figure className={styles.photo}>
+            <img src={poem.imageSrc} alt="" decoding="async" />
+          </figure>
+
+          <div className={styles.text}>
+            <Heading as="h1" variant="display-strong-s" className={styles.title}>
+              {poem.title}
+            </Heading>
+            <div className={`serif ${styles.verse}`}>
+              {poem.stanzas.map((stanza, line) => (
+                <p
+                  key={`${poem.slug}-${line}`}
+                  className={styles.stanza}
+                  style={{ "--i": line } as CSSProperties}
+                >
+                  {stanza}
+                </p>
+              ))}
+            </div>
+            {poem.signature && (
+              <Text
+                as="p"
+                className={`serif ${styles.signature}`}
+                style={{ "--i": poem.stanzas.length } as CSSProperties}
+              >
+                {poem.signature}
+              </Text>
+            )}
+          </div>
+        </PoemSpread>
+      </Column>
+
+      {/* the foot of the page stays in view, pinned like the header: the poems either side
+          of this one, then the footer (on a phone, the poems alone, above the nav) */}
+      <div className={`page-fixed ${styles.dock}`}>
+        <Flex fillWidth paddingX="8" horizontal="center">
+          <Flex
+            as="nav"
+            aria-label="More poems"
+            fillWidth
+            maxWidth="m"
+            paddingX="16"
+            horizontal="space-between"
+            gap="24"
+          >
+            <SmartLink
+              href={`/gallery/${previous.slug}`}
+              prefixIcon="chevronLeft"
+              className="glide-link"
+            >
+              <Text variant="body-default-s">{previous.title}</Text>
+            </SmartLink>
+            <SmartLink
+              href={`/gallery/${next.slug}`}
+              suffixIcon="chevronRight"
+              className="glide-link"
+            >
+              <Text variant="body-default-s">{next.title}</Text>
+            </SmartLink>
+          </Flex>
+        </Flex>
+        <Footer />
+      </div>
+    </>
   );
 }

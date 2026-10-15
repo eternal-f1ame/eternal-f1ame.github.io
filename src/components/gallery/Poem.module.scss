@@ -2,6 +2,12 @@
   A poem's page: the photograph and the poem side by side, stacked once the column
   gets narrow. The photograph stays in view while a long poem scrolls past it.
 */
+/* the pinned strip at the foot of the window (.dock): previous and next, then the footer */
+.page {
+  --dock: 8em;
+  padding-bottom: var(--dock);
+}
+
 .poem {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
@@ -13,6 +19,8 @@
 .photo {
   position: sticky;
   top: 6em;
+  width: fit-content;
+  max-width: 100%;
   margin: 0;
   overflow: hidden;
   border: 0.0625em solid var(--glass-edge);
@@ -23,9 +31,11 @@
 }
 
 /* the print develops: grey when the page arrives, its own colour a moment later */
+/* never taller than the space between the header and the strip, so the whole photo stays in view */
 .photo img {
   display: block;
-  width: 100%;
+  max-width: 100%;
+  max-height: calc(100vh - 6em - var(--dock) - 1.5em);
   height: auto;
   filter: grayscale(1) brightness(0.9);
   animation: develop 2.6s var(--ease-glide) 0.5s forwards;
@@ -82,6 +92,39 @@
   color: var(--neutral-on-background-weak);
 }
 
+.dock {
+  position: fixed;
+  inset: auto 0 0;
+  z-index: 9;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25em;
+  padding-top: 2.25em;
+  /* the faded top lets clicks through to the page; the rows take them */
+  pointer-events: none;
+}
+
+.dock > * {
+  pointer-events: auto;
+}
+
+/* the same blur and fade into the page colour as the header, rising from the bottom */
+.dock::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  backdrop-filter: blur(0.5em);
+  background: linear-gradient(to top, var(--page-background) 45%, transparent);
+  mask-image: linear-gradient(to top, #000 60%, transparent);
+}
+
+/* while the strip carries the footer, the page's own footer is set aside */
+:global(body):has(.dock) > :global(footer) {
+  display: none;
+}
+
 @media (--m) {
   .poem {
     grid-template-columns: minmax(0, 1fr);
@@ -90,6 +133,29 @@
 
   .photo {
     position: static;
+  }
+}
+
+/* on a phone the nav sits at the bottom, so the strip floats just above it with the poems
+   alone, and the footer returns to the end of the page */
+@media (--s) {
+  .page {
+    --dock: 3.5em;
+  }
+
+  .dock {
+    bottom: 4.75em;
+    padding-top: 1em;
+  }
+
+  .dock > :global(footer) {
+    display: none;
+  }
+
+  /* and leaves room under itself for the floating poems, so neither covers the other */
+  :global(body):has(.dock) > :global(footer) {
+    display: flex;
+    padding-bottom: 2.5em;
   }
 }
 
