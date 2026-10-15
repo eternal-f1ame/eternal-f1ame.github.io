@@ -1,0 +1,67 @@
+/*
+  The page light (see Backdrop.tsx). --light-x / --light-y place it, as percentages of
+  the viewport; the reaches are in viewport units because the light belongs to the
+  window, not to the text.
+*/
+.backdrop {
+  --light-x: 50%;
+  --light-y: 0%;
+  --tone-ink: var(--neutral-on-background-medium);
+  --tone-pitch: 0.5em;
+
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+/* the pool of light the dots sit in */
+.glow {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle 70vmax at var(--light-x) var(--light-y),
+    var(--brand-background-strong),
+    transparent 72%
+  );
+  opacity: 0.7;
+}
+
+/*
+  Screentone: three layers of one dot grid, each with larger dots and a shorter reach,
+  so a dot grows as the light nears it, the way a printed tone darkens.
+*/
+.tone {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(
+    circle at center,
+    var(--tone-ink) var(--dot),
+    transparent calc(var(--dot) + 0.04em)
+  );
+  background-size: var(--tone-pitch) var(--tone-pitch);
+  mask-image: radial-gradient(
+    circle var(--reach) at var(--light-x) var(--light-y),
+    #000,
+    transparent
+  );
+}
+
+.fine {
+  --dot: 0.045em;
+  --reach: 60vmax;
+  opacity: 0.26;
+}
+
+.medium {
+  --dot: 0.08em;
+  --reach: 38vmax;
+  opacity: 0.2;
+}
+
+.coarse {
+  --dot: 0.115em;
+  --reach: 20vmax;
+  opacity: 0.17;
+}

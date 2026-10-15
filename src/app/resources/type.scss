@@ -1,0 +1,27 @@
+/*
+  Two voices. Inter is the interface: navigation, buttons, lists, card text. Newsreader
+  is for what is read rather than scanned: page and section titles, poems and posts.
+  once-ui's display styles carry the serif; its smaller heading styles stay in Inter, so
+  card titles keep the interface voice.
+
+  A serif reads heavy at once-ui's display weights (light and extra bold), so the
+  display weights move to the cuts Newsreader was drawn around. Its optical size axis
+  follows the font size, so large titles get the finer, higher-contrast display cut.
+*/
+/* html:root outranks once-ui's :root, whichever order Next emits the stylesheets in */
+html:root {
+  --font-weight-display-default: 400;
+  --font-weight-display-strong: 500;
+}
+
+.font-display:is(.font-xl, .font-l, .font-m, .font-s, .font-xs),
+.font-display > :is(.font-xl, .font-l, .font-m, .font-s, .font-xs) {
+  font-family: var(--font-serif), Georgia, serif;
+  letter-spacing: -0.012em;
+}
+
+/* the reading voice, for long text set in the serif (poems, posts) */
+.serif {
+  font-family: var(--font-serif), Georgia, serif;
+  font-optical-sizing: auto;
+}

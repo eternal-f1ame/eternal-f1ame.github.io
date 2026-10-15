@@ -46,7 +46,7 @@ function Section({ title, href, cta, children }: SectionProps) {
   return (
     <Column fillWidth gap="l" horizontal="center">
       <Line background="neutral-alpha-medium" style={{ maxWidth: "3em" }} />
-      <Heading as="h2" variant="heading-strong-l" align="center">
+      <Heading as="h2" variant="display-strong-xs" align="center">
         {title}
       </Heading>
       {children}
