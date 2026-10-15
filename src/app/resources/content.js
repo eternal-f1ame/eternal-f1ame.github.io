@@ -348,6 +348,8 @@ const publications = {
       link: "https://arxiv.org/abs/2609.34032",
       page: "https://re-cognize.vercel.app",
       image: "/papers/re-cognize.webp",
+      code: "https://github.com/eternal-f1ame/Re-Cognize",
+      bib: "/papers/re-cognize.bib",
     },
     {
       title: "PHOEBI: An Open-World Benchmark for Bacterial Identification",
@@ -361,6 +363,8 @@ const publications = {
       link: "https://arxiv.org/abs/2606.22890",
       page: "https://phoebi-benchmark.vercel.app",
       image: "/papers/phoebi.webp",
+      code: "https://github.com/eternal-f1ame/phoebi",
+      bib: "/papers/phoebi.bib",
     },
     {
       title: "Vision-Language Models for Analog Gauge Reading: An Empirical Study of Specialization, Transfer and Reliability",
@@ -373,6 +377,7 @@ const publications = {
       year: "2026",
       link: "https://arxiv.org/abs/2608.17723",
       image: "/papers/gauge-reading.webp",
+      bib: "/papers/gauge-reading.bib",
     },
     {
       title: "BareBones: Benchmarking Zero-Shot Geometric Comprehension in VLMs",
@@ -385,6 +390,9 @@ const publications = {
       year: "2026",
       link: "https://arxiv.org/abs/2604.10528",
       image: "/papers/barebones.webp",
+      page: "https://sochastic.me/WTP-Bench/",
+      code: "https://github.com/eternal-f1ame/WTP-Bench",
+      bib: "/papers/barebones.bib",
     },
     {
       title: "ChemPro: A Progressive Chemistry Benchmark for Large Language Models",
@@ -398,6 +406,7 @@ const publications = {
       link: "https://arxiv.org/abs/2602.03108",
       page: "https://sochastic.me/ChemPro/",
       image: "/papers/chempro.webp",
+      bib: "/papers/chempro.bib",
     },
     {
       title: "Robust Onion: Peeling Open Vocab Object Detectors Under Noise",
@@ -411,6 +420,9 @@ const publications = {
       year: "2026",
       link: "https://openreview.net/forum?id=REZ5cM8mFn",
       image: "/papers/robust-onion.webp",
+      page: "https://ucf-crcv.github.io/RobustOnion/",
+      code: "https://github.com/ppriyank/RobustOnion",
+      bib: "/papers/robust-onion.bib",
     },
     {
       title: "ZeroBench: An Impossible Visual Benchmark for Contemporary Large Multimodal Models",
@@ -425,6 +437,8 @@ const publications = {
       link: "https://arxiv.org/abs/2502.09696",
       page: "https://zerobench.github.io/",
       image: "/papers/zerobench.webp",
+      code: "https://github.com/jonathan-roberts1/zerobench",
+      bib: "/papers/zerobench.bib",
     },
     {
       title: "Re:Verse — Can Your VLM Read a Manga?",
@@ -440,6 +454,7 @@ const publications = {
       award: "Best Paper (Oral)",
       page: "https://re-verse.vercel.app",
       image: "/papers/re-verse.webp",
+      bib: "/papers/re-verse.bib",
     },
     {
       title: "SynSpill: Improved Industrial Spill Detection With Synthetic Data",
@@ -453,6 +468,8 @@ const publications = {
       link: "https://arxiv.org/abs/2508.10171",
       page: "https://synspill.vercel.app",
       image: "/papers/synspill.webp",
+      code: "https://github.com/eternal-f1ame/SynSpill",
+      bib: "/papers/synspill.bib",
     },
     {
       title: "MolSight: Molecular Property Prediction with Images",
@@ -465,6 +482,7 @@ const publications = {
       year: "2026",
       link: "https://arxiv.org/abs/2605.10157",
       image: "/papers/molsight.webp",
+      bib: "/papers/molsight.bib",
     },
     {
       title: "The Dark Regulome: Disentangling Predictability from Regulation in Genomic Foundation Models",
@@ -477,6 +495,7 @@ const publications = {
       year: "2026",
       link: "https://arxiv.org/abs/2606.06834",
       image: "/papers/dark-regulome.webp",
+      bib: "/papers/dark-regulome.bib",
     },
   ],
 };
