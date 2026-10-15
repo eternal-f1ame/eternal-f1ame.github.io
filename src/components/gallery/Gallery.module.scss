@@ -1,33 +1,52 @@
+/* Sizes are in rem so the grid scales with the visitor's font size; breakpoints
+   come from src/app/resources/breakpoints.scss. */
+
 .masonryGrid {
     display: flex;
-    margin-left: -16px;
+    margin-left: -1em;
     width: auto;
 }
 
 .masonryGridColumn {
-    padding-left: 16px;
+    padding-left: 1em;
     background-clip: padding-box;
 }
 
+/* a glass tile: hairline edge, specular top, lifts under the pointer */
 .gridItem {
-    margin-bottom: 16px;
-    border-radius: var(--radius-m);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease-in-out;
+    margin-bottom: 1em;
+    border: 0.0625em solid var(--glass-edge);
+    border-radius: var(--radius-l);
+    background-color: var(--glass-tint);
+    box-shadow:
+        inset 0 0.0625em 0 var(--glass-specular),
+        var(--glass-shadow);
     overflow: hidden;
-    height: 300px;
+    height: 18.75em;
     display: flex;
     flex-direction: column;
     position: relative;
     cursor: pointer;
-    
+    transition:
+        transform var(--glide) var(--ease-glide),
+        border-color var(--glide) var(--ease-glide),
+        box-shadow var(--glide) var(--ease-glide);
+
     &:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-        
+        transform: translateY(calc(var(--glass-lift) * -1));
+        border-color: var(--glass-edge-hover);
+        box-shadow:
+            inset 0 0.0625em 0 var(--glass-edge-hover),
+            var(--glass-shadow-hover);
+
         .imageOverlay {
             background: linear-gradient(transparent, rgba(0, 0, 0, 0.9));
         }
+    }
+
+    &:active {
+        transform: translateY(calc(var(--glass-lift) * -0.25)) scale(0.995);
+        transition-duration: var(--glide-quick);
     }
 }
 
@@ -37,7 +56,9 @@
     object-fit: cover;
     display: block;
     filter: grayscale(1);
-    transition: transform 0.3s ease-in-out, filter 0.4s ease-in-out;
+    transition:
+        transform var(--glide-slow) var(--ease-glide),
+        filter var(--glide-slow) var(--ease-glide);
 }
 
 /* colour on hover, and on press for touch screens that have no hover */
@@ -57,7 +78,7 @@
     display: flex;
     align-items: flex-end;
     justify-content: flex-start;
-    transition: background 0.3s ease-in-out;
+    transition: background var(--glide) var(--ease-glide);
 }
 
 .modal {
@@ -66,47 +87,50 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(0, 0, 0, 0.8);
+    background: rgba(0, 0, 0, 0.72);
     display: flex;
     align-items: center;
     justify-content: center;
     z-index: 1000;
     padding: var(--static-space-24);
-    backdrop-filter: blur(4px);
-    animation: fadeIn 0.2s ease-out;
+    backdrop-filter: blur(0.5em);
+    animation: fadeIn var(--glide) var(--ease-glide);
 }
 
 .modalContent {
-    background: var(--background-surface);
+    border: 0.0625em solid var(--glass-edge);
     border-radius: var(--radius-l);
-    max-width: 600px;
+    background-color: var(--surface-background);
+    backdrop-filter: blur(var(--glass-blur)) brightness(1.06);
+    -webkit-backdrop-filter: blur(var(--glass-blur)) brightness(1.06);
+    max-width: 37.5em;
     max-height: 80vh;
     width: 100%;
     overflow: hidden;
-    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-    border: 1px solid var(--border-neutral-medium);
-    animation: slideUp 0.3s ease-out;
+    box-shadow:
+        inset 0 0.0625em 0 var(--glass-specular),
+        var(--glass-shadow-hover);
+    animation: slideUp var(--glide) var(--ease-glide);
 }
 
 .poemContent {
     max-height: 60vh;
     overflow-y: auto;
     padding-right: var(--static-space-8);
-    
-    /* Custom scrollbar for webkit browsers */
+
     &::-webkit-scrollbar {
-        width: 6px;
+        width: 0.375em;
     }
-    
+
     &::-webkit-scrollbar-track {
         background: var(--background-neutral-weak);
         border-radius: var(--radius-s);
     }
-    
+
     &::-webkit-scrollbar-thumb {
         background: var(--background-neutral-medium);
         border-radius: var(--radius-s);
-        
+
         &:hover {
             background: var(--background-neutral-strong);
         }
@@ -124,7 +148,7 @@
 
 @keyframes slideUp {
     from {
-        transform: translateY(20px);
+        transform: translateY(1.25em);
         opacity: 0;
     }
     to {
@@ -133,21 +157,46 @@
     }
 }
 
-/* Mobile responsive adjustments */
-@media (max-width: 560px) {
+@media (--s) {
     .modal {
         padding: var(--static-space-16);
     }
-    
+
     .modalContent {
         max-height: 90vh;
     }
-    
+
     .poemContent {
         max-height: 70vh;
     }
-    
+}
+
+/* one column on phones, so a shorter tile keeps more than one poem on screen */
+@media (--xs) {
     .gridItem {
-        height: 250px;
+        height: 15.625em;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .gridItem,
+    .gridItem img,
+    .imageOverlay {
+        transition-duration: 1ms;
+    }
+
+    .gridItem:hover,
+    .gridItem:active {
+        transform: none;
+    }
+
+    .gridItem:hover img,
+    .gridItem:active img {
+        transform: none;
+    }
+
+    .modal,
+    .modalContent {
+        animation: none;
     }
 }

@@ -1,0 +1,206 @@
+/*
+  Glass and motion layer.
+
+  Global classes rather than a CSS module, because the same surface treatment is
+  shared by the landing hero, the project and post cards, the gallery tiles and a
+  few buttons. Imported once in src/app/layout.tsx, after the once-ui tokens.
+
+  Two rules keep this from turning into wallpaper:
+    1. Glass goes on surfaces you can touch or that hold a picture. Lists of type
+       (papers, roles) stay flat on the page background.
+    2. One easing curve and three durations for the whole site, so every motion
+       feels like it came from the same hand.
+
+  --mx / --my are written by src/components/Glass.tsx on pointer move; they place
+  the specular highlight under the cursor. Without JS they fall back to a fixed
+  top-centre highlight, so the surface still reads as glass.
+*/
+
+:root {
+  --glass-tint: rgba(255, 255, 255, 0.05);
+  --glass-tint-hover: rgba(255, 255, 255, 0.08);
+  --glass-edge: rgba(255, 255, 255, 0.12);
+  --glass-edge-hover: rgba(255, 255, 255, 0.22);
+  --glass-specular: rgba(255, 255, 255, 0.14);
+  --glass-sheen: rgba(255, 255, 255, 0.12);
+  --glass-blur: 1.25em;
+  --glass-lift: 0.1875em;
+  --glass-shadow: 0 1em 2.5em -1.5em rgba(0, 0, 0, 0.9);
+  --glass-shadow-hover: 0 1.75em 3.5em -1.75em rgba(0, 0, 0, 0.95);
+
+  --ease-glide: cubic-bezier(0.22, 1, 0.36, 1);
+  --glide-quick: 220ms;
+  --glide: 420ms;
+  --glide-slow: 760ms;
+}
+
+[data-theme="light"] {
+  --glass-tint: rgba(255, 255, 255, 0.5);
+  --glass-tint-hover: rgba(255, 255, 255, 0.72);
+  --glass-edge: rgba(0, 0, 0, 0.08);
+  --glass-edge-hover: rgba(0, 0, 0, 0.14);
+  --glass-specular: rgba(255, 255, 255, 0.9);
+  --glass-sheen: rgba(255, 255, 255, 0.55);
+  --glass-shadow: 0 1em 2.5em -1.5em rgba(0, 0, 0, 0.25);
+  --glass-shadow-hover: 0 1.75em 3.5em -1.75em rgba(0, 0, 0, 0.3);
+}
+
+.glass {
+  position: relative;
+  width: 100%;
+  box-sizing: border-box;
+  border: 0.0625em solid var(--glass-edge);
+  border-radius: var(--radius-l);
+  background-color: var(--glass-tint);
+  backdrop-filter: blur(var(--glass-blur)) brightness(1.06);
+  -webkit-backdrop-filter: blur(var(--glass-blur)) brightness(1.06);
+  box-shadow:
+    inset 0 0.0625em 0 var(--glass-specular),
+    var(--glass-shadow);
+  transition:
+    transform var(--glide) var(--ease-glide),
+    border-color var(--glide) var(--ease-glide),
+    background-color var(--glide) var(--ease-glide),
+    box-shadow var(--glide) var(--ease-glide);
+}
+
+.glass-sheen::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: 0;
+  background: radial-gradient(
+    18em circle at var(--mx, 50%) var(--my, 0%),
+    var(--glass-sheen),
+    rgba(255, 255, 255, 0.02) 45%,
+    transparent 70%
+  );
+  transition: opacity var(--glide-slow) var(--ease-glide);
+}
+
+.glass-sheen:hover::after,
+.glass-sheen:focus-within::after {
+  opacity: 1;
+}
+
+.glass-interactive:hover,
+.glass-interactive:focus-within {
+  transform: translateY(calc(var(--glass-lift) * -1));
+  border-color: var(--glass-edge-hover);
+  background-color: var(--glass-tint-hover);
+  box-shadow:
+    inset 0 0.0625em 0 var(--glass-edge-hover),
+    var(--glass-shadow-hover);
+}
+
+.glass-interactive:active {
+  transform: translateY(calc(var(--glass-lift) * -0.25)) scale(0.995);
+  transition-duration: var(--glide-quick);
+}
+
+/* roomy on desktop, tighter on a phone, without a breakpoint */
+.glass-panel {
+  padding: clamp(1.25em, 3vw, 2.25em);
+  border-radius: 1.5em;
+}
+
+.glass-clip {
+  overflow: hidden;
+}
+
+.glass-tile {
+  display: block;
+  overflow: hidden;
+}
+
+.glass-tile img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  filter: grayscale(1);
+  transition:
+    filter var(--glide-slow) var(--ease-glide),
+    transform var(--glide-slow) var(--ease-glide);
+}
+
+.glass-tile:hover img,
+.glass-tile:active img {
+  filter: grayscale(0);
+  transform: scale(1.04);
+}
+
+.glass-tile-label {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  font-size: 0.75em;
+  /* in em of the label's own size: 1em = 0.75em of the tile */
+  padding: 1em 1.1667em;
+  letter-spacing: 0.02em;
+  color: var(--static-white);
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+}
+
+/* a light sweeps across the button once, then the press settles it */
+.glass-button {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  transition:
+    all var(--glide) var(--ease-glide),
+    transform var(--glide-quick) var(--ease-glide);
+}
+
+.glass-button::after {
+  content: "";
+  position: absolute;
+  inset: -0.125em;
+  pointer-events: none;
+  background: linear-gradient(
+    105deg,
+    transparent 40%,
+    rgba(255, 255, 255, 0.14) 50%,
+    transparent 60%
+  );
+  transform: translateX(-130%);
+  transition: transform var(--glide-slow) var(--ease-glide);
+}
+
+.glass-button:hover::after,
+.glass-button:focus-visible::after {
+  transform: translateX(130%);
+}
+
+.glass-button:hover {
+  transform: translateY(-0.0625em);
+}
+
+.glass-button:active {
+  transform: translateY(0) scale(0.98);
+  transition-duration: var(--glide-quick);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .glass,
+  .glass-sheen::after,
+  .glass-button,
+  .glass-button::after,
+  .glass-tile img {
+    transition-duration: 1ms;
+  }
+
+  .glass-interactive:hover,
+  .glass-interactive:focus-within,
+  .glass-interactive:active,
+  .glass-button:hover,
+  .glass-button:active,
+  .glass-tile:hover img,
+  .glass-tile:active img {
+    transform: none;
+  }
+}

@@ -1,6 +1,7 @@
 import "@/once-ui/styles/index.scss";
 import "@/once-ui/tokens/index.scss";
 import "@/app/resources/palette.scss";
+import "@/app/resources/glass.scss";
 
 import classNames from "classnames";
 

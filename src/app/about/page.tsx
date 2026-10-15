@@ -168,6 +168,7 @@ export default function About() {
                 <Flex paddingX="8">Schedule a call</Flex>
                 <IconButton
                   href={about.calendar.link}
+                  className="glass-button"
                   data-border="rounded"
                   variant="secondary"
                   icon="chevronRight"
@@ -191,7 +192,7 @@ export default function About() {
                     item.link && (
                         <React.Fragment key={item.name}>
                             <Button
-                                className="s-flex-hide"
+                                className="s-flex-hide glass-button"
                                 href={item.link}
                                 prefixIcon={item.icon}
                                 label={item.name}
@@ -199,7 +200,7 @@ export default function About() {
                                 variant="secondary"
                             />
                             <IconButton
-                                className="s-flex-show"
+                                className="s-flex-show glass-button"
                                 size="l"
                                 href={item.link}
                                 icon={item.icon}
