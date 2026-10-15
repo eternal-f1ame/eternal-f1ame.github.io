@@ -2,7 +2,6 @@ import { baseURL } from "@/app/resources";
 import { gallery, person } from "@/app/resources/content";
 import { getPoems } from "@/app/utils/poems";
 import { pageMetadata, shareImage } from "@/app/utils/share";
-import { Footer } from "@/components";
 import styles from "@/components/gallery/Poem.module.scss";
 import { PoemSpread } from "@/components/gallery/PoemSpread";
 import { Button, Column, Flex, Heading, SmartLink, Text } from "@/once-ui/components";
@@ -117,8 +116,8 @@ export default function Poem({ params }: PoemParams) {
         </PoemSpread>
       </Column>
 
-      {/* the foot of the page stays in view, pinned like the header: the poems either side
-          of this one, then the footer (on a phone, the poems alone, above the nav) */}
+      {/* the poems either side of this one stay in view, pinned just above the footer (on a
+          phone, just above the nav) */}
       <div className={`page-fixed ${styles.dock}`}>
         <Flex fillWidth paddingX="8" horizontal="center">
           <Flex
@@ -146,7 +145,6 @@ export default function Poem({ params }: PoemParams) {
             </SmartLink>
           </Flex>
         </Flex>
-        <Footer />
       </div>
     </>
   );

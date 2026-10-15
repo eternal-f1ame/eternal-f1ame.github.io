@@ -32,6 +32,16 @@
   --glide-quick: 220ms;
   --glide: 420ms;
   --glide-slow: 760ms;
+
+  /* the pinned footer's height (src/components/Footer.module.scss), for whatever sits above it */
+  --footer-room: 5em;
+}
+
+/* on a phone the footer is back at the end of the page, so nothing makes room for it */
+@media (--s) {
+  :root {
+    --footer-room: 0em;
+  }
 }
 
 [data-theme="light"] {

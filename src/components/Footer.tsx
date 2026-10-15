@@ -1,62 +1,67 @@
-import { Flex, IconButton, SmartLink, Text } from "@/once-ui/components";
 import { person, site, social } from "@/app/resources/content";
+import { Flex, IconButton, SmartLink, Text } from "@/once-ui/components";
 import styles from "./Footer.module.scss";
 
 export const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <Flex
-      as="footer"
-      position="relative"
-      fillWidth
-      padding="8"
-      horizontal="center"
-      mobileDirection="column"
-    >
+    <>
+      {/* holds the pinned footer's place at the end of the page, so the last of the content
+          can scroll clear of it */}
+      <div className={styles.room} aria-hidden="true" />
       <Flex
-        className={styles.mobile}
-        maxWidth="m"
-        paddingY="8"
-        paddingX="16"
-        gap="16"
-        horizontal="space-between"
-        vertical="center"
+        as="footer"
+        className={styles.footer}
+        fillWidth
+        padding="8"
+        horizontal="center"
+        mobileDirection="column"
       >
-        <Text variant="body-default-s" onBackground="neutral-strong">
-          <Text onBackground="neutral-weak">© {currentYear} /</Text>
-          <Text paddingX="4">{person.name}</Text>
-          <Text onBackground="neutral-weak">
-            {/* Usage of this template requires attribution. Please don't remove the link to Once UI. */}
-            / rotmaxxing at{" "}
-            <SmartLink
-              style={{ marginLeft: "-0.125em" }}
-              href="https://www.instagram.com/sochastic/"
-            >
-              Instagram
-            </SmartLink>
+        <Flex
+          className={styles.mobile}
+          maxWidth="m"
+          paddingY="8"
+          paddingX="16"
+          gap="16"
+          horizontal="space-between"
+          vertical="center"
+        >
+          <Text variant="body-default-s" onBackground="neutral-strong">
+            <Text onBackground="neutral-weak">© {currentYear} /</Text>
+            <Text paddingX="4">{person.name}</Text>
+            <Text onBackground="neutral-weak">
+              {/* Usage of this template requires attribution. Please don't remove the link to Once UI. */}
+              / rotmaxxing at{" "}
+              <SmartLink
+                style={{ marginLeft: "-0.125em" }}
+                href="https://www.instagram.com/sochastic/"
+              >
+                Instagram
+              </SmartLink>
+            </Text>
+            <Text onBackground="neutral-weak" className={styles.colophon}>
+              / {site.colophon}
+            </Text>
           </Text>
-          <Text onBackground="neutral-weak" className={styles.colophon}>
-            / {site.colophon}
-          </Text>
-        </Text>
-        <Flex gap="16">
-          {social.map(
-            (item) =>
-              item.link && (
-                <IconButton
-                  key={item.name}
-                  href={item.link}
-                  icon={item.icon}
-                  tooltip={item.name}
-                  size="s"
-                  variant="ghost"
-                />
-              ),
-          )}
+          <Flex gap="16">
+            {social.map(
+              (item) =>
+                item.link && (
+                  <IconButton
+                    key={item.name}
+                    href={item.link}
+                    icon={item.icon}
+                    tooltip={item.name}
+                    size="s"
+                    variant="ghost"
+                  />
+                ),
+            )}
+          </Flex>
         </Flex>
+        <Flex height="80" show="s"></Flex>
       </Flex>
-      <Flex height="80" show="s"></Flex>
-    </Flex>
+    </>
   );
 };

@@ -1,9 +1,71 @@
-/* the colophon reads as the last clause of the footer line on a desktop, and its own line on a phone */
+/*
+  The footer is pinned to the bottom of the window on every page, as the header is to the
+  top, with the same blur and fade, rising from the bottom. .room holds its place at the
+  end of the page so the last of the content can scroll clear of it; its height is
+  --footer-room (src/app/resources/glass.scss), which anything sitting above the footer
+  uses too (a poem page's previous and next). On a phone the nav owns the bottom of the
+  screen, so the footer returns to the end of the page.
+*/
+
+.room {
+    flex-shrink: 0;
+    height: var(--footer-room);
+}
+
+/* footer.footer outranks once-ui's padding and position classes on the same element */
+footer.footer {
+    position: fixed;
+    inset: auto 0 0;
+    z-index: 9;
+    padding-top: 1.5em;
+    /* the faded top lets clicks through to the page; the row takes them */
+    pointer-events: none;
+}
+
+.footer > * {
+    pointer-events: auto;
+}
+
+.footer::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    backdrop-filter: blur(0.5em);
+    background: linear-gradient(to top, var(--page-background) 50%, transparent);
+    mask-image: linear-gradient(to top, #000 65%, transparent);
+}
+
+/* the colophon reads as the last clause of the footer line on a desktop, and takes a line
+   of its own where the line would otherwise break inside it */
 .colophon {
     padding-left: 0.25em;
 }
 
+@media (--m) {
+    .colophon {
+        display: block;
+        padding-left: 0;
+        padding-top: 0.25em;
+    }
+}
+
 @media (--s) {
+    .room {
+        display: none;
+    }
+
+    footer.footer {
+        position: relative;
+        inset: auto;
+        padding-top: var(--static-space-8);
+        pointer-events: auto;
+    }
+
+    .footer::before {
+        content: none;
+    }
+
     .mobile {
         text-align: center;
         flex-direction: column;
