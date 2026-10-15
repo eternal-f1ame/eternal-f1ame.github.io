@@ -11,30 +11,34 @@ import { person, home, about, blog, work, gallery, publications } from "@/app/re
 
 type TimeDisplayProps = {
   timeZone: string;
-  locale?: string; // Optionally allow locale, defaulting to 'en-GB'
+  locale?: string;
 };
 
-const TimeDisplay: React.FC<TimeDisplayProps> = ({ timeZone, locale = "en-GB" }) => {
+/*
+  The local time where I am, to the minute ("9:04 pm"): a quiet fact rather than a
+  ticking clock. It updates on the minute, not every second.
+*/
+const TimeDisplay: React.FC<TimeDisplayProps> = ({ timeZone, locale = "en-US" }) => {
   const [currentTime, setCurrentTime] = useState("");
 
   useEffect(() => {
-    const updateTime = () => {
+    const format = new Intl.DateTimeFormat(locale, {
+      timeZone,
+      hour: "numeric",
+      minute: "2-digit",
+      hour12: true,
+    });
+    let timer: ReturnType<typeof setTimeout>;
+
+    const tick = () => {
       const now = new Date();
-      const options: Intl.DateTimeFormatOptions = {
-        timeZone,
-        hour: "2-digit",
-        minute: "2-digit",
-        second: "2-digit",
-        hour12: false,
-      };
-      const timeString = new Intl.DateTimeFormat(locale, options).format(now);
-      setCurrentTime(timeString);
+      setCurrentTime(format.format(now).toLowerCase());
+      // wake again just after the next minute turns over
+      timer = setTimeout(tick, 60_000 - (now.getTime() % 60_000) + 50);
     };
 
-    updateTime();
-    const intervalId = setInterval(updateTime, 1000);
-
-    return () => clearInterval(intervalId);
+    tick();
+    return () => clearTimeout(timer);
   }, [timeZone, locale]);
 
   return <>{currentTime}</>;
