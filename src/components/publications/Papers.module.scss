@@ -4,10 +4,40 @@
   picture: grey and dimmed at rest, developing into colour when the card is hovered.
 */
 
+/*
+  Three across, two on a tablet, one on a phone. A flex row rather than a grid, so a
+  short last row sits in the middle instead of against the left edge. The featured
+  three on the landing page stay three across on a tablet.
+*/
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--static-space-16);
+  width: 100%;
+}
+
+.grid > .link {
+  flex: 0 0 calc((100% - 2 * var(--static-space-16)) / 3);
+  min-width: 0;
+}
+
+@media (--m) {
+  .grid:not(.featured) > .link {
+    flex-basis: calc((100% - var(--static-space-16)) / 2);
+  }
+}
+
+@media (--s) {
+  .grid > .link,
+  .grid:not(.featured) > .link {
+    flex-basis: 100%;
+  }
+}
+
 /* .grid prefixes everything so these beat once-ui's a:not(.button):hover underline */
 .grid .link {
   display: block;
-  height: 100%;
   color: inherit;
   text-decoration-line: none;
 }

@@ -1,16 +1,21 @@
 import { publications } from "@/app/resources/content";
 import { Glass } from "@/components/Glass";
-import { Column, Flex, Grid, Tag, Text } from "@/once-ui/components";
+import { Column, Flex, Tag, Text } from "@/once-ui/components";
 import styles from "./Papers.module.scss";
 
 interface PapersProps {
   featured?: boolean;
 }
 
+/* the name before a paper's subtitle: "PHOEBI: An Open-World ..." gives "PHOEBI" */
+function shortTitle(title: string) {
+  return title.split(/: | \u2014 /)[0];
+}
+
 /*
   Papers as picture cards. A card opens the paper's project page when it has one (the
   page links on to the paper), otherwise the paper itself. A paper without an image
-  gets its short name set as type, so the grid keeps its rhythm.
+  gets the name before its subtitle set as type, so the grid keeps its rhythm.
 */
 export function Papers({ featured = false }: PapersProps) {
   // featured is a rank, so the landing page order is set in content.js rather
@@ -22,14 +27,7 @@ export function Papers({ featured = false }: PapersProps) {
     : publications.papers;
 
   return (
-    <Grid
-      className={styles.grid}
-      fillWidth
-      gap="16"
-      columns="3"
-      tabletColumns={featured ? "3" : "2"}
-      mobileColumns="1"
-    >
+    <div className={featured ? `${styles.grid} ${styles.featured}` : styles.grid}>
       {papers.map((paper, index) => (
         <a
           key={`${paper.title}-${index}`}
@@ -43,7 +41,7 @@ export function Papers({ featured = false }: PapersProps) {
               {paper.image ? (
                 <img src={paper.image} alt="" loading="lazy" decoding="async" />
               ) : (
-                <span className={styles.type}>{paper.short ?? paper.title}</span>
+                <span className={styles.type}>{shortTitle(paper.title)}</span>
               )}
             </div>
             <Column fillWidth flex={1} gap="4" padding="m" horizontal="center">
@@ -88,6 +86,6 @@ export function Papers({ featured = false }: PapersProps) {
           </Glass>
         </a>
       ))}
-    </Grid>
+    </div>
   );
 }

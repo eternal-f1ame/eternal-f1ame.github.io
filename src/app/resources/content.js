@@ -452,18 +452,6 @@ const publications = {
       image: "/papers/synspill.webp",
     },
     {
-      title: "Analysis and Advancement in Domain-Specific Templated Question Answering",
-      authors: (
-        <>
-          <strong>A. Baranwal</strong>, J. Goel, P. Tandon, R. Sankhla, S. Goyal
-        </>
-      ),
-      venue: "CS & IT Conference Proceedings 14",
-      year: "2024",
-      link: "https://csitcp.net/abstract/14/148csit18",
-      short: "Templated QA",
-    },
-    {
       title: "MolSight: Molecular Property Prediction with Images",
       authors: (
         <>
