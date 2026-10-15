@@ -102,18 +102,6 @@ export default function About() {
           }),
         }}
       />
-      {about.tableOfContent.display && (
-        <Column
-          left="0"
-          style={{ top: "50%", transform: "translateY(-50%)" }}
-          position="fixed"
-          paddingLeft="24"
-          gap="32"
-          hide="s"
-        >
-          <TableOfContents structure={structure} about={about} />
-        </Column>
-      )}
       <Flex fillWidth mobileDirection="column" horizontal="center">
         {about.avatar.display && (
           <Column
@@ -139,6 +127,7 @@ export default function About() {
                 ))}
               </Flex>
             )}
+            <TableOfContents structure={structure} about={about} />
           </Column>
         )}
         <Column className={styles.blockAlign} flex={9} maxWidth={40}>

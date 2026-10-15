@@ -85,8 +85,10 @@
   opacity: 1;
 }
 
+/* a glass surface inside a link lifts for keyboard focus as it does for the pointer */
 .glass-interactive:hover,
-.glass-interactive:focus-within {
+.glass-interactive:focus-within,
+a:focus-visible > .glass-interactive {
   transform: translateY(calc(var(--glass-lift) * -1));
   border-color: var(--glass-edge-hover);
   background-color: var(--glass-tint-hover);
@@ -185,22 +187,52 @@
   transition-duration: var(--glide-quick);
 }
 
+/*
+  Quiet text links: grey at rest, brightening on hover, with any trailing icon gliding
+  forward. Written as a.glide-link to match the specificity of once-ui's a:not(.button)
+  colour rule, which this file loads after.
+*/
+a.glide-link {
+  color: var(--neutral-on-background-medium);
+  transition: color var(--glide) var(--ease-glide);
+}
+
+a.glide-link:hover,
+a.glide-link:focus-visible {
+  color: var(--neutral-on-background-strong);
+  text-decoration-line: none;
+}
+
+a.glide-link svg {
+  transition: transform var(--glide) var(--ease-glide);
+}
+
+a.glide-link:hover svg,
+a.glide-link:focus-visible svg {
+  transform: translateX(0.25em);
+}
+
 @media (prefers-reduced-motion: reduce) {
   .glass,
   .glass-sheen::after,
   .glass-button,
   .glass-button::after,
-  .glass-tile img {
+  .glass-tile img,
+  a.glide-link,
+  a.glide-link svg {
     transition-duration: 1ms;
   }
 
   .glass-interactive:hover,
   .glass-interactive:focus-within,
+  a:focus-visible > .glass-interactive,
   .glass-interactive:active,
   .glass-button:hover,
   .glass-button:active,
   .glass-tile:hover img,
-  .glass-tile:active img {
+  .glass-tile:active img,
+  a.glide-link:hover svg,
+  a.glide-link:focus-visible svg {
     transform: none;
   }
 }

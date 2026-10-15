@@ -1,8 +1,7 @@
 "use client";
 
-import React from "react";
-import { Column, Flex, Text } from "@/once-ui/components";
-import styles from "./about.module.scss";
+import { Column, Line, Text } from "@/once-ui/components";
+import type React from "react";
 
 interface TableOfContentsProps {
   structure: {
@@ -18,68 +17,49 @@ interface TableOfContentsProps {
   };
 }
 
+/*
+  The page index. It sits under the portrait in the sticky left column, so it travels
+  with the content instead of being pinned to the window edge, and it is hidden once
+  that column stacks above the content on small screens.
+*/
 const TableOfContents: React.FC<TableOfContentsProps> = ({ structure, about }) => {
-  const scrollTo = (id: string, offset: number) => {
+  const scrollTo = (event: React.MouseEvent<HTMLAnchorElement>, id: string, offset: number) => {
     const element = document.getElementById(id);
-    if (element) {
-      const elementPosition = element.getBoundingClientRect().top;
-      const offsetPosition = elementPosition + window.scrollY - offset;
-
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: "smooth",
-      });
-    }
+    if (!element) return;
+    event.preventDefault();
+    window.scrollTo({
+      top: element.getBoundingClientRect().top + window.scrollY - offset,
+      behavior: "smooth",
+    });
   };
 
   if (!about.tableOfContent.display) return null;
 
   return (
-    <Column
-      left="0"
-      style={{
-        top: "50%",
-        transform: "translateY(-50%)",
-        whiteSpace: "nowrap",
-      }}
-      position="fixed"
-      paddingLeft="24"
-      gap="32"
-      hide="m"
-    >
+    <Column as="nav" aria-label="On this page" horizontal="center" gap="12" paddingTop="m" hide="s">
+      <Line background="neutral-alpha-medium" style={{ maxWidth: "3em" }} marginBottom="8" />
       {structure
         .filter((section) => section.display)
-        .map((section, sectionIndex) => (
-          <Column key={sectionIndex} gap="12">
-            <Flex
-              cursor="interactive"
-              className={styles.hover}
-              gap="8"
-              vertical="center"
-              onClick={() => scrollTo(section.title, 80)}
+        .map((section) => (
+          <Column key={section.title} horizontal="center" gap="8">
+            <a
+              href={`#${section.title}`}
+              className="glide-link"
+              onClick={(event) => scrollTo(event, section.title, 80)}
             >
-              <Flex height="1" minWidth="16" background="neutral-strong"></Flex>
-              <Text>{section.title}</Text>
-            </Flex>
-            {about.tableOfContent.subItems && (
-              <>
-                {section.items.map((item, itemIndex) => (
-                  <Flex
-                    hide="l"
-                    key={itemIndex}
-                    style={{ cursor: "pointer" }}
-                    className={styles.hover}
-                    gap="12"
-                    paddingLeft="24"
-                    vertical="center"
-                    onClick={() => scrollTo(item, 80)}
-                  >
-                    <Flex height="1" minWidth="8" background="neutral-strong"></Flex>
-                    <Text>{item}</Text>
-                  </Flex>
-                ))}
-              </>
-            )}
+              <Text variant="body-default-s">{section.title}</Text>
+            </a>
+            {about.tableOfContent.subItems &&
+              section.items.map((item) => (
+                <a
+                  key={item}
+                  href={`#${item}`}
+                  className="glide-link"
+                  onClick={(event) => scrollTo(event, item, 80)}
+                >
+                  <Text variant="body-default-xs">{item}</Text>
+                </a>
+              ))}
           </Column>
         ))}
     </Column>

@@ -61,7 +61,7 @@ export default function Blog() {
           }),
         }}
       />
-      <Heading marginBottom="l" variant="display-strong-s">
+      <Heading marginBottom="l" variant="display-strong-s" align="center">
         {displayTitle}
       </Heading>
       <Column fillWidth flex={1}>
