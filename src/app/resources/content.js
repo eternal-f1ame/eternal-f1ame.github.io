@@ -63,6 +63,16 @@ const home = {
     experience: { title: "Recently", href: "/about", cta: "more about me" },
     projects: { title: "Pastime", href: "/work", cta: "all projects" },
     writing: { title: "Scribbles", href: "/blog", cta: "all posts" },
+    life: {
+      title: "Off the clock",
+      href: "/gallery",
+      cta: "the gallery",
+      intro: (
+        <>
+          Papers are the day job. The rest is poems, literary fests, and robots that mostly worked.
+        </>
+      ),
+    },
   },
 };
 
@@ -280,6 +290,7 @@ const about = {
     items: [
       {
         name: "Spark STEM Fest, Orlando Science Center",
+        featured: 3,
         description: <>Presenter • Feb. 2026</>,
       },
       {
@@ -288,10 +299,12 @@ const about = {
       },
       {
         name: "Aaftaab, The Literary Fest, IIT Jodhpur",
+        featured: 2,
         description: <>Festival Chief • Feb. 2024</>,
       },
       {
         name: "Artificial Intelligence and Data Society, IIT Jodhpur",
+        featured: 1,
         description: <>Founder and Head • 2022 – 2023</>,
       },
       {
