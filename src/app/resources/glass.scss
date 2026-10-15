@@ -212,6 +212,31 @@ a.glide-link:focus-visible svg {
   transform: translateX(0.25em);
 }
 
+/*
+  A page arriving (src/app/template.tsx): it rises a hair and fades in. The wrapper takes
+  no box of its own, so the page lays out exactly as it would without it. Only opacity
+  and transform move, which the compositor handles without repainting the page.
+*/
+.page-enter {
+  display: contents;
+}
+
+.page-enter > * {
+  animation: page-enter var(--glide-slow) var(--ease-glide) both;
+}
+
+@keyframes page-enter {
+  from {
+    opacity: 0;
+    transform: translateY(0.75em);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .glass,
   .glass-sheen::after,
@@ -234,5 +259,9 @@ a.glide-link:focus-visible svg {
   a.glide-link:hover svg,
   a.glide-link:focus-visible svg {
     transform: none;
+  }
+
+  .page-enter > * {
+    animation-name: none;
   }
 }
