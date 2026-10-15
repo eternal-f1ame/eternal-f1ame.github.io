@@ -1,4 +1,5 @@
 import { notFound } from "next/navigation";
+import { pageMetadata, shareImage } from "@/app/utils/share";
 import { CustomMDX } from "@/components/mdx";
 import { getPosts } from "@/app/utils/utils";
 import { AvatarGroup, Button, Column, Flex, Heading, SmartImage, Text } from "@/once-ui/components";
@@ -21,46 +22,20 @@ export async function generateStaticParams(): Promise<{ slug: string }[]> {
 }
 
 export function generateMetadata({ params: { slug } }: WorkParams) {
-  let post = getPosts(["src", "app", "work", "projects"]).find((post) => post.slug === slug);
+  const post = getPosts(["src", "app", "work", "projects"]).find((post) => post.slug === slug);
 
   if (!post) {
     return;
   }
 
-  let {
-    title,
-    publishedAt: publishedTime,
-    summary: description,
-    images,
-    image,
-    team,
-  } = post.metadata;
-  let ogImage = image ? `https://${baseURL}${image}` : `https://${baseURL}/og?title=${title}`;
-
-  return {
-    title,
-    description,
-    images,
-    team,
-    openGraph: {
-      title,
-      description,
-      type: "article",
-      publishedTime,
-      url: `https://${baseURL}/work/${post.slug}`,
-      images: [
-        {
-          url: ogImage,
-        },
-      ],
-    },
-    twitter: {
-      card: "summary_large_image",
-      title,
-      description,
-      images: [ogImage],
-    },
-  };
+  return pageMetadata({
+    title: post.metadata.title,
+    description: post.metadata.summary,
+    path: `/work/${post.slug}`,
+    card: `project-${post.slug}`,
+    type: "article",
+    publishedTime: post.metadata.publishedAt,
+  });
 }
 
 export default function Project({ params }: WorkParams) {
@@ -88,9 +63,7 @@ export default function Project({ params }: WorkParams) {
             datePublished: post.metadata.publishedAt,
             dateModified: post.metadata.publishedAt,
             description: post.metadata.summary,
-            image: post.metadata.image
-              ? `https://${baseURL}${post.metadata.image}`
-              : `https://${baseURL}/og?title=${post.metadata.title}`,
+            image: shareImage(`project-${post.slug}`),
             url: `https://${baseURL}/work/${post.slug}`,
             author: {
               "@type": "Person",
@@ -114,9 +87,10 @@ export default function Project({ params }: WorkParams) {
           src={post.metadata.images[0]}
         />
       )}
-      <Column style={{ margin: "auto" }} as="article" maxWidth="xs">
+      {/* inline margins only: a plain `auto` also centres a short write-up vertically */}
+      <Column style={{ marginInline: "auto" }} as="article" maxWidth="xs">
         <Flex gap="12" marginBottom="24" vertical="center">
-          {post.metadata.team && <AvatarGroup reverse avatars={avatars} size="m" />}
+          {avatars.length > 0 && <AvatarGroup reverse avatars={avatars} size="m" />}
           <Text variant="body-default-s" onBackground="neutral-weak">
             {post.metadata.publishedAt && formatDate(post.metadata.publishedAt)}
           </Text>

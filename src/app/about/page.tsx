@@ -1,3 +1,4 @@
+import { pageMetadata } from "@/app/utils/share";
 import {
   Avatar,
   Button,
@@ -17,32 +18,13 @@ import { person, about, social } from "@/app/resources/content";
 import React from "react";
 
 export async function generateMetadata() {
-  const title = about.title;
-  const description = about.description;
-  const ogImage = `https://${baseURL}/og?title=${encodeURIComponent(title)}`;
-
-  return {
-    title,
-    description,
-    openGraph: {
-      title,
-      description,
-      type: "website",
-      url: `https://${baseURL}/about`,
-      images: [
-        {
-          url: ogImage,
-          alt: title,
-        },
-      ],
-    },
-    twitter: {
-      card: "summary_large_image",
-      title,
-      description,
-      images: [ogImage],
-    },
-  };
+  return pageMetadata({
+    title: `${about.title} ${about.label}`,
+    description: about.description,
+    path: "/about",
+    card: "about",
+    shareTitle: `${about.label} · ${person.name}`,
+  });
 }
 
 export default function About() {

@@ -318,18 +318,21 @@ const about = {
 const blog = {
   label: "Blog",
   title: "(゜-゜)",
+  heading: "scribbles",
   description: `Read what ${person.name} has been up to recently`,
 };
 
 const work = {
   label: "Pastime",
   title: "(╯°□°)╯︵ ┻━┻",
+  heading: "Pastime",
   description: `Side projects and pastimes by ${person.name}`,
 };
 
 const publications = {
   label: "Publications",
   title: "(¬‿¬)",
+  heading: "Publications",
   description: `Research publications by ${person.name}`,
   papers: [
     {
@@ -481,6 +484,7 @@ const publications = {
 const gallery = {
   label: "Gallery",
   title: "(｡◕‿‿◕｡)",
+  heading: "Gallery",
   description: `A collection of photos and poems by ${person.name}`,
   images: [],
   items: [

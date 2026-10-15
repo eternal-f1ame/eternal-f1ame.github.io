@@ -1,4 +1,5 @@
 import { baseURL, routes } from "@/app/resources";
+import { pageMetadata, shareImage } from "@/app/utils/share";
 import { about, gallery, home, newsletter, person, social } from "@/app/resources/content";
 import { getPosts } from "@/app/utils/utils";
 import { Mailchimp } from "@/components";
@@ -20,32 +21,14 @@ import {
 import type { ReactNode } from "react";
 
 export async function generateMetadata() {
-  const title = home.title;
-  const description = home.description;
-  const ogImage = `https://${baseURL}/og?title=${encodeURIComponent(title)}`;
-
-  return {
-    title,
-    description,
-    openGraph: {
-      title,
-      description,
-      type: "website",
-      url: `https://${baseURL}`,
-      images: [
-        {
-          url: ogImage,
-          alt: title,
-        },
-      ],
-    },
-    twitter: {
-      card: "summary_large_image",
-      title,
-      description,
-      images: [ogImage],
-    },
-  };
+  // the layout's title template skips its own page, so the name is added here
+  return pageMetadata({
+    title: `${home.title} · ${person.name}`,
+    description: home.description,
+    path: "",
+    card: "home",
+    shareTitle: person.name,
+  });
 }
 
 interface SectionProps {
@@ -131,7 +114,7 @@ export default function Home() {
             name: home.title,
             description: home.description,
             url: `https://${baseURL}`,
-            image: `https://${baseURL}/og?title=${encodeURIComponent(home.title)}`,
+            image: shareImage("home"),
             publisher: {
               "@type": "Person",
               name: person.name,

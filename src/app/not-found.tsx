@@ -1,5 +1,7 @@
 import { Column, Heading, Text } from "@/once-ui/components";
 
+export const metadata = { title: "Not found" };
+
 export default function NotFound() {
   return (
     <Column as="section" fill center paddingBottom="160">

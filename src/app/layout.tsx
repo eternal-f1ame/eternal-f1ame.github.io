@@ -9,6 +9,7 @@ import { Footer, Header, RouteGuard } from "@/components";
 import { RoutePrefetch } from "@/components/RoutePrefetch";
 import { getPosts } from "@/app/utils/utils";
 import { baseURL, effects, style } from "@/app/resources";
+import { person } from "@/app/resources/content";
 
 import { Inter } from "next/font/google";
 import { Source_Code_Pro } from "next/font/google";
@@ -18,7 +19,9 @@ import { Background, Column, Flex, ToastProvider } from "@/once-ui/components";
 export async function generateMetadata() {
   return {
     metadataBase: new URL(`https://${baseURL}`),
-    // Individual pages will provide their own titles and descriptions
+    // pages give their own title (often a kaomoji and a word); the name follows it, so a
+    // search result or a tab still says whose page this is
+    title: { template: `%s · ${person.name}`, default: person.name },
     // Let Next.js handle favicons automatically
     robots: {
       index: true,

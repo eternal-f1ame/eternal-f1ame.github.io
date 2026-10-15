@@ -1,76 +1,55 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { usePathname } from "next/navigation";
-import { routes, protectedRoutes } from "@/app/resources";
-import { Flex, Spinner, Input, Button, Heading, Column, PasswordInput } from "@/once-ui/components";
 import NotFound from "@/app/not-found";
+import { protectedRoutes, routes } from "@/app/resources";
+import { Button, Column, Flex, Heading, PasswordInput, Spinner } from "@/once-ui/components";
+import { usePathname } from "next/navigation";
+import { useEffect, useState } from "react";
 
 interface RouteGuardProps {
-	children: React.ReactNode;
+  children: React.ReactNode;
 }
 
+// sections with pages nested under them, switched on by their own entry in `routes`
+const dynamicRoutes = ["/blog", "/work", "/gallery"] as const;
+
+function isRouteEnabled(path: string) {
+  if (path in routes) {
+    return routes[path as keyof typeof routes];
+  }
+  return dynamicRoutes.some((route) => path.startsWith(`${route}/`) && routes[route]);
+}
+
+/*
+  Decides during render, from the path alone, so a public page is in the static HTML
+  and appears at once. Only a password-protected page waits on the network, and that
+  needs the API routes, which exist under `npm run dev` or on Vercel but not on Pages.
+*/
 const RouteGuard: React.FC<RouteGuardProps> = ({ children }) => {
-  const pathname = usePathname();
-  const [isRouteEnabled, setIsRouteEnabled] = useState(false);
-  const [isPasswordRequired, setIsPasswordRequired] = useState(false);
+  const pathname = usePathname() ?? "/";
+  // trailingSlash: true gives "/about/"; the keys in `routes` have no trailing slash
+  const path = pathname === "/" ? pathname : pathname.replace(/\/$/, "");
+  const isProtected = Boolean(protectedRoutes[path as keyof typeof protectedRoutes]);
+
   const [password, setPassword] = useState("");
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [checking, setChecking] = useState(isProtected);
   const [error, setError] = useState<string | undefined>(undefined);
-  const [loading, setLoading] = useState(true);
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies: `path` re-runs the check when moving between protected pages
   useEffect(() => {
-    const performChecks = async () => {
-      setLoading(true);
-      setIsRouteEnabled(false);
-      setIsPasswordRequired(false);
-      setIsAuthenticated(false);
-
-      const checkRouteEnabled = () => {
-        if (!pathname) return false;
-
-        // Normalize pathname by removing trailing slash (except for root)
-        const normalizedPath = pathname === '/' ? pathname : pathname.replace(/\/$/, '');
-        
-        // Check direct route match
-        if (normalizedPath in routes) {
-          return routes[normalizedPath as keyof typeof routes];
-        }
-
-        // Check dynamic routes
-        const dynamicRoutes = ["/blog", "/work"] as const;
-        for (const route of dynamicRoutes) {
-          if (normalizedPath?.startsWith(route) && routes[route]) {
-            return true;
-          }
-        }
-
-        return false;
-      };
-
-      const routeEnabled = checkRouteEnabled();
-      setIsRouteEnabled(routeEnabled);
-
-      // Normalize pathname for protected routes check
-      const normalizedPath = pathname === '/' ? pathname : pathname.replace(/\/$/, '');
-      if (protectedRoutes[normalizedPath as keyof typeof protectedRoutes]) {
-        setIsPasswordRequired(true);
-
-        try {
-          const response = await fetch("/api/check-auth");
-          if (response.ok) {
-            setIsAuthenticated(true);
-          }
-        } catch (error) {
-          // Ignore auth check errors for unprotected routes
-        }
-      }
-
-      setLoading(false);
+    if (!isProtected) return;
+    let cancelled = false;
+    setChecking(true);
+    setIsAuthenticated(false);
+    fetch("/api/check-auth")
+      .then((response) => !cancelled && setIsAuthenticated(response.ok))
+      .catch(() => {})
+      .finally(() => !cancelled && setChecking(false));
+    return () => {
+      cancelled = true;
     };
-
-    performChecks();
-  }, [pathname]);
+  }, [isProtected, path]);
 
   const handlePasswordSubmit = async () => {
     const response = await fetch("/api/authenticate", {
@@ -87,19 +66,19 @@ const RouteGuard: React.FC<RouteGuardProps> = ({ children }) => {
     }
   };
 
-  if (loading) {
-    return (
-      <Flex fillWidth paddingY="128" horizontal="center">
-        <Spinner />
-      </Flex>
-    );
+  if (!isRouteEnabled(path)) {
+    return <NotFound />;
   }
 
-  if (!isRouteEnabled) {
-		return <NotFound />;
-	}
+  if (isProtected && !isAuthenticated) {
+    if (checking) {
+      return (
+        <Flex fillWidth paddingY="128" horizontal="center">
+          <Spinner />
+        </Flex>
+      );
+    }
 
-  if (isPasswordRequired && !isAuthenticated) {
     return (
       <Column paddingY="128" maxWidth={24} gap="24" center>
         <Heading align="center" wrap="balance">

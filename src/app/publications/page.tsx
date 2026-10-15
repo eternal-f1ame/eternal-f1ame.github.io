@@ -1,35 +1,18 @@
 import { Column } from "@/once-ui/components";
+import { pageMetadata } from "@/app/utils/share";
 import { Papers } from "@/components/publications/Papers";
+import { PageHeader } from "@/components/PageHeader";
 import { baseURL } from "@/app/resources";
 import { publications, person } from "@/app/resources/content";
 
 export async function generateMetadata() {
-  const pageTitle = publications.title;
-  const description = publications.description;
-  const ogImage = `https://${baseURL}/og?title=${encodeURIComponent(pageTitle)}`;
-
-  return {
-    title: pageTitle,
-    description,
-    openGraph: {
-      title: pageTitle,
-      description,
-      type: "website",
-      url: `https://${baseURL}/publications`,
-      images: [
-        {
-          url: ogImage,
-          alt: pageTitle,
-        },
-      ],
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: pageTitle,
-      description,
-      images: [ogImage],
-    },
-  };
+  return pageMetadata({
+    title: `${publications.title} ${publications.label}`,
+    description: publications.description,
+    path: "/publications",
+    card: "publications",
+    shareTitle: `${publications.label} · ${person.name}`,
+  });
 }
 
 export default function Publications() {
@@ -60,6 +43,7 @@ export default function Publications() {
           }),
         }}
       />
+      <PageHeader title={publications.heading} />
       <Papers />
     </Column>
   );

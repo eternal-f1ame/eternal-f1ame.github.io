@@ -1,4 +1,5 @@
 import { notFound } from "next/navigation";
+import { pageMetadata, shareImage } from "@/app/utils/share";
 import { CustomMDX } from "@/components/mdx";
 import { getPosts } from "@/app/utils/utils";
 import { AvatarGroup, Button, Column, Heading, Row, Text } from "@/once-ui/components";
@@ -21,44 +22,20 @@ export async function generateStaticParams(): Promise<{ slug: string }[]> {
 }
 
 export function generateMetadata({ params: { slug } }: BlogParams) {
-  let post = getPosts(["src", "app", "blog", "posts"]).find((post) => post.slug === slug);
+  const post = getPosts(["src", "app", "blog", "posts"]).find((post) => post.slug === slug);
 
   if (!post) {
     return;
   }
 
-  let {
-    title,
-    publishedAt: publishedTime,
-    summary: description,
-    images,
-    image,
-    team,
-  } = post.metadata;
-  let ogImage = image ? `https://${baseURL}${image}` : `https://${baseURL}/og?title=${title}`;
-
-  return {
-    title,
-    description,
-    openGraph: {
-      title,
-      description,
-      type: "article",
-      publishedTime,
-      url: `https://${baseURL}/blog/${post.slug}`,
-      images: [
-        {
-          url: ogImage,
-        },
-      ],
-    },
-    twitter: {
-      card: "summary_large_image",
-      title,
-      description,
-      images: [ogImage],
-    },
-  };
+  return pageMetadata({
+    title: post.metadata.title,
+    description: post.metadata.summary,
+    path: `/blog/${post.slug}`,
+    card: `post-${post.slug}`,
+    type: "article",
+    publishedTime: post.metadata.publishedAt,
+  });
 }
 
 export default function Blog({ params }: BlogParams) {
@@ -86,9 +63,7 @@ export default function Blog({ params }: BlogParams) {
             datePublished: post.metadata.publishedAt,
             dateModified: post.metadata.publishedAt,
             description: post.metadata.summary,
-            image: post.metadata.image
-              ? `https://${baseURL}${post.metadata.image}`
-              : `https://${baseURL}/og?title=${post.metadata.title}`,
+            image: shareImage(`post-${post.slug}`),
             url: `https://${baseURL}/blog/${post.slug}`,
             author: {
               "@type": "Person",

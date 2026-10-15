@@ -1,41 +1,23 @@
-import { Column, Flex, Heading } from "@/once-ui/components";
+import { Column } from "@/once-ui/components";
+import { PageHeader } from "@/components/PageHeader";
+import { pageMetadata, shareImage } from "@/app/utils/share";
 import { Mailchimp } from "@/components";
 import { Posts } from "@/components/blog/Posts";
 import { baseURL } from "@/app/resources";
 import { blog, person, newsletter } from "@/app/resources/content";
 
 export async function generateMetadata() {
-  const pageTitle = blog.title; // For browser tab: "(゜-゜)"
-  const description = blog.description;
-  const ogImage = `https://${baseURL}/og?title=${encodeURIComponent(pageTitle)}`;
-
-  return {
-    title: pageTitle,
-    description,
-    openGraph: {
-      title: pageTitle,
-      description,
-      type: "website",
-      url: `https://${baseURL}/blog`,
-      images: [
-        {
-          url: ogImage,
-          alt: pageTitle,
-        },
-      ],
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: pageTitle,
-      description,
-      images: [ogImage],
-    },
-  };
+  return pageMetadata({
+    title: `${blog.title} ${blog.label}`,
+    description: blog.description,
+    path: "/blog",
+    card: "blog",
+    shareTitle: `${blog.label} · ${person.name}`,
+  });
 }
 
 export default function Blog() {
-  const pageTitle = blog.title; // For browser tab: "(゜-゜)"
-  const displayTitle = "scribbles"; // For page heading
+  const pageTitle = blog.title;
   
   return (
     <Column maxWidth="s">
@@ -49,7 +31,7 @@ export default function Blog() {
             headline: pageTitle,
             description: blog.description,
             url: `https://${baseURL}/blog`,
-            image: `https://${baseURL}/og?title=${encodeURIComponent(pageTitle)}`,
+            image: shareImage("blog"),
             author: {
               "@type": "Person",
               name: person.name,
@@ -61,9 +43,7 @@ export default function Blog() {
           }),
         }}
       />
-      <Heading marginBottom="l" variant="display-strong-s" align="center">
-        {displayTitle}
-      </Heading>
+      <PageHeader title={blog.heading} />
       <Column fillWidth flex={1}>
         <Posts thumbnail />
       </Column>

@@ -1,36 +1,19 @@
 import { getPosts } from "@/app/utils/utils";
+import { pageMetadata, shareImage } from "@/app/utils/share";
 import { Column } from "@/once-ui/components";
 import { Projects } from "@/components/work/Projects";
+import { PageHeader } from "@/components/PageHeader";
 import { baseURL } from "@/app/resources";
 import { person, work } from "@/app/resources/content";
 
 export async function generateMetadata() {
-  const title = work.title;
-  const description = work.description;
-  const ogImage = `https://${baseURL}/og?title=${encodeURIComponent(title)}`;
-
-  return {
-    title,
-    description,
-    openGraph: {
-      title,
-      description,
-      type: "website",
-      url: `https://${baseURL}/work/`,
-      images: [
-        {
-          url: ogImage,
-          alt: title,
-        },
-      ],
-    },
-    twitter: {
-      card: "summary_large_image",
-      title,
-      description,
-      images: [ogImage],
-    },
-  };
+  return pageMetadata({
+    title: `${work.title} ${work.label}`,
+    description: work.description,
+    path: "/work",
+    card: "work",
+    shareTitle: `${work.label} · ${person.name}`,
+  });
 }
 
 export default function Work() {
@@ -48,7 +31,7 @@ export default function Work() {
             headline: work.title,
             description: work.description,
             url: `https://${baseURL}/work`,
-            image: `https://${baseURL}/og?title=Design%20Projects`,
+            image: shareImage("work"),
             author: {
               "@type": "Person",
               name: person.name,
@@ -63,6 +46,7 @@ export default function Work() {
           }),
         }}
       />
+      <PageHeader title={work.heading} />
       <Projects />
     </Column>
   );
