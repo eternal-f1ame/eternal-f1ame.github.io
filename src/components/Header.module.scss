@@ -1,6 +1,8 @@
+/* it pins at the same height it starts at (below the layout's 16 spacer), so it never shifts
+   when the page starts to scroll */
 .position {
     position: sticky;
-    top: 0;
+    top: var(--static-space-16);
 }
 
 .mask {

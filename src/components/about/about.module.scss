@@ -1,7 +1,8 @@
+/* pins below the header, which itself pins 16 down (src/components/Header.module.scss) */
 .avatar {
     position: sticky;
     height: fit-content;
-    top: var(--static-space-64);
+    top: calc(var(--static-space-64) + var(--static-space-16));
 }
 
 @media (--s) {
