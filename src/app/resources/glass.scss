@@ -228,7 +228,9 @@ a.glide-link:focus-visible > :first-child svg {
 }
 
 .page-enter > * {
-  animation: page-enter var(--glide-slow) var(--ease-glide) both;
+  /* backwards, not both: an animation that keeps filling after it ends leaves an opacity
+     effect on the page, which walls the glass cards off from the light they blur */
+  animation: page-enter var(--glide-slow) var(--ease-glide) backwards;
 }
 
 @keyframes page-enter {
