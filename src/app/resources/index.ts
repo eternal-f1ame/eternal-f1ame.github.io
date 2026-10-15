@@ -17,4 +17,5 @@ export {
   work,
   gallery,
   publications,
+  site,
 } from "@/app/resources/content";

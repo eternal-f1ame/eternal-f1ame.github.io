@@ -43,7 +43,7 @@ export default function Publications() {
           }),
         }}
       />
-      <PageHeader title={publications.heading} />
+      <PageHeader title={publications.heading} intro={publications.intro} />
       <Papers />
     </Column>
   );

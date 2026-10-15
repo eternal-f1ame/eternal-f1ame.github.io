@@ -7,6 +7,7 @@ import "@/app/resources/type.scss";
 import classNames from "classnames";
 
 import { Footer, Header, RouteGuard } from "@/components";
+import { AwayTitle } from "@/components/AwayTitle";
 import { Backdrop } from "@/components/Backdrop";
 import { RoutePrefetch } from "@/components/RoutePrefetch";
 import { getPoems } from "@/app/utils/poems";
@@ -130,6 +131,7 @@ export default async function RootLayout({ children }: RootLayoutProps) {
           </Flex>
           <Footer />
           <RoutePrefetch paths={slugPaths} />
+          <AwayTitle />
         </Column>
       </ToastProvider>
     </Flex>

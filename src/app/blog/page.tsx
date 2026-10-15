@@ -43,7 +43,7 @@ export default function Blog() {
           }),
         }}
       />
-      <PageHeader title={blog.heading} />
+      <PageHeader title={blog.heading} intro={blog.intro} />
       <Column fillWidth flex={1}>
         <Posts thumbnail />
       </Column>

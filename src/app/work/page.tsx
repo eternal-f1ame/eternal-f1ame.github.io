@@ -46,7 +46,7 @@ export default function Work() {
           }),
         }}
       />
-      <PageHeader title={work.heading} />
+      <PageHeader title={work.heading} intro={work.intro} />
       <Projects />
     </Column>
   );

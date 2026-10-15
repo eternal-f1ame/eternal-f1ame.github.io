@@ -5,6 +5,7 @@ import { slugify } from "@/app/utils/slug";
 import { getPosts } from "@/app/utils/utils";
 import { Mailchimp } from "@/components";
 import { Glass } from "@/components/Glass";
+import { Lately } from "@/components/Lately";
 import { Posts } from "@/components/blog/Posts";
 import { Papers } from "@/components/publications/Papers";
 import { Projects } from "@/components/work/Projects";
@@ -34,8 +35,8 @@ export async function generateMetadata() {
 
 interface SectionProps {
   title: string;
-  href: string;
-  cta: string;
+  href?: string;
+  cta?: string;
   children: ReactNode;
 }
 
@@ -51,9 +52,11 @@ function Section({ title, href, cta, children }: SectionProps) {
         {title}
       </Heading>
       {children}
-      <SmartLink href={href} suffixIcon="arrowRight" className="glide-link">
-        <Text variant="body-default-s">{cta}</Text>
-      </SmartLink>
+      {href && cta && (
+        <SmartLink href={href} suffixIcon="arrowRight" className="glide-link">
+          <Text variant="body-default-s">{cta}</Text>
+        </SmartLink>
+      )}
     </Column>
   );
 }
@@ -171,6 +174,12 @@ export default function Home() {
           </RevealFx>
         </Column>
       </Glass>
+
+      {home.lately.length > 0 && (
+        <Section {...home.sections.lately}>
+          <Lately items={home.lately} />
+        </Section>
+      )}
 
       {routes["/publications"] && (
         <Section {...home.sections.papers}>

@@ -1,7 +1,18 @@
+/* the colophon reads as the last clause of the footer line on a desktop, and its own line on a phone */
+.colophon {
+    padding-left: 0.25em;
+}
+
 @media (--s) {
     .mobile {
         text-align: center;
         flex-direction: column;
         align-items: center;
+    }
+
+    .colophon {
+        display: block;
+        padding-left: 0;
+        padding-top: 0.25em;
     }
 }

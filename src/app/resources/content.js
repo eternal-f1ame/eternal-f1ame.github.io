@@ -1,5 +1,3 @@
-import { InlineCode } from "@/once-ui/components";
-
 const person = {
   firstName: "Aaditya",
   lastName: "Baranwal",
@@ -54,13 +52,26 @@ const home = {
   headline: <>AI Researcher</>,
   subline: (
     <>
-      I'm Aaditya, pursuing my Ph.D. at <InlineCode> CRCV @ UCF </InlineCode>.  <br />
-      I specialize in foundation models and deep learning.
+      I'm a Ph.D. student at CRCV, UCF, building benchmarks that ask vision-language models to read
+      manga, identify bacteria and read pressure gauges. Off the clock, I write poems.
     </>
   ),
+  // news, newest first: the first thing a visiting researcher looks for
+  lately: [
+    {
+      date: "Sep 2026",
+      text: <>Two papers accepted at NeurIPS 2026 (ED Track): Re:Cognize and PHOEBI.</>,
+    },
+    { date: "Aug 2026", text: <>Wrapped up a GenAI Ph.D. internship at LinkedIn.</> },
+    { date: "Jun 2026", text: <>Robust Onion accepted at ECCV 2026.</> },
+    { date: "May 2026", text: <>ZeroBench accepted at ICML 2026.</> },
+    { date: "Feb 2026", text: <>Presented at Spark STEM Fest, Orlando Science Center.</> },
+    { date: "Oct 2025", text: <>Re:Verse won Best Paper (Oral) at the ICCV 2025 AISTORY workshop.</> },
+  ],
   sections: {
+    lately: { title: "Lately" },
     papers: { title: "Selected papers", href: "/publications", cta: "all publications" },
-    experience: { title: "Recently", href: "/about", cta: "more about me" },
+    experience: { title: "Industry", href: "/about", cta: "more about me" },
     projects: { title: "Pastime", href: "/work", cta: "all projects" },
     writing: { title: "Scribbles", href: "/blog", cta: "all posts" },
     life: {
@@ -96,10 +107,13 @@ const about = {
     title: "Introduction",
     description: (
       <>
-        I am a Ph.D. student at the University of Central Florida, specializing in Computer Science.
-        I'm an AI Researcher passionate about leveraging deep learning, foundation models, and innovative solutions
-        to solve real-world problems. My expertise lies in creating scalable AI tools, advancing computer vision
-        methodologies, and exploring the frontiers of multimodal learning and autonomous systems.
+        I'm a Ph.D. student at UCF's Center for Research in Computer Vision, advised by Dr. Yogesh
+        Rawat and Dr. Shruti Vyas. Most of my work is benchmarks: careful tests of what
+        vision-language models can and can't do, from reading a manga page to reading a pressure
+        gauge to telling bacteria apart under a microscope. Before UCF, I studied electrical
+        engineering at IIT Jodhpur, built robots that mostly worked, and spent time at Bosch,
+        Siemens Energy and, most recently, LinkedIn. Off the clock I write poems, once ran Aaftaab,
+        IIT Jodhpur's literary fest, and maintain that anime is not a cartoon.
       </>
     ),
   },
@@ -319,6 +333,7 @@ const blog = {
   label: "Blog",
   title: "(゜-゜)",
   heading: "scribbles",
+  intro: "Long thoughts, written down when they would not leave.",
   description: `Read what ${person.name} has been up to recently`,
 };
 
@@ -326,6 +341,7 @@ const work = {
   label: "Pastime",
   title: "(╯°□°)╯︵ ┻━┻",
   heading: "Pastime",
+  intro: "Things built for fun, or because something annoyed me enough.",
   description: `Side projects and pastimes by ${person.name}`,
 };
 
@@ -333,6 +349,7 @@ const publications = {
   label: "Publications",
   title: "(¬‿¬)",
   heading: "Publications",
+  intro: "Mostly benchmarks: careful tests of what vision-language models can and can't do.",
   description: `Research publications by ${person.name}`,
   papers: [
     {
@@ -505,6 +522,7 @@ const gallery = {
   label: "Gallery",
   title: "(｡◕‿‿◕｡)",
   heading: "Gallery",
+  intro: "Poems, each set beside a photograph.",
   description: `A collection of photos and poems by ${person.name}`,
   images: [],
   items: [
@@ -565,4 +583,16 @@ const gallery = {
   ],
 };
 
-export { person, social, newsletter, home, about, blog, work, gallery, publications };
+// the site's small voice: the 404, the tab title while you are away, the footer's colophon
+const site = {
+  notFound: {
+    title: "¯\\_(ツ)_/¯ Not found",
+    face: "(╯°□°)╯︵ ┻━┻",
+    line: "This page doesn't exist. I may have flipped it.",
+    back: "put it back ┬─┬ノ( º _ ºノ)",
+  },
+  awayTitle: "come back (｡•́︿•̀｡)",
+  colophon: "set in Newsreader and Inter, lit in screentone",
+};
+
+export { person, social, newsletter, home, about, blog, work, gallery, publications, site };

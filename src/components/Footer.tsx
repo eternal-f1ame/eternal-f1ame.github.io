@@ -1,5 +1,5 @@
 import { Flex, IconButton, SmartLink, Text } from "@/once-ui/components";
-import { person, social } from "@/app/resources/content";
+import { person, site, social } from "@/app/resources/content";
 import styles from "./Footer.module.scss";
 
 export const Footer = () => {
@@ -35,6 +35,9 @@ export const Footer = () => {
             >
               Instagram
             </SmartLink>
+          </Text>
+          <Text onBackground="neutral-weak" className={styles.colophon}>
+            / {site.colophon}
           </Text>
         </Text>
         <Flex gap="16">

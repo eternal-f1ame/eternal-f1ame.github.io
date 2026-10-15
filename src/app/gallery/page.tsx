@@ -46,7 +46,7 @@ export default function Gallery() {
           }),
         }}
       />
-      <PageHeader title={gallery.heading} />
+      <PageHeader title={gallery.heading} intro={gallery.intro} />
       <MasonryGrid />
     </Column>
   );
